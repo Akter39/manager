@@ -1,10 +1,16 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'manager';
+  
+  constructor(public translate: TranslateService) { 
+    translate.addLangs(['en', 'ru']);
+    translate.setDefaultLang('en');
+  }
 }
