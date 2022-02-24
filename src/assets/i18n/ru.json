@@ -1,2 +1,24 @@
 {
+	"Contacts": {
+		"Email": "protocols-manager@admin.xyz",
+		"websiteName": "PROTOCOLS-MANAGER.COM",
+		"сompany": "Bad company"
+	},
+	"UI": {
+		"Button": {
+			"signIn": "Вход",
+			"signUp": "Регистрация"
+		}
+	},
+	"Welcome": {
+		"Footer": {
+			"Cookies": "Файлы cookie",
+			"about": "О нас",
+			"privacyPolice": "Конфиденциальност"
+		},
+		"Main": {
+			"greetings": "Добро пожаловать",
+			"greetingsMsg": "Программа для ведения протоколов соревнований и отчетности"
+		}
+	}
 }

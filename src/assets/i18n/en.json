@@ -1,2 +1,24 @@
 {
+	"Contacts": {
+		"Email": "protocols-manager@admin.xyz",
+		"websiteName": "PROTOCOLS-MANAGER.COM",
+		"сompany": "Bad company"
+	},
+	"UI": {
+		"Button": {
+			"signIn": "Sign In",
+			"signUp": "Sign UP"
+		}
+	},
+	"Welcome": {
+		"Footer": {
+			"Cookies": "Cookies",
+			"about": "About",
+			"privacyPolice": "Privacy"
+		},
+		"Main": {
+			"greetings": "Welcome",
+			"greetingsMsg": "Program for keeping records of protocols and reporting"
+		}
+	}
 }
