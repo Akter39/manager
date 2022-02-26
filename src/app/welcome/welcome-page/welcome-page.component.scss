@@ -57,7 +57,6 @@
         letter-spacing: calc(0.01em + 0.1vw);
         text-transform: uppercase;
         transition: 1s;
-        background-size: 200% auto;
         padding: calc(0.15em + 0.12vw) calc(0.75em + 0.5vw);
     }
     .sign-in {
@@ -73,7 +72,8 @@
     .sign-up {
         margin-left: calc(10px + 2vw);
         background-image: linear-gradient(to right, $second-color 0%, $secondB-color 51%, $second-color 100%);
-        border: 0px;
+        border: 2px solid transparent;
+        background-size: 200% auto;
         &:hover {
             background-position: right center;
         }

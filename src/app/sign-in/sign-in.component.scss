@@ -15,6 +15,7 @@
 form {
     border-top: 2px solid $mainA-color;
     padding: 0px 20px;
+    margin-bottom: 10px;
 }
 
 @media(min-device-width: 421px) { 
@@ -23,6 +24,7 @@ form {
         width: 50vw;
         max-width: 480px;
         border: 2px solid $mainA-color;
+        margin-top: 10px;
     }
     .flex-container {
         justify-content: center;
@@ -53,6 +55,34 @@ form {
 
 .sign-in {
     background-color: $main-color;
-    border: 2px solid $second-color;
+    border: 2px solid $secondB-color;
     color: $second-color;
+    transition: 1s;
+    &:hover {
+        border-color: $second-color;
+        color: $second-color;
+    }
+}
+
+.sign-up {
+    background-image: linear-gradient(to right, $second-color 0%, $secondB-color 51%, $second-color 100%);
+    border: 2px solid transparent;
+    background-size: 200% auto;
+    &:hover {
+        background-position: right center;
+    }
+}
+
+.or {
+    color: $mainB-color;
+    border-bottom: 2px solid $mainA-color;
+    text-align: center;
+    margin-bottom: 1.6em;
+    span {
+        padding: 0 5px;
+        background-color: $main-color;
+        z-index: 1;
+        display: inline-block;
+        transform: translateY(45%);
+    }
 }
