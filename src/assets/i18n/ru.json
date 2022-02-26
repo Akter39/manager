@@ -6,19 +6,26 @@
 	},
 	"UI": {
 		"Button": {
-			"signIn": "Вход",
-			"signUp": "Регистрация"
+			"signIn": "вход",
+			"signUp": "регистрация"
+		},
+		"Input": {
+			"login": "логин, имейл или телефон",
+			"password": "пароль"
 		}
 	},
 	"Welcome": {
 		"Footer": {
 			"Cookies": "Файлы cookie",
 			"about": "О нас",
-			"privacyPolice": "Конфиденциальност"
+			"privacyPolice": "Конфиденциальность"
 		},
 		"Main": {
 			"greetings": "Добро пожаловать",
 			"greetingsMsg": "Программа для ведения протоколов соревнований и отчетности"
+		},
+		"SignIn": {
+			"or": "или"
 		}
 	}
 }

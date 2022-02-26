@@ -6,8 +6,12 @@
 	},
 	"UI": {
 		"Button": {
-			"signIn": "Sign In",
-			"signUp": "Sign UP"
+			"signIn": "sign in",
+			"signUp": "sign up"
+		},
+		"Input": {
+			"login": "login, email or phone",
+			"password": "password"
 		}
 	},
 	"Welcome": {
@@ -19,6 +23,9 @@
 		"Main": {
 			"greetings": "Welcome",
 			"greetingsMsg": "Program for keeping records of protocols and reporting"
+		},
+		"SignIn": {
+			"or": "or"
 		}
 	}
 }

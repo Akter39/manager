@@ -1,142 +1,18 @@
 @import 'variebles';
 
 body {
+    height: 100%;
     background-color: $main-color;
     color: $main-text-color;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    justify-content:stretch;
 }
 
-/*#region header*/
-header {
-    align-self: stretch;
-    font-weight: 900;
-    padding: 5px 5px 20px 5px;
-    display: flex;
-    flex-flow: row-reverse wrap-reverse;
-    justify-content:space-between;
-    align-items: center;
-}
-
-.logo {
+.router {
     flex-grow: 1;
-    display: flex;
-    align-self: flex-start;
-    align-items: flex-end;
-    font-size: calc(0.75em + 0.6vw);
-    letter-spacing: calc(0.01em + 0.1vw);
-    img {
-        height: 2em;
-        border-radius: 100%;
-        background-color: $mainA-color;
-    }
-    .company {
-        padding-left: 0.2em;
-    }
-
+    position: relative;
 }
-
-.title-header {
-    flex-grow: 1;
-    text-align: center;
-    font-size: calc(1em + 0.8vw);
-    text-decoration: underline;
-    letter-spacing: calc(0.01em + 0.3vw);
-}
-
-.nav-header {
-    flex-grow: 1;
-    display: flex;
-    justify-content: flex-end;
-    font-size: calc(0.75em + 0.6vw);
-    .btn {
-        text-align: center;
-        border-radius: 2px;
-        letter-spacing: calc(0.01em + 0.1vw);
-        text-transform: uppercase;
-        transition: 1s;
-        background-size: 200% auto;
-    }
-    .sign-in {
-        margin: 0px calc(5px + 2vw) 0px calc(10px + 2vw);
-        padding: 1px 10px;
-        border: 2px solid $secondA-color;
-        background-color: $main-color;
-        color: $secondA-color;
-        &:hover {
-            border-color: $second-color;
-            color: $second-color;
-        }
-    }
-    .sign-up {
-        margin-left: calc(10px + 2vw);
-        padding: 1px 10px;
-        background-image: linear-gradient(to right, $second-color 0%, $secondB-color 51%, $second-color 100%);
-        border: 0px;
-        &:hover {
-            background-position: right center;
-        }
-    }
-}
-/*#endregion*/
-
-/*#region main*/
-main {
-    align-self: stretch;
-    flex-grow: 1;
-    display: flex;
-    flex-wrap: wrap-reverse;
-    justify-content: stretch;
-    text-align: center;
-}
-
-.main-img {
-    flex-grow: 1;
-    min-width: 50vw;
-    display: grid;
-    margin: 5%;
-    grid: repeat(100,1%) / repeat(100,1%) ;
-    .img1 {
-        background: url('../../assets/imges/sport1.jpg') no-repeat;
-        grid-area: 1 / 1 / 53 / 55;
-        z-index: 3;
-        background-size: 100% 100%;
-    }
-    .img2 {
-        background: url('../../assets/imges/sport2.jpg') no-repeat 100%;
-        grid-area: 13 / 52 / 67 / 101 ;
-        z-index: 1;
-        background-size: 100% 100%;
-    }
-    .img3 {
-        background: url('../../assets/imges/sport3.jpg') no-repeat 100%;
-        grid-area: 48 / 8 / 101 / 62 ;
-        z-index: 2;
-        background-size: 100% 100%;
-    }
-}
-
-.greetings {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    h1 {
-        color: $second-color;
-        font-size: calc(1em + 2vw);
-        letter-spacing: calc(0.01em + 0.5vw);
-        margin-bottom: calc(10px + 2vw);
-        padding: 0 10%;
-    }
-    p {
-        font-size: calc(0.4em + 0.8vw);
-        letter-spacing: calc(0.01em + 0.1vw);
-        padding: 0 10%;
-    }
-}
-/*#endregion*/
 
 /*#region footer*/
 footer {
@@ -146,7 +22,7 @@ footer {
     flex-wrap: wrap;
     padding: calc(2px + 0.2vw);
     background-color: $mainA-color;
-    span {
+    div {
         padding: 2px ;
         padding: calc(5px + 0.5vw);
     }
