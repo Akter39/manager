@@ -1,4 +1,4 @@
-import { Component, ElementRef, forwardRef, Input, OnInit, Renderer2 } from '@angular/core';
+import { Component, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 export const _VALUE_ACCESSOR: any = {
@@ -15,37 +15,45 @@ export const _VALUE_ACCESSOR: any = {
 })
 export class InputComponent implements ControlValueAccessor {
 
-  _value: string = '';
+  _value: string = "";
   set value(_value: string) {
-    if( _value !== undefined && this._value !== _value){
+    console.log(_value);
+    if(_value !== undefined && this._value !== _value){
       this._value = _value;
       this.onChange(_value);
       this.onTouched(_value);
       }
   }
+  get value() {
+    return this._value;
+  }
   @Input() placeholder: string = '';
   @Input() type: 'text' | 'password' = 'text';
  
 
-  onChange = (_value: string) => {};
+  onChange: any = () => {};
 
-  onTouched = (_value: string) => {};
+  onTouched: any = () => {};
 
   disabled = false;
 
   writeValue(value: any) {
-      this.value = value;
+    console.log('-writeValue-');
+    this.value = value;
   }
 
   registerOnChange(onChange: any) {
-      this.onChange = onChange;
+    console.log('-registerOnChange-');
+    this.onChange = onChange;
   }
 
   registerOnTouched(onTouched: any) {
-      this.onTouched = onTouched;
+    console.log('-registerOnTouched-');
+    this.onTouched = onTouched;
   }
 
   setDisabledState(disabled: boolean) {
+    console.log('-OnsetDisabledStateBlur-');
     this.disabled = disabled;
   }
 }

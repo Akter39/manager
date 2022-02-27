@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-sign-in',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignInComponent implements OnInit {
 
-  constructor() { }
+  loginForm!: FormGroup;
+  constructor() {
+   }
 
   ngOnInit(): void {
+    this.loginForm = new FormGroup ({
+      "userLogin": new FormControl("", Validators.pattern("[0-9]{10}"))
+    })
   }
 
+  send(){
+    console.log(this.loginForm);
+  }
 }

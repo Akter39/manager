@@ -1,8 +1,20 @@
 <div class="flex-container">
     <span class="header">{{'Contacts.websiteName' | translate}}</span>
-    <form>
-        <app-input type="text" [placeholder]="'UI.Input.login' | translate" class="login"></app-input>
-        <app-input type="password" [placeholder]="'UI.Input.password' | translate" class="password"></app-input>
+    <form [formGroup]="loginForm" novalidate (ngSubmit)="send()">
+        <app-input type="text"
+            [placeholder]="'UI.Input.login' | translate"
+             class="login"
+            formControlName="userLogin">
+        </app-input>
+        <p>{{loginForm.get('userLogin')?.touched|json}}</p>
+        <p>{{loginForm.get('userLogin')?.value|json}}</p>
+        <div class="alert alert-danger"
+            *ngIf="loginForm.controls['userLogin'].invalid && loginForm.controls['userLogin'].touched">
+            Ошибка заполнения формы
+        </div>
+        <app-input type="password"
+             [placeholder]="'UI.Input.password' | translate"
+              class="password"></app-input>
         <button class="btn sign-in">{{'UI.Button.signIn' | translate}}</button>
         <div class="or"><span>{{'Welcome.SignIn.or' | translate}}</span></div>
         <button class="btn sign-up">{{'UI.Button.signUp' | translate}}</button>
