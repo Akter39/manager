@@ -12,8 +12,7 @@
 /*#region header*/
 .header {
     align-self: stretch;
-    font-weight: 900;
-    padding: 5px 5px 20px 5px;
+    padding: .5em .5em 2em .5em;
     display: flex;
     flex-flow: row-reverse wrap-reverse;
     justify-content:space-between;
@@ -23,12 +22,10 @@
 .logo {
     flex-grow: 1;
     display: flex;
-    align-self: flex-start;
-    align-items: flex-end;
-    font-size: calc(0.75em + 0.6vw);
-    letter-spacing: calc(0.01em + 0.1vw);
+    font-size: 2em;
+    letter-spacing: 0.1em;
     img {
-        height: 2em;
+        height: 1em;
         border-radius: 100%;
         background-color: $mainA-color;
     }
@@ -41,26 +38,26 @@
 .title-header {
     flex-grow: 1;
     text-align: center;
-    font-size: calc(1em + 0.8vw);
+    font-size: 3em;
     text-decoration: underline;
-    letter-spacing: calc(0.01em + 0.3vw);
+    letter-spacing: 0.1em;
 }
 
 .nav-header {
     flex-grow: 1;
     display: flex;
     justify-content: flex-end;
-    font-size: calc(0.75em + 0.6vw);
+    font-size: 1em;
+    letter-spacing: 0.1em;
     .btn {
         text-align: center;
         border-radius: 2px;
-        letter-spacing: calc(0.01em + 0.1vw);
         text-transform: uppercase;
         transition: 1s;
-        padding: calc(0.15em + 0.12vw) calc(0.75em + 0.5vw);
+        padding: .2em .5em;
     }
     .sign-in {
-        margin: 0px calc(5px + 2vw) 0px calc(10px + 2vw);
+        margin: 0 1em 0px 2em;
         border: 2px solid $secondB-color;
         background-color: $main-color;
         color: $secondA-color;
@@ -70,7 +67,7 @@
         }
     }
     .sign-up {
-        margin-left: calc(10px + 2vw);
+        margin-left: 2em;
         background-image: linear-gradient(to right, $second-color 0%, $secondB-color 51%, $second-color 100%);
         border: 2px solid transparent;
         background-size: 200% auto;
@@ -123,14 +120,14 @@
     justify-content: center;
     h1 {
         color: $second-color;
-        font-size: calc(1em + 2vw);
-        letter-spacing: calc(0.01em + 0.5vw);
-        margin-bottom: calc(10px + 2vw);
+        font-size: 2em;
+        letter-spacing: 0.1em;
+        margin-bottom: 0.5em;
         padding: 0 10%;
     }
     p {
-        font-size: calc(0.4em + 0.8vw);
-        letter-spacing: calc(0.01em + 0.1vw);
+        font-size: 0.8em;
+        letter-spacing: 0.1em;
         padding: 0 10%;
     }
 }

@@ -25,6 +25,9 @@
 			"greetingsMsg": "Program for keeping records of protocols and reporting"
 		},
 		"SignIn": {
+			"alertLogin": "Invalid login format",
+			"alertPassword": "Invalid password format",
+			"alertSignIn": "You entered an incorrect login or password",
 			"or": "or"
 		}
 	}

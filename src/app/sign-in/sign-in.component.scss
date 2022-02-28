@@ -6,27 +6,26 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    font-size: calc(0.75em + 0.6vw);
-    letter-spacing: calc(0.01em + 0.1vw);
 }
 
 .header {
+    font-size: 1.5em;
     align-self: center;
 }
 
-form {
+.flex-container1 {
     border-top: 2px solid $mainA-color;
-    padding: 0px 20px;
+    padding: 0px 1.5em;
     margin-bottom: 10px;
 }
 
 @media(min-device-width: 421px) { 
-    form {
+    .flex-container1 {
         align-self: center;
         width: 50vw;
         max-width: 480px;
         border: 2px solid $mainA-color;
-        margin-top: 10px;
+        margin-top: 0.5em;
     }
     .flex-container {
         justify-content: center;
@@ -34,6 +33,7 @@ form {
 }
 
 :host ::ng-deep app-input {
+    font-size: 1.2em;
     color: $mainB-color;
     input {
         border: 2px solid $mainB-color;
@@ -50,8 +50,9 @@ form {
 }
 
 .btn {
+font-size: 1em;
  width: 100%;
- margin: calc(0.75em + 2%) 0;   
+ margin: 1em 0;   
  border-radius: 2px;
 }
 
@@ -87,4 +88,12 @@ form {
         display: inline-block;
         transform: translateY(45%);
     }
+}
+
+.alert {
+    font-size: 1em;
+    color: $mainB-color;
+    border: 2px solid $alert-color;
+    margin-top: 0.5em;
+    padding: 0.2em;
 }
