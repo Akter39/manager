@@ -1,7 +1,10 @@
 @import 'variebles';
 
 body {
+    //min-height: 100vh;
+    //min-width: 320px;
     height: 100%;
+    overflow: scroll;
     background-color: $main-color;
     color: $main-text-color;
     display: flex;
@@ -12,10 +15,13 @@ body {
 .router {
     flex-grow: 1;
     position: relative;
+    min-height: 420px;
+    min-width: 320px;
 }
 
 /*#region footer*/
 footer {
+    min-width: 320px;
     align-self: stretch;
     display: flex;
     justify-content: center;
