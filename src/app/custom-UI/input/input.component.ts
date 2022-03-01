@@ -25,6 +25,7 @@ export class InputComponent implements ControlValueAccessor {
   }
   @Input() placeholder: string = '';
   @Input() type: 'text' | 'password' = 'text';
+  @Input() isStar: boolean = false;
  
 
   onChange: any = () => {};

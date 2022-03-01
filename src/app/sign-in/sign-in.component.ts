@@ -23,8 +23,4 @@ export class SignInComponent implements OnInit {
   onSumbit(){
     console.log(this.loginForm.value);
   }
-
-  signUp() {
-    console.log('button signUp');
-  }
 }

@@ -1,1 +1,33 @@
-<p>sign-up works!</p>
+<div class="flex-container">
+    <span class="header">{{'Contacts.websiteName' | translate}}</span>
+    <div class="flex-container1">
+        <form [formGroup]="signUpForm" (ngSubmit)="onSumbit()">
+            <div class="alert"
+            *ngIf="SignUpError">
+            {{'Welcome.SignIn.alertSignIn' | translate}}
+            </div>
+            <div class="alert"
+            *ngIf="signUpForm.controls['userLogin'].invalid && signUpForm.controls['userLogin'].touched">
+            {{'Welcome.SignIn.alertLogin' | translate}}
+            </div>
+            <div class="alert"
+            *ngIf="signUpForm.controls['userPassword'].invalid && signUpForm.controls['userPassword'].touched">
+            {{'Welcome.SignIn.alertPassword' | translate}}
+            </div>
+            <app-input type="text"
+                [placeholder]="'UI.Input.login' | translate"
+                 class="login"
+                formControlName="userLogin"
+                [isStar]="true">
+            </app-input>
+            <app-input type="password"
+                 [placeholder]="'UI.Input.password' | translate"
+                  class="password"
+                  formControlName="userPassword"
+                  [isStar]="true"></app-input>
+            <button class="btn sign-in" [disabled]="signUpForm.invalid">{{'UI.Button.signUp' | translate}}</button>
+        </form>
+        <div class="or"><span>{{'Welcome.SignIn.or' | translate}}</span></div>
+        <button class="btn sign-up" routerLink="/welcome/sign-in">{{'UI.Button.signIn' | translate}}</button>
+    </div>
+</div>
