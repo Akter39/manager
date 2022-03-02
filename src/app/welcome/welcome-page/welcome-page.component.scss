@@ -17,6 +17,7 @@
     flex-flow: row-reverse wrap-reverse;
     justify-content:space-between;
     align-items: center;
+    border-bottom: 1px solid $mainA-color;
 }
 
 .logo {
@@ -24,6 +25,7 @@
     display: flex;
     font-size: 2em;
     letter-spacing: 0.1em;
+    padding: 0.2em 0;
     img {
         height: 1em;
         border-radius: 100%;
@@ -38,9 +40,13 @@
 .title-header {
     flex-grow: 1;
     text-align: center;
-    font-size: 3em;
+    font-size: 3.5em;
+    padding: 0.2em 0.15em;
     text-decoration: underline;
     letter-spacing: 0.1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .nav-header {
@@ -49,6 +55,7 @@
     justify-content: flex-end;
     font-size: 1em;
     letter-spacing: 0.1em;
+    padding: 0.2em 0;
     .btn {
         text-align: center;
         border-radius: 2px;

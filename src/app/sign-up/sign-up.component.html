@@ -7,24 +7,38 @@
             {{'Welcome.SignIn.alertSignIn' | translate}}
             </div>
             <div class="alert"
-            *ngIf="signUpForm.controls['userLogin'].invalid && signUpForm.controls['userLogin'].touched">
+            *ngIf="signUpForm.controls['userName'].invalid && signUpForm.controls['userName'].touched">
             {{'Welcome.SignIn.alertLogin' | translate}}
             </div>
             <div class="alert"
             *ngIf="signUpForm.controls['userPassword'].invalid && signUpForm.controls['userPassword'].touched">
             {{'Welcome.SignIn.alertPassword' | translate}}
             </div>
+            <p class="starAlert"><span>*</span>{{'Welcome.SignUp.starAlert' | translate}}</p>
             <app-input type="text"
-                [placeholder]="'UI.Input.login' | translate"
-                 class="login"
-                formControlName="userLogin"
-                [isStar]="true">
-            </app-input>
+                [placeholder]="'UI.Input.userName' | translate"
+                formControlName="userName"
+                [isStar]="true"></app-input>
             <app-input type="password"
                  [placeholder]="'UI.Input.password' | translate"
-                  class="password"
                   formControlName="userPassword"
                   [isStar]="true"></app-input>
+            <app-input type="password"
+                 [placeholder]="'UI.Input.confirmPassword' | translate"
+                  formControlName="userConfirmPassword"
+                  [isStar]="true"></app-input>
+            <app-input type="text"
+                 [placeholder]="'UI.Input.phone' | translate"
+                  formControlName="userPhone"
+                  [isStar]="true"></app-input>      
+            <app-input type="text"
+                 [placeholder]="'UI.Input.city' | translate"
+                  formControlName="userCity"
+                  [isStar]="true"></app-input>
+            <app-input type="text"
+                 [placeholder]="'UI.Input.organization' | translate"
+                  formControlName="userOrganization"
+                  [isStar]="true"></app-input>            
             <button class="btn sign-in" [disabled]="signUpForm.invalid">{{'UI.Button.signUp' | translate}}</button>
         </form>
         <div class="or"><span>{{'Welcome.SignIn.or' | translate}}</span></div>

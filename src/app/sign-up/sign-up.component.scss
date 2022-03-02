@@ -98,3 +98,13 @@ font-size: 1em;
     margin-top: 0.5em;
     padding: 0.2em;
 }
+
+.starAlert {
+    font-size: 1.2em;
+    letter-spacing: 0.1em;
+    margin-top: 0.5em;
+    color: $second-color;
+    span {
+        color: $alert-color;
+    }
+}

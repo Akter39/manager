@@ -10,8 +10,13 @@
 			"signUp": "sign up"
 		},
 		"Input": {
+			"city": "city",
+			"confirmPassword": "confirm password",
 			"login": "login, email or phone",
-			"password": "password"
+			"organization": "organization",
+			"password": "password",
+			"phone": "phone number",
+			"userName": "login"
 		}
 	},
 	"Welcome": {
@@ -29,6 +34,9 @@
 			"alertPassword": "Invalid password format",
 			"alertSignIn": "You entered an incorrect login or password",
 			"or": "or"
+		},
+		"SignUp": {
+			"starAlert": " - required fields"
 		}
 	}
 }
