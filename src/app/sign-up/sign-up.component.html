@@ -2,43 +2,83 @@
     <span class="header">{{'Contacts.websiteName' | translate}}</span>
     <div class="flex-container1">
         <form [formGroup]="signUpForm" (ngSubmit)="onSumbit()">
-            <div class="alert"
-            *ngIf="SignUpError">
-            {{'Welcome.SignIn.alertSignIn' | translate}}
-            </div>
-            <div class="alert"
-            *ngIf="signUpForm.controls['userName'].invalid && signUpForm.controls['userName'].touched">
-            {{'Welcome.SignIn.alertLogin' | translate}}
-            </div>
-            <div class="alert"
-            *ngIf="signUpForm.controls['userPassword'].invalid && signUpForm.controls['userPassword'].touched">
-            {{'Welcome.SignIn.alertPassword' | translate}}
-            </div>
             <p class="starAlert"><span>*</span>{{'Welcome.SignUp.starAlert' | translate}}</p>
             <app-input type="text"
                 [placeholder]="'UI.Input.userName' | translate"
                 formControlName="userName"
-                [isStar]="true"></app-input>
+                [isStar]="true">
+            </app-input>
+            <div class="alert"
+            *ngIf="signUpForm.controls['userName'].invalid && signUpForm.controls['userName'].touched || condition.invalidNameFormat">
+            {{'Welcome.SignUp.invalidNameFormat' | translate}}
+            </div>
+            <div class="alert"
+            *ngIf="condition.nameBusy">
+            {{'Welcome.SignUp.nameBusy' | translate}}
+            </div>
             <app-input type="password"
                  [placeholder]="'UI.Input.password' | translate"
                   formControlName="userPassword"
-                  [isStar]="true"></app-input>
+                  [isStar]="true">
+            </app-input>
             <app-input type="password"
                  [placeholder]="'UI.Input.confirmPassword' | translate"
                   formControlName="userConfirmPassword"
-                  [isStar]="true"></app-input>
+                  [isStar]="true">
+            </app-input>
+            <div class="alert"
+            *ngIf="(signUpForm.controls['userPassword'].invalid && signUpForm.controls['userPassword'].touched
+             || signUpForm.controls['userConfirmPassword'].invalid && signUpForm.controls['userConfirmPassword'].touched) || condition.invalidPasswordFormat">
+            {{'Welcome.SignUp.invalidPasswordFormat' | translate}}
+            </div>
+            <div class="alert"
+            *ngIf="signUpForm.errors?.['matchPassword'] && (signUpForm.controls['userPassword'].touched && signUpForm.controls['userConfirmPassword'].touched) || condition.notMatchPasswords">
+            {{'Welcome.SignUp.notMatchPasswords' | translate}}
+            </div>
+            <app-input type="text"
+                 [placeholder]="'UI.Input.email' | translate"
+                  formControlName="userEmail"
+                  [isStar]="true">
+            </app-input>
+            <div class="alert"
+            *ngIf="signUpForm.controls['userEmail'].invalid && signUpForm.controls['userEmail'].touched || condition.invalidEmailFormat">
+            {{'Welcome.SignUp.invalidEmailFormat' | translate}}
+            </div>
+            <div class="alert"
+            *ngIf="condition.emailBusy">
+            {{'Welcome.SignUp.emailBusy' | translate}}
+            </div> 
             <app-input type="text"
                  [placeholder]="'UI.Input.phone' | translate"
                   formControlName="userPhone"
-                  [isStar]="true"></app-input>      
+                  [isStar]="true">
+            </app-input>
+            <div class="alert"
+            *ngIf="signUpForm.controls['userPhone'].invalid && signUpForm.controls['userPhone'].touched || condition.invalidPhoneFormat">
+            {{'Welcome.SignUp.invalidPhoneFormat' | translate}}
+            </div>
+            <div class="alert"
+            *ngIf="condition.phoneBusy">
+            {{'Welcome.SignUp.phoneBusy' | translate}}
+            </div>      
             <app-input type="text"
                  [placeholder]="'UI.Input.city' | translate"
                   formControlName="userCity"
-                  [isStar]="true"></app-input>
+                  [isStar]="true">
+            </app-input> 
+            <div class="alert"
+            *ngIf="signUpForm.controls['userCity'].invalid && signUpForm.controls['userCity'].touched || condition.invalidCityFormat">
+            {{'Welcome.SignUp.invalidCityFormat' | translate}}
+            </div>
             <app-input type="text"
                  [placeholder]="'UI.Input.organization' | translate"
                   formControlName="userOrganization"
-                  [isStar]="true"></app-input>            
+                  [isStar]="true">
+            </app-input> 
+            <div class="alert"
+            *ngIf="signUpForm.controls['userOrganization'].invalid && signUpForm.controls['userOrganization'].touched || condition.invalidOrganizationFormat">
+            {{'Welcome.SignUp.invalidOrganizationFormat' | translate}}
+            </div>           
             <button class="btn sign-in" [disabled]="signUpForm.invalid">{{'UI.Button.signUp' | translate}}</button>
         </form>
         <div class="or"><span>{{'Welcome.SignIn.or' | translate}}</span></div>

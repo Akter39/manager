@@ -12,6 +12,7 @@
 		"Input": {
 			"city": "город",
 			"confirmPassword": "повторите пароль",
+			"email": "почта",
 			"login": "логин, имейл или телефон",
 			"organization": "организация",
 			"password": "пароль",
@@ -36,6 +37,16 @@
 			"or": "или"
 		},
 		"SignUp": {
+			"emailBusy": "Этот имейл занят",
+			"invalidCityFormat": "Неверный формат названия города",
+			"invalidEmailFormat": "Неверный формат имейла",
+			"invalidNameFormat": "Неверный формат логина",
+			"invalidOrganizationFormat": "Неверный формат названия организации",
+			"invalidPasswordFormat": "Неверный формат пароля",
+			"invalidPhoneFormat": "Неверный формат номера телефона",
+			"nameBusy": "Этот логин занят",
+			"notMatchPasswords": "Пароли не совпадают",
+			"phoneBusy": "Этот номер телефона занят",
 			"starAlert": " - поля обязательные для заполнения"
 		}
 	}

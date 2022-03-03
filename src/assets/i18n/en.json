@@ -12,6 +12,7 @@
 		"Input": {
 			"city": "city",
 			"confirmPassword": "confirm password",
+			"email": "email",
 			"login": "login, email or phone",
 			"organization": "organization",
 			"password": "password",
@@ -36,6 +37,16 @@
 			"or": "or"
 		},
 		"SignUp": {
+			"emailBusy": "This email is busy",
+			"invalidCityFormat": "Invalid city format",
+			"invalidEmailFormat": "Invalid email format",
+			"invalidNameFormat": "Invalid name format",
+			"invalidOrganizationFormat": "Invalid organization format",
+			"invalidPasswordFormat": "Invalid password format",
+			"invalidPhoneFormat": "Invalid phone number format",
+			"nameBusy": "This user name is taken",
+			"notMatchPasswords": "Passwords don't match",
+			"phoneBusy": "This phone number is busy",
 			"starAlert": " - required fields"
 		}
 	}
