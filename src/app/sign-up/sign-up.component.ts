@@ -20,7 +20,7 @@ export class SignUpComponent implements OnInit {
       "userConfirmPassword": new FormControl("", [Validators.pattern("^[a-zA-Z0-9]{6,20}$"), Validators.required]),
       "userPhone": new FormControl("", [Validators.pattern("^[0-9]{10}$"), Validators.required]),
       "userCity": new FormControl("", [Validators.pattern("^[a-zA-Zа-яА-Я]{1,20}$"), Validators.required]),
-      "userOrganization": new FormControl("", [Validators.pattern("^[a-zA-Z0-9]{6,20}$"), Validators.required]),
+      "userOrganization": new FormControl("", [Validators.pattern("^[a-zA-Zа-яА-Я0-9\'\"]{6,20}$"), Validators.required]),
     })
   }
 
