@@ -1,14 +1,16 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { HttpClient} from '@angular/common/http';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { RegexConstants } from '../validators/regex-constants';
+import { PasswordMatchValidator } from '../validators/password-match.validator';
 
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss']
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent implements OnInit, DoCheck {
 
   public condition: Condition = {
     successful: false,
@@ -26,28 +28,27 @@ export class SignUpComponent implements OnInit {
   SignUpError: boolean = false;
   signUpForm!: FormGroup;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
   }
 
   ngOnInit(): void {
     this.signUpForm = new FormGroup ({
-      "userName": new FormControl("", [Validators.pattern("^[a-zA-Z0-9]{5,15}$"), Validators.required]),
-      "userPassword": new FormControl("", [Validators.pattern("^[a-zA-Z0-9]{6,20}$"), Validators.required]),
-      "userConfirmPassword": new FormControl("", [Validators.pattern("^[a-zA-Z0-9]{6,20}$"), Validators.required]),
+      "userName": new FormControl("", [Validators.pattern(RegexConstants.userName), Validators.required]),
+      "userPassword": new FormControl("", [Validators.pattern(RegexConstants.userPassword), Validators.required]),
+      "userConfirmPassword": new FormControl("", [Validators.pattern(RegexConstants.userPassword), Validators.required]),
       "userEmail": new FormControl("", [Validators.email, Validators.required]),
       "userPhone": new FormControl("",
-       [Validators.pattern("^([+]?[0-9]{1,2})?([ ]|[-])?(([(][0-9]{3}[)])|([0-9]{3}))([ ]|[-])?([0-9]{3})([ ]|[-])?([0-9]{2})([ ]|[-])?([0-9]{2})$"),
+       [Validators.pattern(RegexConstants.userPhone),
         Validators.required]),
-      "userCity": new FormControl("", [Validators.pattern("^[a-zA-Zа-яА-Я\-]{1,20}$"), Validators.required]),
-      "userOrganization": new FormControl("", [Validators.pattern("^[a-zA-Zа-яА-Я0-9\'\" \-]{2,30}$"), Validators.required]),
+      "userCity": new FormControl("", [Validators.pattern(RegexConstants.userCity), Validators.required]),
+      "userOrganization": new FormControl("", [Validators.pattern(RegexConstants.userOrganization), Validators.required]),
     },
     {
-      validators: passwordMatchValidator
+      validators: PasswordMatchValidator.passwordMatch
     })
   }
 
   onSumbit(){
-    console.log(this.signUpForm.value);
     this.http.post<Condition>('/api/sign-up', this.signUpForm.value).subscribe((u: Condition) => this.condition = {
       successful: (u as any).successful,
       nameBusy: (u as any).nameBusy,
@@ -61,17 +62,17 @@ export class SignUpComponent implements OnInit {
       invalidCityFormat: (u as any).invalidCityFormat,
       invalidOrganizationFormat: (u as any).invalidOrganizationFormat
     });
-    //this.http.post('/api/sign-up', this.signUpForm.value).subscribe(u => console.log(u));
-    console.log(this.condition);
   }
 
+  ngDoCheck() {
+    if (this.condition.successful) {
+      setTimeout (() => {
+        this.router.navigate(['/welcome/sign-in']);
+      }, 5000)
+    }
+  }
 }
 
-export const passwordMatchValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-  const password = control.get('userPassword');
-  const confirmPassword = control.get('userConfirmPassword');
-  return password && confirmPassword && password.value != confirmPassword.value ? {matchPassword: true} : null;
-}
 interface Condition {
   successful: boolean;
   nameBusy: boolean;

@@ -1,5 +1,7 @@
+import { RegexConstants } from './../validators/regex-constants';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
+import { UserLoginValidator } from '../validators/user-login.validator';
 
 @Component({
   selector: 'app-sign-in',
@@ -15,12 +17,21 @@ export class SignInComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = new FormGroup ({
-      "userLogin": new FormControl("", [Validators.pattern("^[a-zA-Z0-9]{5,15}$"), Validators.required]),
-      "userPassword": new FormControl("", [Validators.pattern("^[a-zA-Z0-9]{6,20}$"), Validators.required])
+      "userLogin": new FormControl("", [userLogin(), Validators.required]),
+      "userPassword": new FormControl("", [Validators.pattern(RegexConstants.userPassword), Validators.required])
     })
   }
 
   onSumbit(){
     console.log(this.loginForm.value);
+  }
+}
+
+export function userLogin(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+  const userLogin = control.value.toString();
+  console.log(userLogin.toString());
+  const validLogin = RegexConstants.userPhone.test(userLogin) || RegexConstants.userName.test(userLogin);
+  return userLogin && !validLogin ? {invalidLogin: true} : null;
   }
 }

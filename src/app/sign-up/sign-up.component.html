@@ -1,7 +1,7 @@
 <div class="flex-container">
     <span class="header">{{'Contacts.websiteName' | translate}}</span>
-    <div class="flex-container1">
-        <form [formGroup]="signUpForm" (ngSubmit)="onSumbit()">
+    <div class="flex-container1" [ngClass]="{successful1: condition.successful}">
+        <form [formGroup]="signUpForm" (ngSubmit)="onSumbit()" *ngIf="!condition.successful">
             <p class="starAlert"><span>*</span>{{'Welcome.SignUp.starAlert' | translate}}</p>
             <app-input type="text"
                 [placeholder]="'UI.Input.userName' | translate"
@@ -81,7 +81,8 @@
             </div>           
             <button class="btn sign-in" [disabled]="signUpForm.invalid">{{'UI.Button.signUp' | translate}}</button>
         </form>
-        <div class="or"><span>{{'Welcome.SignIn.or' | translate}}</span></div>
-        <button class="btn sign-up" routerLink="/welcome/sign-in">{{'UI.Button.signIn' | translate}}</button>
+        <div class="or" *ngIf="!condition.successful"><span>{{'Welcome.SignIn.or' | translate}}</span></div>
+        <button class="btn sign-up" routerLink="/welcome/sign-in" *ngIf="!condition.successful">{{'UI.Button.signIn' | translate}}</button>
+        <div class="successful" *ngIf="condition.successful">{{'Welcome.SignUp.successfulSignUp'| translate}}</div>
     </div>
 </div>

@@ -2,23 +2,15 @@
     <span class="header">{{'Contacts.websiteName' | translate}}</span>
     <div class="flex-container1">
         <form [formGroup]="loginForm" (ngSubmit)="onSumbit()">
-            <div class="alert"
-            *ngIf="AuthenticationError">
-            {{'Welcome.SignIn.alertSignIn' | translate}}
-            </div>
-            <div class="alert"
-            *ngIf="loginForm.controls['userLogin'].invalid && loginForm.controls['userLogin'].touched">
-            {{'Welcome.SignIn.alertLogin' | translate}}
-            </div>
-            <div class="alert"
-            *ngIf="loginForm.controls['userPassword'].invalid && loginForm.controls['userPassword'].touched">
-            {{'Welcome.SignIn.alertPassword' | translate}}
-            </div>
             <app-input type="text"
                 [placeholder]="'UI.Input.login' | translate"
                  class="login"
                 formControlName="userLogin">
             </app-input>
+            <div class="alert"
+            *ngIf="loginForm.controls['userLogin'].invalid && loginForm.controls['userLogin'].touched">
+            {{'Welcome.SignIn.invalidLoginFormat' | translate}}
+            </div>
             <app-input type="password"
                  [placeholder]="'UI.Input.password' | translate"
                   class="password"
