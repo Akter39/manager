@@ -61,7 +61,6 @@ export class SignUpComponent implements OnInit {
       invalidCityFormat: (u as any).invalidCityFormat,
       invalidOrganizationFormat: (u as any).invalidOrganizationFormat
     });
-    //this.http.post('/api/sign-up', this.signUpForm.value).subscribe(u => console.log(u));
     console.log(this.condition);
   }
 
