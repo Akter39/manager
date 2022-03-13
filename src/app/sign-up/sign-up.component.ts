@@ -33,9 +33,15 @@ export class SignUpComponent implements OnInit, DoCheck {
 
   ngOnInit(): void {
     this.signUpForm = new FormGroup ({
+<<<<<<< HEAD
       "userName": new FormControl("", [Validators.pattern(RegexConstants.userName), Validators.required]),
       "userPassword": new FormControl("", [Validators.pattern(RegexConstants.userPassword), Validators.required]),
       "userConfirmPassword": new FormControl("", [Validators.pattern(RegexConstants.userPassword), Validators.required]),
+=======
+      "userName": new FormControl("", [Validators.pattern("^[a-zA-Z0-9]{5,15}$"), Validators.required]),
+      "userPassword": new FormControl("", [Validators.pattern("^[a-zA-Z0-9]{6,20}$"), Validators.required]),
+      "userConfirmPassword": new FormControl("", [Validators.pattern("^[a-zA-Z0-9]{6,20}$"), Validators.required]),
+>>>>>>> 8f87758b9b9fc3d01ba39b268c6cfa30b25cff2a
       "userEmail": new FormControl("", [Validators.email, Validators.required]),
       "userPhone": new FormControl("",
        [Validators.pattern(RegexConstants.userPhone),
@@ -44,7 +50,11 @@ export class SignUpComponent implements OnInit, DoCheck {
       "userOrganization": new FormControl("", [Validators.pattern(RegexConstants.userOrganization), Validators.required]),
     },
     {
+<<<<<<< HEAD
       validators: PasswordMatchValidator.passwordMatch
+=======
+      validators: passwordMatchValidator
+>>>>>>> 8f87758b9b9fc3d01ba39b268c6cfa30b25cff2a
     })
   }
 
