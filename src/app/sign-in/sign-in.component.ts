@@ -17,21 +17,12 @@ export class SignInComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = new FormGroup ({
-      "userLogin": new FormControl("", [userLogin(), Validators.required]),
+      "userLogin": new FormControl("", [UserLoginValidator.userLogin, Validators.required]),
       "userPassword": new FormControl("", [Validators.pattern(RegexConstants.userPassword), Validators.required])
     })
   }
 
   onSumbit(){
     console.log(this.loginForm.value);
-  }
-}
-
-export function userLogin(): ValidatorFn {
-  return (control: AbstractControl): ValidationErrors | null => {
-  const userLogin = control.value.toString();
-  console.log(userLogin.toString());
-  const validLogin = RegexConstants.userPhone.test(userLogin) || RegexConstants.userName.test(userLogin);
-  return userLogin && !validLogin ? {invalidLogin: true} : null;
   }
 }

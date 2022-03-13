@@ -36,7 +36,7 @@ export class SignUpComponent implements OnInit, DoCheck {
       "userName": new FormControl("", [Validators.pattern(RegexConstants.userName), Validators.required]),
       "userPassword": new FormControl("", [Validators.pattern(RegexConstants.userPassword), Validators.required]),
       "userConfirmPassword": new FormControl("", [Validators.pattern(RegexConstants.userPassword), Validators.required]),
-      "userEmail": new FormControl("", [Validators.email, Validators.required]),
+      "userEmail": new FormControl("", [Validators.pattern(RegexConstants.userEmail), Validators.required]),
       "userPhone": new FormControl("",
        [Validators.pattern(RegexConstants.userPhone),
         Validators.required]),
