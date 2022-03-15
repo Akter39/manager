@@ -25,7 +25,6 @@ export class SignUpComponent implements OnInit, DoCheck {
     invalidCityFormat: false,
     invalidOrganizationFormat: false
   };
-  SignUpError: boolean = false;
   signUpForm!: FormGroup;
 
   constructor(private http: HttpClient, private router: Router) {

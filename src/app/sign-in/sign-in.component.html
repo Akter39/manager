@@ -14,7 +14,12 @@
             <app-input type="password"
                  [placeholder]="'UI.Input.password' | translate"
                   class="password"
-                  formControlName="userPassword"></app-input>
+                  formControlName="userPassword">
+            </app-input>
+            <div class="alert"
+            *ngIf="loginForm.controls['userPassword'].invalid && loginForm.controls['userPassword'].touched">
+            {{'Welcome.SignIn.invalidPasswordFormat' | translate}}
+            </div>
             <button class="btn sign-in" [disabled]="loginForm.invalid">{{'UI.Button.signIn' | translate}}</button>
         </form>
         <div class="or"><span>{{'Welcome.SignIn.or' | translate}}</span></div>
