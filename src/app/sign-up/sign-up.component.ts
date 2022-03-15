@@ -1,9 +1,10 @@
 import { Router } from '@angular/router';
 import { HttpClient} from '@angular/common/http';
 import { Component, OnInit, DoCheck } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RegexConstants } from '../validators/regex-constants';
 import { PasswordMatchValidator } from '../validators/password-match.validator';
+import { AuthService, Condition } from 'src/services/auth.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -27,7 +28,7 @@ export class SignUpComponent implements OnInit, DoCheck {
   };
   signUpForm!: FormGroup;
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private auth: AuthService) {
   }
 
   ngOnInit(): void {
@@ -48,7 +49,7 @@ export class SignUpComponent implements OnInit, DoCheck {
   }
 
   onSumbit(){
-    this.http.post<Condition>('/api/sign-up', this.signUpForm.value).subscribe((u: Condition) => this.condition = {
+    this.auth.signIn(this.signUpForm).subscribe((u: Condition) => this.condition = {
       successful: (u as any).successful,
       nameBusy: (u as any).nameBusy,
       emailBusy: (u as any).emailBusy,
@@ -70,18 +71,4 @@ export class SignUpComponent implements OnInit, DoCheck {
       }, 5000)
     }
   }
-}
-
-interface Condition {
-  successful: boolean;
-  nameBusy: boolean;
-  emailBusy: boolean;
-  phoneBusy: boolean;
-  notMatchPasswords: boolean;
-  invalidNameFormat: boolean;
-  invalidEmailFormat: boolean;
-  invalidPhoneFormat: boolean;
-  invalidPasswordFormat: boolean;
-  invalidCityFormat: boolean;
-  invalidOrganizationFormat: boolean;
 }
