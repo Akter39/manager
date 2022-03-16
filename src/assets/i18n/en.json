@@ -32,6 +32,8 @@
 		},
 		"SignIn": {
 			"invalidLoginFormat": "Invalid login format",
+			"invalidPasswordFormat": "Invalid login format",
+			"invalidSignIn": "Wrong login or password",
 			"or": "or"
 		},
 		"SignUp": {

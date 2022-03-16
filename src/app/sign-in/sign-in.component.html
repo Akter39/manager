@@ -2,13 +2,17 @@
     <span class="header">{{'Contacts.websiteName' | translate}}</span>
     <div class="flex-container1">
         <form [formGroup]="loginForm" (ngSubmit)="onSumbit()">
+            <div class="alert"
+            *ngIf="condition.invalidSignIn">
+            {{'Welcome.SignIn.invalidSignIn' | translate}}
+            </div>
             <app-input type="text"
                 [placeholder]="'UI.Input.login' | translate"
                  class="login"
                 formControlName="userLogin">
             </app-input>
             <div class="alert"
-            *ngIf="loginForm.controls['userLogin'].invalid && loginForm.controls['userLogin'].touched">
+            *ngIf="loginForm.controls['userLogin'].invalid && loginForm.controls['userLogin'].touched || condition.invalidLoginFormat">
             {{'Welcome.SignIn.invalidLoginFormat' | translate}}
             </div>
             <app-input type="password"
@@ -17,7 +21,7 @@
                   formControlName="userPassword">
             </app-input>
             <div class="alert"
-            *ngIf="loginForm.controls['userPassword'].invalid && loginForm.controls['userPassword'].touched">
+            *ngIf="loginForm.controls['userPassword'].invalid && loginForm.controls['userPassword'].touched || condition.invalidPasswordFormat">
             {{'Welcome.SignIn.invalidPasswordFormat' | translate}}
             </div>
             <button class="btn sign-in" [disabled]="loginForm.invalid">{{'UI.Button.signIn' | translate}}</button>

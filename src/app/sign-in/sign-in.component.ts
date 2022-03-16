@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators, ValidatorFn, AbstractControl, Valid
 import { UserLoginValidator } from '../validators/user-login.validator';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { AuthService, ConditionSignIn } from 'src/services/auth.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -12,13 +13,14 @@ import { Router } from '@angular/router';
 })
 export class SignInComponent implements OnInit {
 
-  public condition: Condition = {
+  public condition: ConditionSignIn = {
     successful: false,
     invalidSignIn: false,
     invalidLoginFormat: false,
+    invalidPasswordFormat: false,
   };
   loginForm!: FormGroup;
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private auth: AuthService) {
    }
 
   ngOnInit(): void {
@@ -29,12 +31,12 @@ export class SignInComponent implements OnInit {
   }
 
   onSumbit(){
-    this.http.post<Condition>('/api/sign-in',this.loginForm.value)
+    this.auth.signIn(this.loginForm).subscribe((u: ConditionSignIn) => this.condition = {
+      successful: (u as any).successful,
+      invalidSignIn: (u as any).invalidSignIn,
+      invalidLoginFormat: (u as any).invalidLoginFormat,
+      invalidPasswordFormat: (u as any).invalidPasswordFormat,
+    })
+    console.log(this.condition);
   }
-}
-
-interface Condition {
-  successful: boolean;
-  invalidSignIn: boolean;
-  invalidLoginFormat: boolean;
 }

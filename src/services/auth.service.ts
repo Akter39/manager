@@ -9,16 +9,21 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  private signUp = '/api/sign-up';
+  private signUpUrl = '/api/sign-up';
+  private signInUrl = '/api/sign-in';
 
   constructor(private http: HttpClient) { }
 
-  signIn(control: FormGroup): Observable<Condition> {
-    return  this.http.post<Condition>(this.signUp, control.value)
+  signUp(control: FormGroup): Observable<ConditionSignUp> {
+    return  this.http.post<ConditionSignUp>(this.signUpUrl, control.value);
+  }
+
+  signIn(control: FormGroup): Observable<ConditionSignIn> {
+    return  this.http.post<ConditionSignIn>(this.signInUrl, control.value);
   }
 }
 
-export interface Condition {
+export interface ConditionSignUp {
   successful: boolean;
   nameBusy: boolean;
   emailBusy: boolean;
@@ -30,4 +35,11 @@ export interface Condition {
   invalidPasswordFormat: boolean;
   invalidCityFormat: boolean;
   invalidOrganizationFormat: boolean;
+}
+
+export interface ConditionSignIn {
+  successful: boolean;
+  invalidSignIn: boolean;
+  invalidLoginFormat: boolean;
+  invalidPasswordFormat: boolean;
 }

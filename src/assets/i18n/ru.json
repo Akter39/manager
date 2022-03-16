@@ -32,6 +32,8 @@
 		},
 		"SignIn": {
 			"invalidLoginFormat": "Неверный формат логина",
+			"invalidPasswordFormat": "Неверный формат пароля",
+			"invalidSignIn": "Неверный логин или пароль",
 			"or": "или"
 		},
 		"SignUp": {
