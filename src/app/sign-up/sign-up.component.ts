@@ -4,7 +4,7 @@ import { Component, OnInit, DoCheck } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RegexConstants } from '../validators/regex-constants';
 import { PasswordMatchValidator } from '../validators/password-match.validator';
-import { AuthService, Condition } from 'src/services/auth.service';
+import { AuthService, ConditionSignUp } from 'src/services/auth.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -13,7 +13,7 @@ import { AuthService, Condition } from 'src/services/auth.service';
 })
 export class SignUpComponent implements OnInit, DoCheck {
 
-  public condition: Condition = {
+  public condition: ConditionSignUp = {
     successful: false,
     nameBusy: false,
     emailBusy: false,
@@ -49,7 +49,7 @@ export class SignUpComponent implements OnInit, DoCheck {
   }
 
   onSumbit(){
-    this.auth.signIn(this.signUpForm).subscribe((u: Condition) => this.condition = {
+    this.auth.signUp(this.signUpForm).subscribe((u: ConditionSignUp) => this.condition = {
       successful: (u as any).successful,
       nameBusy: (u as any).nameBusy,
       emailBusy: (u as any).emailBusy,

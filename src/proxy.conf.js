@@ -1,8 +1,7 @@
 const PROXY_CONFIG = [
   {
     context: [
-      "/weatherforecast",
-      "/api/sign-up"
+      "/api/*"
     ],
     target: "https://localhost:7024",
     secure: false
