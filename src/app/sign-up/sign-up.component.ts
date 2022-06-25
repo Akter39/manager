@@ -5,6 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RegexConstants } from '../validators/regex-constants';
 import { PasswordMatchValidator } from '../validators/password-match.validator';
 import { AuthService, ConditionSignUp } from 'src/services/auth.service';
+import { NameMatchValidator } from '../validators/name-match.validator';
 
 @Component({
   selector: 'app-sign-up',
@@ -14,17 +15,20 @@ import { AuthService, ConditionSignUp } from 'src/services/auth.service';
 export class SignUpComponent implements OnInit, DoCheck {
 
   public condition: ConditionSignUp = {
-    successful: false,
-    nameBusy: false,
-    emailBusy: false,
-    phoneBusy: false,
-    notMatchPasswords: false,
-    invalidNameFormat: false,
-    invalidEmailFormat: false,
-    invalidPhoneFormat: false,
-    invalidPasswordFormat: false,
-    invalidCityFormat: false,
-    invalidOrganizationFormat: false
+    Successful: false,
+    NameBusy: false,
+    NicknameBusy: false,
+    EmailBusy: false,
+    PhoneBusy: false,
+    NotMatchPasswords: false,
+    MatchName: false,
+    InvalidNameFormat: false,
+    InvalidNicknameFormat: false,
+    InvalidEmailFormat: false,
+    InvalidPhoneFormat: false,
+    InvalidPasswordFormat: false,
+    InvalidCityFormat: false,
+    InvalidOrganizationFormat: false
   };
   signUpForm!: FormGroup;
 
@@ -33,39 +37,41 @@ export class SignUpComponent implements OnInit, DoCheck {
 
   ngOnInit(): void {
     this.signUpForm = new FormGroup ({
-      "userName": new FormControl("", [Validators.pattern(RegexConstants.userName), Validators.required]),
-      "userPassword": new FormControl("", [Validators.pattern(RegexConstants.userPassword), Validators.required]),
-      "userConfirmPassword": new FormControl("", [Validators.pattern(RegexConstants.userPassword), Validators.required]),
-      "userEmail": new FormControl("", [Validators.pattern(RegexConstants.userEmail), Validators.required]),
-      "userPhone": new FormControl("",
-       [Validators.pattern(RegexConstants.userPhone),
-        Validators.required]),
-      "userCity": new FormControl("", [Validators.pattern(RegexConstants.userCity), Validators.required]),
-      "userOrganization": new FormControl("", [Validators.pattern(RegexConstants.userOrganization), Validators.required]),
+      "UserNickname":new FormControl("", [Validators.pattern(RegexConstants.userName), Validators.required]),
+      "UserName": new FormControl("", [Validators.pattern(RegexConstants.userName), Validators.required]),
+      "UserPassword": new FormControl("", [Validators.pattern(RegexConstants.userPassword), Validators.required]),
+      "UserConfirmPassword": new FormControl("", [Validators.pattern(RegexConstants.userPassword), Validators.required]),
+      "UserEmail": new FormControl("", [Validators.pattern(RegexConstants.userEmail), Validators.required]),
+      "UserPhone": new FormControl("", [Validators.pattern(RegexConstants.userPhone), Validators.required]),
+      "UserCity": new FormControl("", [Validators.pattern(RegexConstants.userCity), Validators.required]),
+      "UserOrganization": new FormControl("", [Validators.pattern(RegexConstants.userOrganization), Validators.required]),
     },
     {
-      validators: PasswordMatchValidator.passwordMatch
+      validators: [NameMatchValidator.nameMatch, PasswordMatchValidator.passwordMatch]
     })
   }
 
   onSumbit(){
     this.auth.signUp(this.signUpForm).subscribe((u: ConditionSignUp) => this.condition = {
-      successful: (u as any).successful,
-      nameBusy: (u as any).nameBusy,
-      emailBusy: (u as any).emailBusy,
-      phoneBusy: (u as any).phoneBusy,
-      notMatchPasswords: (u as any).notMatchPasswords,
-      invalidNameFormat: (u as any).invalidNameFormat,
-      invalidEmailFormat: (u as any).invalidEmailFormat,
-      invalidPhoneFormat: (u as any).invalidPhoneFormat,
-      invalidPasswordFormat: (u as any).invalidPasswordFormat,
-      invalidCityFormat: (u as any).invalidCityFormat,
-      invalidOrganizationFormat: (u as any).invalidOrganizationFormat
+      Successful: (u as any).successful,
+      NameBusy: (u as any).nameBusy,
+      NicknameBusy: (u as any).NicknameBusy,
+      EmailBusy: (u as any).emailBusy,
+      PhoneBusy: (u as any).phoneBusy,
+      NotMatchPasswords: (u as any).notMatchPasswords,
+      MatchName: (u as any).MatchName,
+      InvalidNameFormat: (u as any).invalidNameFormat,
+      InvalidNicknameFormat: (u as any).InvalidNicknameFormat,
+      InvalidEmailFormat: (u as any).invalidEmailFormat,
+      InvalidPhoneFormat: (u as any).invalidPhoneFormat,
+      InvalidPasswordFormat: (u as any).invalidPasswordFormat,
+      InvalidCityFormat: (u as any).invalidCityFormat,
+      InvalidOrganizationFormat: (u as any).invalidOrganizationFormat
     });
   }
 
   ngDoCheck() {
-    if (this.condition.successful) {
+    if (this.condition.Successful) {
       setTimeout (() => {
         this.router.navigate(['/welcome/sign-in']);
       }, 5000)

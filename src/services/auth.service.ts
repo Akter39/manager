@@ -24,17 +24,20 @@ export class AuthService {
 }
 
 export interface ConditionSignUp {
-  successful: boolean;
-  nameBusy: boolean;
-  emailBusy: boolean;
-  phoneBusy: boolean;
-  notMatchPasswords: boolean;
-  invalidNameFormat: boolean;
-  invalidEmailFormat: boolean;
-  invalidPhoneFormat: boolean;
-  invalidPasswordFormat: boolean;
-  invalidCityFormat: boolean;
-  invalidOrganizationFormat: boolean;
+  Successful: boolean;
+  NameBusy: boolean;
+  NicknameBusy: boolean;
+  EmailBusy: boolean;
+  PhoneBusy: boolean;
+  NotMatchPasswords: boolean;
+  MatchName: boolean;
+  InvalidNameFormat: boolean;
+  InvalidNicknameFormat: boolean;
+  InvalidEmailFormat: boolean;
+  InvalidPhoneFormat: boolean;
+  InvalidPasswordFormat: boolean;
+  InvalidCityFormat: boolean;
+  InvalidOrganizationFormat: boolean;
 }
 
 export interface ConditionSignIn {

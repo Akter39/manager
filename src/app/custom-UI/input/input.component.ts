@@ -20,7 +20,6 @@ export class InputComponent implements ControlValueAccessor {
     if(_value !== undefined && this._value !== _value){
       this._value = _value;
       this.onChange(_value);
-      //this.onTouched(_value);
       }
   }
   @Input() placeholder: string = '';
