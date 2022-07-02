@@ -18,6 +18,10 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
 }
 
+export function getBaseUrl() {
+  return document.getElementsByTagName('base')[0].href;
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +46,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [[{ provide: "BASE_URL", useFactory: getBaseUrl }]],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

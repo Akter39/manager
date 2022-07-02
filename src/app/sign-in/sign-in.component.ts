@@ -5,6 +5,7 @@ import { UserLoginValidator } from '../validators/user-login.validator';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService, ConditionSignIn } from 'src/services/auth.service';
+import { User } from '../models/auth/user';
 
 @Component({
   selector: 'app-sign-in',
@@ -13,11 +14,14 @@ import { AuthService, ConditionSignIn } from 'src/services/auth.service';
 })
 export class SignInComponent implements OnInit {
 
+  protected CurrentUser!: User;
   public condition: ConditionSignIn = {
-    successful: false,
-    invalidSignIn: false,
-    invalidLoginFormat: false,
-    invalidPasswordFormat: false,
+    Successful: false,
+    InvalidSignIn: false,
+    InvalidLoginFormat: false,
+    InvalidPasswordFormat: false,
+    CurrentUser: this.CurrentUser,
+    EncodedJwt: ""
   };
   loginForm!: FormGroup;
   constructor(private http: HttpClient, private router: Router, private auth: AuthService) {
@@ -25,18 +29,13 @@ export class SignInComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = new FormGroup ({
-      "userLogin": new FormControl("", [UserLoginValidator.userLogin, Validators.required]),
-      "userPassword": new FormControl("", [Validators.pattern(RegexConstants.userPassword), Validators.required])
+      "UserLogin": new FormControl("", [UserLoginValidator.userLogin, Validators.required]),
+      "UserPassword": new FormControl("", [Validators.pattern(RegexConstants.userPassword), Validators.required])
     })
   }
 
   onSumbit(){
-    this.auth.signIn(this.loginForm).subscribe((u: ConditionSignIn) => this.condition = {
-      successful: (u as any).successful,
-      invalidSignIn: (u as any).invalidSignIn,
-      invalidLoginFormat: (u as any).invalidLoginFormat,
-      invalidPasswordFormat: (u as any).invalidPasswordFormat,
-    })
-    console.log(this.condition);
+    this.auth.signIn(this.loginForm).subscribe(result => 
+      this.condition = result);
   }
 }

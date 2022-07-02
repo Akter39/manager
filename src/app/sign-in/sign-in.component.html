@@ -3,25 +3,27 @@
     <div class="flex-container1">
         <form [formGroup]="loginForm" (ngSubmit)="onSumbit()">
             <div class="alert"
-            *ngIf="condition.invalidSignIn">
+            *ngIf="condition.InvalidSignIn">
             {{'Welcome.SignIn.invalidSignIn' | translate}}
             </div>
             <app-input type="text"
                 [placeholder]="'UI.Input.login' | translate"
                  class="login"
-                formControlName="userLogin">
+                formControlName="UserLogin">
             </app-input>
             <div class="alert"
-            *ngIf="loginForm.controls['userLogin'].invalid && loginForm.controls['userLogin'].touched || condition.invalidLoginFormat">
+            *ngIf="loginForm.controls['UserLogin'].invalid && loginForm.controls['UserLogin'].touched 
+                || condition.InvalidLoginFormat">
             {{'Welcome.SignIn.invalidLoginFormat' | translate}}
             </div>
             <app-input type="password"
                  [placeholder]="'UI.Input.password' | translate"
                   class="password"
-                  formControlName="userPassword">
+                  formControlName="UserPassword">
             </app-input>
             <div class="alert"
-            *ngIf="loginForm.controls['userPassword'].invalid && loginForm.controls['userPassword'].touched || condition.invalidPasswordFormat">
+            *ngIf="loginForm.controls['UserPassword'].invalid && loginForm.controls['UserPassword'].touched 
+                || condition.InvalidPasswordFormat">
             {{'Welcome.SignIn.invalidPasswordFormat' | translate}}
             </div>
             <button class="btn sign-in" [disabled]="loginForm.invalid">{{'UI.Button.signIn' | translate}}</button>

@@ -1,9 +1,12 @@
+import { AuthGuard } from './guards/auth.guard';
+import { MainComponent } from './main/main.component';
 import { WelcomePageComponent } from './welcome/welcome-page/welcome-page.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { Role } from './models/auth/role';
 
 const sign: Routes = [
   {path: 'page', pathMatch: 'full', component: WelcomePageComponent},
@@ -12,9 +15,10 @@ const sign: Routes = [
 ];
 
 const routes: Routes = [
+  {path: 'main', component: MainComponent, canActivate: [AuthGuard], data: {roles: [Role.MainAdmin, Role.Admin, Role.User]}},
   {path: 'welcome', component: WelcomeComponent, children: sign}, 
   {path: '', pathMatch: 'full' , redirectTo: 'welcome/page'},
-];
+];  
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

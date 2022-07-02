@@ -52,7 +52,7 @@
 			"notMatchPasswords": "Passwords don't match",
 			"phoneBusy": "This phone number is busy",
 			"starAlert": " - required fields",
-			"successfulSignUp": "You have been successfully registered and will be redirected to the sign-in page in 5 seconds"
+			"successfulSignUp": "You have been successfully registered and will be redirected to the sign-in page in several seconds"
 		}
 	}
 }

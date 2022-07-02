@@ -35,7 +35,7 @@ export class SignUpComponent implements OnInit, DoCheck {
   constructor(private http: HttpClient, private router: Router, private auth: AuthService) {
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.signUpForm = new FormGroup ({
       "UserNickname":new FormControl("", [Validators.pattern(RegexConstants.userName), Validators.required]),
       "UserName": new FormControl("", [Validators.pattern(RegexConstants.userName), Validators.required]),
@@ -52,22 +52,8 @@ export class SignUpComponent implements OnInit, DoCheck {
   }
 
   onSumbit(){
-    this.auth.signUp(this.signUpForm).subscribe((u: ConditionSignUp) => this.condition = {
-      Successful: (u as any).successful,
-      NameBusy: (u as any).nameBusy,
-      NicknameBusy: (u as any).NicknameBusy,
-      EmailBusy: (u as any).emailBusy,
-      PhoneBusy: (u as any).phoneBusy,
-      NotMatchPasswords: (u as any).notMatchPasswords,
-      MatchName: (u as any).MatchName,
-      InvalidNameFormat: (u as any).invalidNameFormat,
-      InvalidNicknameFormat: (u as any).InvalidNicknameFormat,
-      InvalidEmailFormat: (u as any).invalidEmailFormat,
-      InvalidPhoneFormat: (u as any).invalidPhoneFormat,
-      InvalidPasswordFormat: (u as any).invalidPasswordFormat,
-      InvalidCityFormat: (u as any).invalidCityFormat,
-      InvalidOrganizationFormat: (u as any).invalidOrganizationFormat
-    });
+    this.auth.signUp(this.signUpForm).subscribe(result =>
+      this.condition = result);
   }
 
   ngDoCheck() {
