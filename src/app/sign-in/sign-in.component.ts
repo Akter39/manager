@@ -1,6 +1,6 @@
 import { RegexConstants } from './../validators/regex-constants';
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserLoginValidator } from '../validators/user-login.validator';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -24,7 +24,11 @@ export class SignInComponent implements OnInit {
     EncodedJwt: ""
   };
   loginForm!: FormGroup;
-  constructor(private http: HttpClient, private router: Router, private auth: AuthService) {
+  constructor (
+    private http: HttpClient,
+     private router: Router,
+      private auth: AuthService,
+      @Inject('BASE_URL') private baseUrl: string) {
    }
 
   ngOnInit(): void {
@@ -35,7 +39,17 @@ export class SignInComponent implements OnInit {
   }
 
   onSumbit(){
-    this.auth.signIn(this.loginForm).subscribe(result => 
-      this.condition = result);
+    this.auth.signIn(this.loginForm).subscribe(result => {
+      this.condition = result;
+      if (result.Successful) {
+        this.redirectTo();
+      }
+    });
+  }
+
+  redirectTo() {
+    setTimeout (() => {
+      this.router.navigate(['main'])
+    }, 2000)
   }
 }

@@ -6,5 +6,5 @@ export class User {
     Organization!: string;
     City!: string;
     Roles!: Role[];
-    Token?: string;
+    Token!: string;
 }

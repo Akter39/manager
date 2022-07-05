@@ -15,9 +15,11 @@ const sign: Routes = [
 ];
 
 const routes: Routes = [
-  {path: 'main', component: MainComponent, canActivate: [AuthGuard], data: {roles: [Role.MainAdmin, Role.Admin, Role.User]}},
-  {path: 'welcome', component: WelcomeComponent, children: sign}, 
-  {path: '', pathMatch: 'full' , redirectTo: 'welcome/page'},
+  {path: 'main', component: MainComponent, canActivate: [AuthGuard]},
+  //{path: '**', redirectTo: 'main', canActivate: [AuthGuard]},
+  {path: 'welcome', component: WelcomeComponent, canActivate: [AuthGuard], data: {anon: 'anon'}, children: sign},
+  {path: '**', redirectTo: 'welcome'}
+  //{path: '', pathMatch: 'full' , redirectTo: 'welcome/page'},
 ];  
 
 @NgModule({

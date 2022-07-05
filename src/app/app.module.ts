@@ -1,3 +1,4 @@
+import { MainModule } from './main/main.module';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -13,6 +14,8 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { WelcomePageComponent } from './welcome/welcome-page/welcome-page.component';
 import { InputComponent } from './custom-UI/input/input.component';
+import { UserDirective } from './directives/user.directive';
+import { UserRolesDirective } from './directives/user-roles.directive';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -29,7 +32,9 @@ export function getBaseUrl() {
     SignInComponent,
     SignUpComponent,
     WelcomePageComponent,
-    InputComponent
+    InputComponent,
+    UserDirective,
+    UserRolesDirective
   ],
   imports: [
     BrowserModule,
@@ -44,7 +49,8 @@ export function getBaseUrl() {
     }),
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MainModule
   ],
   providers: [[{ provide: "BASE_URL", useFactory: getBaseUrl }]],
   bootstrap: [AppComponent]

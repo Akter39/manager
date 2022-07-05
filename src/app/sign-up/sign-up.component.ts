@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { HttpClient} from '@angular/common/http';
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RegexConstants } from '../validators/regex-constants';
 import { PasswordMatchValidator } from '../validators/password-match.validator';
@@ -12,7 +12,7 @@ import { NameMatchValidator } from '../validators/name-match.validator';
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss']
 })
-export class SignUpComponent implements OnInit, DoCheck {
+export class SignUpComponent implements OnInit {
 
   public condition: ConditionSignUp = {
     Successful: false,
@@ -52,15 +52,17 @@ export class SignUpComponent implements OnInit, DoCheck {
   }
 
   onSumbit(){
-    this.auth.signUp(this.signUpForm).subscribe(result =>
-      this.condition = result);
+    this.auth.signUp(this.signUpForm).subscribe(result => {
+      this.condition = result;
+      if (result.Successful) {
+        this.redirectTo();
+      }
+    });
   }
 
-  ngDoCheck() {
-    if (this.condition.Successful) {
-      setTimeout (() => {
-        this.router.navigate(['/welcome/sign-in']);
-      }, 5000)
-    }
+  redirectTo() {
+    setTimeout (() => {
+      this.router.navigate(['/welcome/sign-in']);
+    }, 2000)
   }
 }

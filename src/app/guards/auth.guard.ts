@@ -1,8 +1,7 @@
 import { AuthService } from 'src/services/auth.service';
 import { Inject, Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { lastValueFrom, Observable, take, tap } from 'rxjs';
-import { User } from '../models/auth/user';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import { map, Observable, tap } from 'rxjs';
 import { Role } from '../models/auth/role';
 
 @Injectable({
@@ -17,6 +16,8 @@ export class AuthGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    if(route.data['anon']) return this.authService.isAuthenticated()
+      .pipe(tap(isAuth => this.onlyAnonymous(isAuth)), map(u => !u));
     let role: Role[] = route.data['roles'];
     if (role) {
       console.log('Role[]: ' + route.data['roles']);
@@ -34,5 +35,11 @@ export class AuthGuard implements CanActivate {
           }
         });
     }
-  }    
+  }
+
+  onlyAnonymous(isAuth: boolean) {
+    if (isAuth) {
+      this.router.navigate(['/main']);
+    }
+  }
 }

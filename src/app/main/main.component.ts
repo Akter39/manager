@@ -1,3 +1,5 @@
+import { AuthService } from 'src/services/auth.service';
+import { map, Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
+  nickname!: Observable<string>;
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.nickname = this.getNickname();
   }
 
+  getNickname(): Observable<string> {
+    return this.authService.getUser().pipe(map(u => u?.Nickname!));
+  }
 }

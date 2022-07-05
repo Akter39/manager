@@ -1,0 +1,11 @@
+@import 'variebles';
+
+.flex-container {
+    width: 100%;
+    display: flex;
+    background-color: $main-color;
+}
+
+.nav-menu {
+    background-color: $mainA-color;
+}

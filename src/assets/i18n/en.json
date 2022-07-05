@@ -4,6 +4,11 @@
 		"websiteName": "PROTOCOLS-MANAGER.COM",
 		"сompany": "Bad company"
 	},
+	"Main": {
+		"NavMenu": {
+			"myProfile": "My Profile"
+		}
+	},
 	"UI": {
 		"Button": {
 			"signIn": "sign in",
