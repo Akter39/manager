@@ -1,15 +1,30 @@
-<body class="flex-container">
-    <div class="nav-menu">
-        <div>
-            <img>
-            <div class="nickname">
-                {{nickname | async}}
+<div class="flex-container" (click)="hideMenu($event)">
+    <footer>
+        <div class="dropdownTrigger" (click)="dropdownMenu()">
+            <img src="../../assets/icons/profileImg.jpg">
+            <span class="arrowDown"></span>
+        </div>
+    </footer>
+    <div class="main">
+        <div class="nav-menu" *ngIf="menuTrigger">
+            <div class="welcome">
+                <span>{{'Main.NavMenu.welcome' | translate}} <a routerLink="/main">{{nickname | async}}</a></span>
+            </div>
+            <div class="profile nav-item">
+                <a routerLink="/main">
+                    <img src="../../assets/icons/IconProfile.png" class="icon">
+                    <span>{{'Main.NavMenu.myProfile' | translate}}</span>
+                </a>
+            </div>
+            <div class="exit nav-item">
+                <a (click)="signOut()">
+                    <img src="../../assets/icons/exit.png" class="icon">
+                    <span>{{'Main.NavMenu.exit' | translate}}</span>
+                </a>
             </div>
         </div>
-        <div class="profile"><a routerLink="/main">{{'Main.NavMenu.myProfile' | translate}}</a></div>
-        <div></div>
+        <div class="container">
+            <router-outlet></router-outlet>
+        </div>
     </div>
-    <div class="flex-container1">
-        <router-outlet></router-outlet>
-    </div>
-</body>
+</div>

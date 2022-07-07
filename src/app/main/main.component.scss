@@ -3,9 +3,111 @@
 .flex-container {
     width: 100%;
     display: flex;
+    flex-direction: column;
     background-color: $main-color;
+    color: $main-text-color;
+}
+
+footer {
+    background-color: $mainA-color;
+    height: 7em;
+    display: flex;
+    padding: 0 1.5em;
+    align-items: center;
+    .dropdownTrigger {
+        display: flex;
+        cursor: pointer;
+        img {
+        height: 3.5em;
+        padding-right: 0.8em;
+        }  
+        span {
+            content: '';
+            width: 0;
+            height: 0;
+            align-self: center;
+            border-bottom: 0 none;
+            border-left: 0.5em solid transparent;
+            border-right: 0.5em solid transparent;
+            border-top: 0.5em solid $mainB-color;
+        }
+    }
+}
+
+.main {
+    position: relative;
 }
 
 .nav-menu {
-    background-color: $mainA-color;
+    background-color: $mainB-color;
+    position: absolute;
+    width: 8em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 2em;
+    z-index: 20;
+    .welcome {
+        padding: 0.4em 1em 0.4em 1em;
+        border-bottom: 0.01em solid $mainA-color;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        a {
+            padding-left: 0.2em;
+            &:link,
+            &:visited {
+                color: $secondA-color;
+            }
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+    a:link,
+    a:visited {
+        color: $main-text-color;
+        text-decoration: none;
+    }
+    .icon {
+        height: 1.6em;
+        align-self: center;
+    }
+    .nav-item {
+        border-bottom: 0.01em solid $mainA-color;
+        width: 100%;
+    }
+    .nav-item  a {
+        display: flex;
+        padding: 0.4em 1em 0.4em 1em;
+        &:hover {
+            background-color: $mainC-Color;
+        }
+        span {
+            font-size: 1.5em;
+            padding-left: 1em;
+            align-self: flex-start;
+        }
+    }
+    .exit {
+        border-left: 0.2em solid $alert-danger-color;
+    }
+    &:after {
+        content: '';
+        width: 0;
+        height: 0;
+        position: absolute;
+        display: block;
+        z-index: 10;
+        left: 5.8em;
+        top: -0.5em;
+        border-top: 0 none;
+        border-left: 0.5em solid transparent;
+        border-right: 0.5em solid transparent;
+        border-bottom: 0.5em solid $mainB-color;
+    }
+}
+
+.container {
+    min-height: calc(100vh - 7em);
 }

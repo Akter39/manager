@@ -1,3 +1,4 @@
+import { ProfileComponent } from './main/profile/profile.component';
 import { AuthGuard } from './guards/auth.guard';
 import { MainComponent } from './main/main.component';
 import { WelcomePageComponent } from './welcome/welcome-page/welcome-page.component';
@@ -14,12 +15,14 @@ const sign: Routes = [
   {path: 'sign-up', component: SignUpComponent},
 ];
 
+const main: Routes = [
+  {path: 'profile', component: ProfileComponent}
+];
+
 const routes: Routes = [
-  {path: 'main', component: MainComponent, canActivate: [AuthGuard]},
-  //{path: '**', redirectTo: 'main', canActivate: [AuthGuard]},
+  {path: 'main', component: MainComponent, canActivate: [AuthGuard], children: main},
   {path: 'welcome', component: WelcomeComponent, canActivate: [AuthGuard], data: {anon: 'anon'}, children: sign},
   {path: '**', redirectTo: 'welcome'}
-  //{path: '', pathMatch: 'full' , redirectTo: 'welcome/page'},
 ];  
 
 @NgModule({

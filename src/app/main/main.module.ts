@@ -5,11 +5,13 @@ import { MainComponent } from './main.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
   declarations: [
-    MainComponent
+    MainComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,

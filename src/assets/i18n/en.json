@@ -6,7 +6,9 @@
 	},
 	"Main": {
 		"NavMenu": {
-			"myProfile": "My Profile"
+			"exit": "Exit",
+			"myProfile": "My Profile",
+			"welcome": "Welcome"
 		}
 	},
 	"UI": {

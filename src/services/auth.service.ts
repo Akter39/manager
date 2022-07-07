@@ -6,6 +6,7 @@ import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject, concat, filter, map, Observable, take, tap } from 'rxjs';
 import { User } from 'src/app/models/auth/user';
 import { Role } from 'src/app/models/auth/role';
+import { Route, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,11 @@ export class AuthService {
 
   private currentUserSubject: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
 
-  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
+  constructor(
+    private http: HttpClient,
+    @Inject('BASE_URL') private baseUrl: string,
+    private router: Router
+    ) {
     if (localStorage.getItem('CurrentUser'))
     this.currentUserSubject = new BehaviorSubject<User | null>(JSON.parse(localStorage.getItem('CurrentUser')!));
    }
@@ -65,6 +70,7 @@ export class AuthService {
   signOut(){
     localStorage.removeItem('CurrentUser');
     this.currentUserSubject.next(null);
+    this.router.navigate(['/welcome']);
   }
 }
 
