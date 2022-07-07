@@ -6,12 +6,14 @@ import { AppRoutingModule } from '../app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ProfileComponent } from './profile/profile.component';
+import { CompetitionComponent } from './competition/competition.component';
 
 
 @NgModule({
   declarations: [
     MainComponent,
-    ProfileComponent
+    ProfileComponent,
+    CompetitionComponent
   ],
   imports: [
     CommonModule,

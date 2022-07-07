@@ -6,6 +6,7 @@
 	},
 	"Main": {
 		"NavMenu": {
+			"competition": "Соревнования",
 			"exit": "Выход",
 			"myProfile": "Мой профиль",
 			"welcome": "Добро пожаловать"

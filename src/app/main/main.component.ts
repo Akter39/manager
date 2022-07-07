@@ -1,5 +1,5 @@
 import { AuthService } from 'src/services/auth.service';
-import { map, Observable } from 'rxjs';
+import { map, Observable, TimeoutError, timer } from 'rxjs';
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class MainComponent implements OnInit, DoCheck {
   nickname!: Observable<string>;
   menuTrigger: boolean = false;
+  timerMenu!: ReturnType<typeof setTimeout>;
 
   constructor(private authService: AuthService, private router: Router) {
    }
@@ -32,6 +33,17 @@ export class MainComponent implements OnInit, DoCheck {
     if (!target.closest('.nav-menu') && !target.closest('.dropdownTrigger')) {
       this.menuTrigger = false;
     }
+  }
+
+  mouseoutMenu(event: MouseEvent) {
+    const target = event.relatedTarget as HTMLElement;
+    this.timerMenu = setTimeout(() => {
+      this.menuTrigger = false;
+    }, 2000);
+  }
+
+  mouseoverMenu() {
+    clearTimeout(this.timerMenu);
   }
 
   signOut() {

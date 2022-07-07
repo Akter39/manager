@@ -1,3 +1,4 @@
+import { CompetitionComponent } from './main/competition/competition.component';
 import { ProfileComponent } from './main/profile/profile.component';
 import { AuthGuard } from './guards/auth.guard';
 import { MainComponent } from './main/main.component';
@@ -16,7 +17,8 @@ const sign: Routes = [
 ];
 
 const main: Routes = [
-  {path: 'profile', component: ProfileComponent}
+  {path: 'profile', component: ProfileComponent},
+  {path: 'competition', component: CompetitionComponent}
 ];
 
 const routes: Routes = [

@@ -6,6 +6,7 @@
 	},
 	"Main": {
 		"NavMenu": {
+			"competition": "Competition",
 			"exit": "Exit",
 			"myProfile": "My Profile",
 			"welcome": "Welcome"
