@@ -1,7 +1,7 @@
 <div class="flex-container">
     <span class="header">{{'Contacts.websiteName' | translate}}</span>
     <div class="flex-container1" [ngClass]="{successful1: condition.Successful}">
-        <form [formGroup]="signUpForm" (ngSubmit)="onSumbit()" *ngIf="!condition.Successful" autocomplete="off">
+        <form [formGroup]="signUpForm" (ngSubmit)="onSumbit()" *ngIf="!condition.Successful">
             <p class="starAlert"><span>*</span>{{'Welcome.SignUp.starAlert' | translate}}</p>
             <app-input type="text"
                 [placeholder]="'UI.Input.nickname' | translate"

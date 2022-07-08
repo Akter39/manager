@@ -1,4 +1,4 @@
 <div class="custom-input">
-    <input [type]="type" [(ngModel)]="value" name="input" placeholder=" " autocomplete="off" [ngClass]="{star:isStar}" (blur)='onBlur()'/>
+    <input [type]="type" [(ngModel)]="value" name="input" placeholder=" " [autocomplete]="autocomplete" [ngClass]="{star:isStar}" (blur)='onBlur()'/>
     <label for="input">{{placeholder}}</label>
 </div>
