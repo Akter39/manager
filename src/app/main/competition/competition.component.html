@@ -1,1 +1,9 @@
-<p>competition works!</p>
+<div class="body">
+    <div class="flex-container">
+        <div class="new-competition">создать новое соревнование</div>
+        <div class="competitions" *ngFor="let item of competitions | async">
+            <div class="name">{{item.Name}}</div>
+            <div>{{item.StartCompetition.getMonth()}}.{{item.StartCompetition.getDate()}}.{{item.StartCompetition.getFullYear()}}</div>
+        </div>
+    </div>
+</div>

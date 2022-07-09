@@ -1,0 +1,26 @@
+@import 'variebles';
+
+.body {
+    display: flex;
+    justify-content: center;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+}
+
+.competitions {
+    display: flex;
+    justify-content: stretch;
+    border: 0.15em solid $mainA-color;
+    border-bottom: 0em;
+    background-color: $mainB-color;
+    &:last-child {
+        border-bottom: 0.15em solid $mainA-color;
+    }
+    .name {
+        
+    }
+}
