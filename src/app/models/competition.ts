@@ -1,10 +1,11 @@
+import { UserInfo } from './user-info';
 export class Competition {
     Id!: number;
     Name!: string;
     StartCompetition!: Date;
     EndCompetition!: Date;
     PoolLength!: 25 | 50;
-    UserId!: number;
+    UserInf!: UserInfo;
 
     constructor(
         id: number,
@@ -12,14 +13,14 @@ export class Competition {
         startCompetition: Date,
         endCompetition: Date,
         poolLength: 25 | 50,
-        UserId: number
+        userInfo: UserInfo
     ) {
         this.Id = id;
         this.Name = name;
         this.StartCompetition = startCompetition;
         this.EndCompetition = endCompetition;
         this.PoolLength = poolLength;
-        this.UserId = UserId;
+        this.UserInf = userInfo;
     }
 
     getDate(date: Date): string {
