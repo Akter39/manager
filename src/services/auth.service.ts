@@ -1,21 +1,16 @@
-import { SignInComponent } from './../app/sign-in/sign-in.component';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { Conditional } from '@angular/compiler';
 import { Inject, Injectable } from '@angular/core';
-import { BehaviorSubject, concat, filter, map, Observable, take, tap } from 'rxjs';
+import { BehaviorSubject, concat, filter, map, Observable, take } from 'rxjs';
 import { User } from 'src/app/models/auth/user';
 import { Role } from 'src/app/models/auth/role';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { ApiUrl } from 'src/app/constants/api-url.constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
-  private signUpUrl = 'api/sign-up';
-  private signInUrl = 'api/sign-in';
-
   private currentUserSubject: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
 
   constructor(
@@ -53,11 +48,11 @@ export class AuthService {
    }
    
   signUp(control: FormGroup): Observable<ConditionSignUp> {
-    return  this.http.post<ConditionSignUp>(this.baseUrl + this.signUpUrl, control.value);
+    return  this.http.post<ConditionSignUp>(this.baseUrl + ApiUrl.Auth.signUp, control.value);
   }
 
   signIn(control: FormGroup): Observable<ConditionSignIn> {
-    return  this.http.post<ConditionSignIn>(this.baseUrl + this.signInUrl, control.value)
+    return  this.http.post<ConditionSignIn>(this.baseUrl + ApiUrl.Auth.signIn, control.value)
       .pipe(map((condition: ConditionSignIn) => {
         if (condition && condition.CurrentUser){
           localStorage.setItem('CurrentUser', JSON.stringify(condition.CurrentUser));

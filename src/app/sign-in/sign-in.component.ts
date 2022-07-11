@@ -1,4 +1,4 @@
-import { RegexConstants } from './../validators/regex-constants';
+import { RegexUser } from '../constants/regex.constants';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserLoginValidator } from '../validators/user-login.validator';
@@ -26,15 +26,15 @@ export class SignInComponent implements OnInit {
   loginForm!: FormGroup;
   constructor (
     private http: HttpClient,
-     private router: Router,
-      private auth: AuthService,
-      @Inject('BASE_URL') private baseUrl: string) {
+    private router: Router,
+    private auth: AuthService
+      ) {
    }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup ({
       "UserLogin": new FormControl("", [UserLoginValidator.userLogin, Validators.required]),
-      "UserPassword": new FormControl("", [Validators.pattern(RegexConstants.userPassword), Validators.required])
+      "UserPassword": new FormControl("", [Validators.pattern(RegexUser.userPassword), Validators.required])
     })
   }
 

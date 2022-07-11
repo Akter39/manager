@@ -2,7 +2,7 @@ import { Router } from '@angular/router';
 import { HttpClient} from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { RegexConstants } from '../validators/regex-constants';
+import { RegexUser } from '../constants/regex.constants';
 import { PasswordMatchValidator } from '../validators/password-match.validator';
 import { AuthService, ConditionSignUp } from 'src/services/auth.service';
 import { NameMatchValidator } from '../validators/name-match.validator';
@@ -32,19 +32,23 @@ export class SignUpComponent implements OnInit {
   };
   signUpForm!: FormGroup;
 
-  constructor(private http: HttpClient, private router: Router, private auth: AuthService) {
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private auth: AuthService
+      ) {
   }
 
   ngOnInit() {
     this.signUpForm = new FormGroup ({
-      "UserNickname":new FormControl("", [Validators.pattern(RegexConstants.userName), Validators.required]),
-      "UserName": new FormControl("", [Validators.pattern(RegexConstants.userName), Validators.required]),
-      "UserPassword": new FormControl("", [Validators.pattern(RegexConstants.userPassword), Validators.required]),
-      "UserConfirmPassword": new FormControl("", [Validators.pattern(RegexConstants.userPassword), Validators.required]),
-      "UserEmail": new FormControl("", [Validators.pattern(RegexConstants.userEmail), Validators.required]),
-      "UserPhone": new FormControl("", [Validators.pattern(RegexConstants.userPhone), Validators.required]),
-      "UserCity": new FormControl("", [Validators.pattern(RegexConstants.userCity), Validators.required]),
-      "UserOrganization": new FormControl("", [Validators.pattern(RegexConstants.userOrganization), Validators.required]),
+      "UserNickname":new FormControl("", [Validators.pattern(RegexUser.userName), Validators.required]),
+      "UserName": new FormControl("", [Validators.pattern(RegexUser.userName), Validators.required]),
+      "UserPassword": new FormControl("", [Validators.pattern(RegexUser.userPassword), Validators.required]),
+      "UserConfirmPassword": new FormControl("", [Validators.pattern(RegexUser.userPassword), Validators.required]),
+      "UserEmail": new FormControl("", [Validators.pattern(RegexUser.userEmail), Validators.required]),
+      "UserPhone": new FormControl("", [Validators.pattern(RegexUser.userPhone), Validators.required]),
+      "UserCity": new FormControl("", [Validators.pattern(RegexUser.userCity), Validators.required]),
+      "UserOrganization": new FormControl("", [Validators.pattern(RegexUser.userOrganization), Validators.required]),
     },
     {
       validators: [NameMatchValidator.nameMatch, PasswordMatchValidator.passwordMatch]

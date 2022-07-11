@@ -8,7 +8,7 @@ import { Component, DoCheck, Inject } from '@angular/core';
 })
 export class WelcomeComponent implements DoCheck {
 
-  constructor(private router: Router, @Inject('BASE_URL') private baseUrl: string) {
+  constructor(private router: Router) {
   }   
 
   ngDoCheck() {
