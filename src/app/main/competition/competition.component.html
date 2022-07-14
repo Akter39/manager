@@ -1,51 +1,23 @@
 <div class="body">
     <div class="flex-container">
-        <div class="new-competition">создать новое соревнование</div>
-        <div *ngIf="empetyCompetitions">Нет соревнований</div>
-        <div class="competitions" *ngFor="let item of competitions | async; let i = index">
-            <div class="grid-container">
-                <div class="name">{{item.Name}}</div>
-                <div>Moscow</div>
-                <div class="date">{{item.getDate(item.StartCompetition)}} - {{item.getDate(item.EndCompetition)}}</div>
-                <span class="arrowDown" *ngIf="!arrowFlag[i]" (click)="dropTrigger(i)"></span>
-                <span class="arrowUp" *ngIf="arrowFlag[i]" (click)="dropTrigger(i)"></span>
+        <div class="nav-menu">
+            <div class="tabs">
+                <input type="radio" name="tabs-nav" id="tab-1" [checked]="flag">
+                <label for="tab-1" class="tab" routerLink="/main/competition/current"><span>{{'Competition.currentCompetitions' | translate}}</span></label>
+                <input type="radio" name="tabs-nav" id="tab-2" [checked]="!flag">
+                <label for="tab-2" class="tab" routerLink="/main/competition/archive"><span>{{'Competition.archiveCompetitions' | translate}}</span></label>
             </div>
-            <div class="info" *ngIf="arrowFlag[i]">
-                <div class="length">Длина басейна: {{item.PoolLength}}</div>
-                <div class="track">Количество дорожек: 8</div>
-                <div class="contribution">Стартовый взнос: 500р</div>
-                <div class="participents">Участники: 48/300</div>
-                <div class="commands">Команды: 8/10</div>
-                <div class="distance">
-                    <div>Дистанции</div>
-                    <div>200м вольный стиль</div>
-                    <div>200м вольный стиль</div>
-                    <div>200м вольный стиль</div>
-                    <div>200м вольный стиль</div>
-                </div>
-                <div class="years">
-                    <div>
-                        <div>Мужчины</div>
-                        <div>2000-2001</div>
-                        <div>2000-2005</div>
-                    </div>
-                    <div>
-                        <div>Женщины</div>
-                        <div>2000-2005</div>
-                        <div>2000-2005</div>
-                        <div>2000-2005</div>
-                    </div>
-                </div>
-                <div class="note" *ngIf="false">
-                    asdasfas<br>
-                    asd<br>
-                    asd<br>
-                    ffafasf</div>
-                <div class="btn">
-                    <button>подать заявку</button>
-                </div>
-
+            <button class="btn new-competition">{{'Competition.newCompetition' | translate}}</button>
+        </div>
+        <div *ngIf="empetyCompetitions">{{'Competition.noCompetitions' | translate}}</div>
+        <div class="competitions">
+            <div *ngFor="let item of competitions | async; let i = index">
+                <app-competition-item [item] = item></app-competition-item>
             </div>
         </div>
     </div>
+</div>
+<div class="box-shadow" *ngIf="true"></div>
+<div class="new-competition" *ngIf="true">
+    <!--<app-new-competition></app-new-competition>-->
 </div>

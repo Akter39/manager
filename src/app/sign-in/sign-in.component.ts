@@ -48,8 +48,6 @@ export class SignInComponent implements OnInit {
   }
 
   redirectTo() {
-    setTimeout (() => {
-      this.router.navigate(['main'])
-    }, 2000)
+    this.router.navigate(['main']);
   }
 }

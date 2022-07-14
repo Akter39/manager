@@ -1,4 +1,19 @@
 {
+	"Competition": {
+		"apply": "Подать",
+		"archiveCompetitions": "Архив",
+		"currentCompetitions": "Текущие",
+		"distances": "Дистанции",
+		"entryContribution": "Стартовый взнос",
+		"members": "Участники",
+		"men": "Мужчины",
+		"newCompetition": "Создать соревнование",
+		"noCompetitions": "Нет соревнований",
+		"numberlanes": "Количество дорожек",
+		"poolLength": "Длина бассейна",
+		"teams": "Команды",
+		"women": "Женщины"
+	},
 	"Contacts": {
 		"Email": "protocols-manager@admin.xyz",
 		"websiteName": "PROTOCOLS-MANAGER.COM",

@@ -1,7 +1,8 @@
+import { Router } from '@angular/router';
 import { ReceivingService } from './../../../services/receiving.service';
-import { Observable, of, map, filter, tap } from 'rxjs';
+import { isEmpty, Observable, of, tap } from 'rxjs';
 import { Competition } from './../../models/competition';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { UserInfo } from 'src/app/models/user-info';
 
 @Component({
@@ -9,37 +10,30 @@ import { UserInfo } from 'src/app/models/user-info';
   templateUrl: './competition.component.html',
   styleUrls: ['./competition.component.scss']
 })
-export class CompetitionComponent implements OnInit {
+export class CompetitionComponent implements OnInit, DoCheck {
   empetyCompetitions!: boolean;
   competitions!: Observable<Competition[]>;
-  arrowFlag!: boolean[];
+  flag!: boolean;
 
   comp: Competition[] = [
     new Competition(89, 'Веселый дельфин', new Date(), new Date(), 50, new UserInfo()),
     new Competition(45, 'Первенство московской области', new Date(), new Date(), 50, new UserInfo())
   ];
 
-  constructor(private receivService: ReceivingService) {
+  constructor(private receivService: ReceivingService, private router: Router) {
+
    }
 
   ngOnInit(): void {
+    if (this.router.url == '/main/competition/current') this.flag = true;
+    if (this.router.url == '/main/competition/archive') this.flag = false;
     this.competitions = this.receivService.Competition.getCompetitions(1);
-    this.competitions.pipe(tap(u => this.triggerCompetions(u)))
     if(!this.empetyCompetitions) {
       this.competitions = of(this.comp);
-      this.competitions.subscribe(u => this.arrowFlag = new Array(u.length).fill(false));
     }
   }
 
-  triggerCompetions(competitions: Competition[]) {
-    if (competitions.length == 0) {
-      this.empetyCompetitions = true;
-    } else {
-      this.empetyCompetitions = false;
-    }
-  }
-
-  dropTrigger(i: number) {
-    this.arrowFlag[i] = !this.arrowFlag[i];
+  ngDoCheck(): void {
+    if (this.router.url == '/main/competition') this.router.navigate(['/main/competition/current']);
   }
 }

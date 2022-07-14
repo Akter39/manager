@@ -1,4 +1,19 @@
 {
+	"Competition": {
+		"apply": "Apply",
+		"archiveCompetitions": "Archive",
+		"currentCompetitions": "Current",
+		"distances": "Distances",
+		"entryContribution": "Entry fee",
+		"members": "Members",
+		"men": "Men",
+		"newCompetition": "Create a competition",
+		"noCompetitions": "No competitions",
+		"numberlanes": "Number of lanes",
+		"poolLength": "Pool length",
+		"teams": "Teams",
+		"women": "Women"
+	},
 	"Contacts": {
 		"Email": "protocols-manager@admin.xyz",
 		"websiteName": "PROTOCOLS-MANAGER.COM",

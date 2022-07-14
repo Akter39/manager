@@ -11,20 +11,25 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { Role } from './models/auth/role';
 
 const sign: Routes = [
-  {path: 'page', pathMatch: 'full', component: WelcomePageComponent},
+  {path: 'page', component: WelcomePageComponent},
   {path: 'sign-in', component: SignInComponent},
   {path: 'sign-up', component: SignUpComponent},
 ];
 
 const main: Routes = [
   {path: 'profile', component: ProfileComponent},
-  {path: 'competition', component: CompetitionComponent}
+  {path: 'competition/current', component: CompetitionComponent},
+  {path: 'competition/archive', component: CompetitionComponent},
+  {path: 'competition', component: CompetitionComponent},
 ];
 
 const routes: Routes = [
+  /*{path: '', component: WelcomeComponent, canActivate: [AuthGuard], data: {anon: 'anon'}, children: sign},
   {path: 'main', component: MainComponent, canActivate: [AuthGuard], children: main},
-  {path: 'welcome', component: WelcomeComponent, canActivate: [AuthGuard], data: {anon: 'anon'}, children: sign},
-  {path: '**', redirectTo: 'welcome'}
+  //{path: '', redirectTo: 'welcome'},*/
+  {path: '', component: WelcomeComponent, canActivate: [AuthGuard], data: {anon: 'anon'}, children: sign},
+  {path: 'main', component: MainComponent, canActivate: [AuthGuard], children: main},
+  {path: '**', pathMatch: 'full', redirectTo: ''}
 ];  
 
 @NgModule({

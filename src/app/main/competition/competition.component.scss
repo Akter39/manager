@@ -9,109 +9,62 @@
     display: flex;
     flex-direction: column;
     width: 80vw;
+    overflow: hidden;
 }
 
 .competitions {
+    border: 0.3em solid $second-color;
+    padding: 0.5em;
+    //min-height: 80vh;
+}
+
+.nav-menu {
     display: flex;
-    flex-direction: column;
-    border: 0.15em solid $second-color;
-    background-color: $mainA-color;
-    margin-bottom: 0.5em;
-    .grid-container {
-        display: grid;
-        grid-template-columns: 10fr 3fr 2.5fr auto;
-    }
-    .name {
-        flex-grow: 1;
-    }
-    span {
-        content: '';
-        width: 0;
-        height: 0;
-        align-self: center;
-        border-bottom: 0 none;
-        border-left: 0.5em solid transparent;
-        border-right: 0.5em solid transparent;
-        border-top: 0.5em solid $secondA-color;
-        margin: 0 1em;
-        cursor: pointer;
-        &.arrowUp {
-            border-top: 0 none;
-            border-bottom: 0.5em solid $secondA-color;
-        }
-    }
-    .info {
-        display: grid;
-        background-color: $mainB-color;
-        grid-template-areas: "l l t t cb cb . . . ."
-                             "p p c c   . . . . . ."
-                             "d d d d . y y   b b b"
-                             "n n n n n n n   b b b";
-        grid-template-columns: repeat(10, 1fr);
-        grid-template-rows: 1fr 1fr auto auto;
-    }
-    .length {grid-area: l;}
-    .track {grid-area: t;}
-    .contribution {grid-area: cb;}
-    .participents {grid-area: p;}
-    .commands {grid-area: c;}
-    .distance {
-        grid-area: d;
-        background-color: $mainA-color;
-        div {
-            border-bottom: 0.01em solid $main-color;
-            padding: 0.2em 0 0.2em 0.5em;
-            &:last-child {
-                border: 0 none;
-            }
-        }
-    }
-    .years {
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap-reverse;
+    margin-top: 0.5em;
+    background-color: $mainB-color;
+    .tabs {
         display: flex;
-        grid-area: y;
-        background-color: $mainA-color;
-        & > div {
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-            div {
-                border-bottom: 0.01em solid $main-color;
-                padding: 0.2em 0 0.2em 0.5em;
-                &:last-child {
-                    border-bottom: 0 none;
-                }
+        position: relative;
+        input[type="radio"] {
+            display: none;
+        }
+        input[type="radio"]:checked + .tab {
+            background-color: $second-color;
+        }
+        input[type="radio"]:not(:checked) + .tab:hover {
+            background-color: $mainC-color;
+        }
+        .tab {
+            cursor: pointer;
+            background-color: $mainB-color;
+            position: relative;
+            span {
+                padding: 0 0.6em;
             }
-            &:first-child {
-                border-right: 0.01em solid $main-color;
-            }
         }
     }
-    .note {
-        grid-area: n;
-        background-color: $mainA-color;
-        margin: 0.2em;
-        padding: 0.5em;
-        border-radius: 0.5em;
-    }
-    .btn {
-        grid-area: b;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        button {
-        border: 0 none;
-        justify-content: flex-end;
-        border-radius: 0.1em;
-        margin: 0.5em;
-        height: 1.5em;
-        background-color: $second-color;
-        cursor: pointer;
-        text-align: center;
-        text-transform: uppercase;
-        transition: 1s;
-        &:hover {
-            background-color: $secondA-color;
-        }
-        }
-    }
+}
+
+.box-shadow {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background-color: $main-color;
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.new-competition {
+    position: fixed;
+    height: 80vh;
+    width: 80vw;
+    background-color: $main-color;
+    z-index: 150;
+    left: 10%;
+    top: 10%;
 }

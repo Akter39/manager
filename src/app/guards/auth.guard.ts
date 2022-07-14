@@ -27,14 +27,14 @@ export class AuthGuard implements CanActivate {
   }
   
   handleAuthorization(isAuth: boolean, state: RouterStateSnapshot) {
-    if (!isAuth) {
-      this.router.navigate(['/welcome/sign-in'], 
+    {if (!isAuth) {
+      this.router.navigate(['/sign-in'], 
         {
           queryParams: {
             returnUrl: state.url
           }
         });
-    }
+    }}
   }
 
   onlyAnonymous(isAuth: boolean) {

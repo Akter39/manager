@@ -12,6 +12,6 @@ export class WelcomeComponent implements DoCheck {
   }   
 
   ngDoCheck() {
-    if (this.router.url == '/welcome') this.router.navigate(['/welcome/page']);
+    if (this.router.url == '/') this.router.navigate(['/page']);
   }
 }

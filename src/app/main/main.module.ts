@@ -7,13 +7,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ProfileComponent } from './profile/profile.component';
 import { CompetitionComponent } from './competition/competition.component';
+import { CompetitionItemComponent } from './competition/competition-item/competition-item.component';
+import { NewCompetitionComponent } from './competition/new-competition/new-competition.component';
 
 
 @NgModule({
   declarations: [
     MainComponent,
     ProfileComponent,
-    CompetitionComponent
+    CompetitionComponent,
+    CompetitionItemComponent,
+    NewCompetitionComponent
   ],
   imports: [
     CommonModule,

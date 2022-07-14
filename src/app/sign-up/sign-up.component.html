@@ -110,7 +110,7 @@
             <button class="btn sign-in" [disabled]="signUpForm.invalid">{{'UI.Button.signUp' | translate}}</button>
         </form>
         <div class="or" *ngIf="!condition.Successful"><span>{{'Welcome.SignIn.or' | translate}}</span></div>
-        <button class="btn sign-up" routerLink="/welcome/sign-in" *ngIf="!condition.Successful">
+        <button class="btn sign-up" routerLink="/sign-in" *ngIf="!condition.Successful">
             {{'UI.Button.signIn' | translate}}
         </button>
         <div class="successful" *ngIf="condition.Successful">{{'Welcome.SignUp.successfulSignUp'| translate}}</div>
