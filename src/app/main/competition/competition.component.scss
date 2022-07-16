@@ -15,7 +15,6 @@
 .competitions {
     border: 0.3em solid $second-color;
     padding: 0.5em;
-    //min-height: 80vh;
 }
 
 .nav-menu {
@@ -61,10 +60,10 @@
 
 .new-competition {
     position: fixed;
-    height: 80vh;
-    width: 80vw;
-    background-color: $main-color;
+    height: 85vh;
+    width: 85vw;
+    background-color: red;
     z-index: 150;
-    left: 10%;
-    top: 10%;
+    left: 7.5%;
+    top: 7.5%;
 }

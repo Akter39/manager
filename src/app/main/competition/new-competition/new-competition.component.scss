@@ -1,0 +1,139 @@
+@import 'variebles';
+
+.container {
+    background-color: $mainA-color;
+    border: 0.1em solid $second-color;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    .header {
+        display: flex;
+        justify-content: space-between;
+    }
+    form {
+        background-color: $mainB-color;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        flex-grow: 1;
+        label {
+            display: block;
+        }
+        input {
+            width: min-content;
+        }
+        input[type=number] {
+            width: 4em;
+        }
+        select {
+            width: min-content;
+        }
+        fieldset {
+            &.org-info {
+                display: grid;
+                grid-template-columns: repeat(10, 1fr);
+                grid-template-rows: 1fr 1fr;
+                @media (max-width:375px) {
+                    grid-template-rows: 1fr 1fr 1fr;
+                }
+                .org {
+                    grid-area: 1 / 1 / 1 / 2;
+                }
+                .city { 
+                    grid-area: 1 / 3 / 1 / 4;
+                }
+                .length {
+                    grid-area: 2 / 1 / 2 / 2;
+                }
+                .lanes { 
+                    grid-area: 2 / 3 / 2 / 4;
+                }
+                & > div {
+                    height: 4em;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    &.individ {
+                        grid-area: 2 / 5 / 2 / 7;
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: flex-start;
+                        label {
+                            padding-top: 1.7em;
+                            height: min-content;
+                            white-space: nowrap;
+                        }
+                        input {
+                            margin-top: 2.1em;
+                        }
+                        @media (max-width:375px) {
+                            grid-area: 3 / 1 / 3 / 3;
+                        }
+                    }
+                }
+            }
+            
+        }
+        .max-value {
+            display: grid;
+            grid: 1fr 1fr 1fr / minmax(20em, 2fr) minmax(8em, 1fr) minmax(0,100fr);
+            row-gap: 1em;
+            column-gap: 1em;
+            .members {grid-area: 1 / 1 / 1 / 1;}
+            .comands {grid-area: 2 / 1 / 2 / 1;}
+            .members-comand {grid-area: 3 / 1 / 3 / 1;}
+            .check-members {grid-area: 1 / 2 / 1 / 2;}
+            .check-comands {grid-area: 2 / 2 / 2 / 2;}
+            .check-members-comand {grid-area: 3 / 2 / 3 / 2;} 
+            label {
+                height: min-content;
+            }
+            & > div {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                &:nth-child(odd) {
+                    max-width: 20em;
+                }
+                &:nth-child(even) {
+                    max-width: 8em;
+                    justify-content: flex-start;
+                }
+            }
+        }
+        .year-dist {
+            display: flex;
+            .year {
+                display: flex;
+                align-self: flex-start;
+                background-color: $mainA-color;
+                margin-left: 1em;
+            }
+            .distances {
+                display: flex;
+                flex-direction: column;
+                align-self: flex-start;
+                background-color: $mainA-color;
+                width: max-content;
+                padding: 0.5em 1em;
+                .item {
+                    display: grid;
+                    grid-template-columns: minmax(3.5em, 1fr) minmax(5.5em, 2fr) minmax(5.5em, 2fr);
+                    div:not(:first-of-type) {
+                        padding-left: 0.5em;
+                    }
+                    .dist {
+                        grid-column: 1 / 1;
+                    }
+                    .style {
+                        grid-column: 2 / 2;
+                    }
+                    .gender {
+                        grid-column: 3 / 3;
+                    }
+                }
+            }
+        }
+    }
+}
