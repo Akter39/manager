@@ -1,5 +1,24 @@
 {
 	"Competition": {
+		"New": {
+			"bid": "Open application for",
+			"city": "City",
+			"commands": "Maximum commands",
+			"contribution": "Entry fee",
+			"days": "Days",
+			"end": "End",
+			"header": "Crate new competition",
+			"individ": "Allow individual participation",
+			"invitOnly": "By invition only",
+			"lanes": "Pool lanes",
+			"length": "Pool length",
+			"mebersComand": "Maximum command members",
+			"members": "Maximum members",
+			"noLimit": "No limit",
+			"organization": "Organization",
+			"select": "Select value",
+			"start": "Start"
+		},
 		"apply": "Apply",
 		"archiveCompetitions": "Archive",
 		"currentCompetitions": "Current",

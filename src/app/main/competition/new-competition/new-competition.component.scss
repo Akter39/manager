@@ -10,6 +10,13 @@
     .header {
         display: flex;
         justify-content: space-between;
+        align-items: center;
+        padding: 0.5em 1em;
+        backdrop-filter: brightness(80%);
+        img {
+            height: 1em;
+            cursor: pointer;
+        }
     }
     form {
         background-color: $mainB-color;
@@ -30,11 +37,15 @@
             width: min-content;
         }
         fieldset {
+            margin: 0.5em 0.5em 0 0.5em;
+            &:last-of-type {
+                margin-bottom: 0.5em;
+            }
             &.org-info {
                 display: grid;
                 grid-template-columns: repeat(10, 1fr);
                 grid-template-rows: 1fr 1fr;
-                @media (max-width:375px) {
+                @media (max-width:450px) {
                     grid-template-rows: 1fr 1fr 1fr;
                 }
                 .org {
@@ -67,7 +78,7 @@
                         input {
                             margin-top: 2.1em;
                         }
-                        @media (max-width:375px) {
+                        @media (max-width:450px) {
                             grid-area: 3 / 1 / 3 / 3;
                         }
                     }
@@ -77,7 +88,7 @@
         }
         .max-value {
             display: grid;
-            grid: 1fr 1fr 1fr / minmax(20em, 2fr) minmax(8em, 1fr) minmax(0,100fr);
+            grid: 1fr 1fr 1fr / minmax(max-content, 20em) minmax(max-content, 8em);
             row-gap: 1em;
             column-gap: 1em;
             .members {grid-area: 1 / 1 / 1 / 1;}
@@ -87,52 +98,25 @@
             .check-comands {grid-area: 2 / 2 / 2 / 2;}
             .check-members-comand {grid-area: 3 / 2 / 3 / 2;} 
             label {
-                height: min-content;
+                height: max-content;
             }
             & > div {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                &:nth-child(odd) {
-                    max-width: 20em;
-                }
                 &:nth-child(even) {
-                    max-width: 8em;
                     justify-content: flex-start;
                 }
             }
         }
         .year-dist {
             display: flex;
+            column-gap: 1em;
             .year {
-                display: flex;
-                align-self: flex-start;
-                background-color: $mainA-color;
-                margin-left: 1em;
+                width: max-content;                
             }
             .distances {
-                display: flex;
-                flex-direction: column;
-                align-self: flex-start;
-                background-color: $mainA-color;
                 width: max-content;
-                padding: 0.5em 1em;
-                .item {
-                    display: grid;
-                    grid-template-columns: minmax(3.5em, 1fr) minmax(5.5em, 2fr) minmax(5.5em, 2fr);
-                    div:not(:first-of-type) {
-                        padding-left: 0.5em;
-                    }
-                    .dist {
-                        grid-column: 1 / 1;
-                    }
-                    .style {
-                        grid-column: 2 / 2;
-                    }
-                    .gender {
-                        grid-column: 3 / 3;
-                    }
-                }
             }
         }
     }

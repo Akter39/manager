@@ -1,80 +1,96 @@
 <div class="container">
     <div class="header">
-        <div>Создать новое соревнование</div>
-        <div>Крестик</div>
+        <div>{{'Competition.New.header' | translate}}</div>
+        <img src="../../../../assets/icons/close.png" (click)="onClose()">
     </div>
     <form [formGroup]="newCompetitionForm">
         <fieldset class="org-info">
             <div class="org">
-                <label for="org">Организация</label>
+                <label for="org">{{'Competition.New.organization' | translate}}</label>
                 <input formControlName="Organization" readonly id="org">
             </div>
             <div class="city">
-                <label for="city">Город</label>
+                <label for="city">{{'Competition.New.city' | translate}}</label>
                 <input type="text" name="city" formControlName="City" readonly id="city">
             </div>
             <div class="length">
-                <label for="length">Длина басейна</label>
+                <label for="length">{{'Competition.New.length' | translate}}</label>
                 <select name="length" id="length" required>
-                    <option value="">Выберите значение</option>
+                    <option value="">{{'Competition.New.select' | translate}}</option>
                     <option value="1">25</option>
                     <option value="2">50</option>
                 </select>
             </div>
             <div class="lanes">
-                <label for="lanes">Количество дорожек</label>
+                <label for="lanes">{{'Competition.New.lanes' | translate}}</label>
                 <select name="lines" id="lanes">
-                    <option value="">Выберите значение</option>
+                    <option value="">{{'Competition.New.select' | translate}}</option>
                     <option value="1">4</option>
                     <option value="2">8</option>
                 </select>
             </div>
             <div class="individ">
-                <label for="individ">Разрешить личное участие</label>
+                <label for="individ">{{'Competition.New.individ' | translate}}</label>
                 <input type="checkbox" name="individ" id="individ">
+            </div>
+        </fieldset>
+        <fieldset class="comp-info">
+            <div class="date">
+                <div class="start">
+                    <label for="start">{{'Competition.New.start' | translate}}</label>
+                    <input type="date" name="start" id="start">
+                </div>
+                <div class="end">
+                    <label for="end">{{'Competition.New.end' | translate}}</label>
+                    <input type="date" name="end" id="end">
+                </div>
+            </div>
+            <div class="bid">
+                <label for="bid">{{'Competition.New.bid' | translate}}</label>
+                <input type="number" name="bid" id="bid" min="1" max="31" [placeholder]="'Competition.New.days' | translate">
+            </div>
+            <div class="contribution">
+                <label for="contribution">{{'Competition.New.contribution' | translate}}</label>
+                <input type="number" name="contribution" id="contribution" min="1">
+            </div>
+            <div class="invite-only">
+                <label for="invite-only">{{'Competition.New.invitOnly' | translate}}</label>
+                <input type="checkbox" name="invite-only" id="invite-only">
             </div>
         </fieldset>
         <fieldset class="max-value">
             <div class="members">
-                <label for="members">Максимум участников</label>
+                <label for="members">{{'Competition.New.members' | translate}}</label>
                 <input type="number" name="members" id="members" min="1">
             </div>
             <div class="check-members">
-                <label for="check-members">Без лимита</label>
+                <label for="check-members">{{'Competition.New.noLimit' | translate}}</label>
                 <input type="checkbox" name="check-members" id="check-members">
             </div>
             <div class="comands">
-                <label for="comands">Максимум команд</label>
+                <label for="comands">{{'Competition.New.commands' | translate}}</label>
                 <input type="number" name="comands" id="comands" min="1">
             </div>
             <div class="check-comands">
-                <label for="check-comands">Без лимита</label>
+                <label for="check-comands">{{'Competition.New.noLimit' | translate}}</label>
                 <input type="checkbox" name="check-comands" id="check-comands">
             </div>
             <div class="members-comand">
-                <label for="members-comand">Максимум учустников в команде</label>
+                <label for="members-comand">{{'Competition.New.mebersComand' | translate}}</label>
                 <input type="number" name="members-comand" id="members-comand" min="1">
             </div>
             <div class="check-members-comand">
-                <label for="check-members-comand">Без либита</label>
+                <label for="check-members-comand">{{'Competition.New.noLimit' | translate}}</label>
                 <input type="checkbox" name="check-members-comand" id="check-members-comand">
             </div>
         </fieldset>
         <fieldset class="year-dist">
             <div class="distances">
-                <div class="dist-head">Дистанции</div>
-                <div class="item">
-                    <div class="dist">50м</div>
-                    <div class="style">Батерфляй</div>
-                    <div class="gender">Женщины</div>
-                </div>
-                <div class="item">
-                    <div class="dist">1500м</div>
-                    <div class="style">Кроль</div>
-                    <div class="gender">Мужчины</div>
-                </div>
+                <app-distances></app-distances>
             </div>
-            <div class="year">Возрастные группы</div>
+            <div class="year">
+                <app-year-group></app-year-group>
+            </div>
         </fieldset>
     </form>
 </div>

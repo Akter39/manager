@@ -16,6 +16,8 @@ import { WelcomePageComponent } from './welcome/welcome-page/welcome-page.compon
 import { InputComponent } from './custom-UI/input/input.component';
 import { UserDirective } from './directives/user.directive';
 import { UserRolesDirective } from './directives/user-roles.directive';
+import { DistancesComponent } from './custom-UI/competitions/distances/distances.component';
+import { CustomUiModule } from './custom-UI/custom-ui.module';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -32,9 +34,8 @@ export function getBaseUrl() {
     SignInComponent,
     SignUpComponent,
     WelcomePageComponent,
-    InputComponent,
     UserDirective,
-    UserRolesDirective
+    UserRolesDirective,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +51,8 @@ export function getBaseUrl() {
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    MainModule
+    MainModule,
+    CustomUiModule
   ],
   providers: [[{ provide: "BASE_URL", useFactory: getBaseUrl }]],
   bootstrap: [AppComponent]

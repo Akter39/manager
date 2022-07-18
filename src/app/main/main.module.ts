@@ -9,6 +9,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { CompetitionComponent } from './competition/competition.component';
 import { CompetitionItemComponent } from './competition/competition-item/competition-item.component';
 import { NewCompetitionComponent } from './competition/new-competition/new-competition.component';
+import { CustomUiModule } from '../custom-UI/custom-ui.module';
 
 
 @NgModule({
@@ -26,9 +27,14 @@ import { NewCompetitionComponent } from './competition/new-competition/new-compe
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    CustomUiModule
   ],
   exports: [
-    MainComponent
+    MainComponent,
+    ProfileComponent,
+    CompetitionComponent,
+    CompetitionItemComponent,
+    NewCompetitionComponent
   ]
 })
 export class MainModule { }

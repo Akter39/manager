@@ -12,24 +12,12 @@
         <div class="contribution">{{'Competition.entryContribution' | translate}}: 500р</div>
         <div class="participents">{{'Competition.members' | translate}}: 48/300</div>
         <div class="commands">{{'Competition.teams' | translate}}: 8/10</div>
-        <div class="distances">
-            <div>{{'Competition.distances' | translate}}</div>
-            <div>200м вольный стиль</div>
-            <div>200м вольный стиль</div>
-            <div>200м вольный стиль</div>
-            <div>200м вольный стиль</div>
-        </div>
-        <div class="years">
-            <div>
-                <div>{{'Competition.men' | translate}}</div>
-                <div>2000-2001</div>
-                <div>2000-2005</div>
+        <div class="year-dist">
+            <div class="distances">
+                <app-distances></app-distances>
             </div>
-            <div>
-                <div>{{'Competition.women' | translate}}</div>
-                <div>2000-2005</div>
-                <div>2000-2005</div>
-                <div>2000-2005</div>
+            <div class="year">
+                <app-year-group></app-year-group>
             </div>
         </div>
         <div class="note">

@@ -7,7 +7,7 @@
                 <input type="radio" name="tabs-nav" id="tab-2" [checked]="!flag">
                 <label for="tab-2" class="tab" routerLink="/main/competition/archive"><span>{{'Competition.archiveCompetitions' | translate}}</span></label>
             </div>
-            <button class="btn new-competition">{{'Competition.newCompetition' | translate}}</button>
+            <button class="btn new" (click)="onToggle()">{{'Competition.newCompetition' | translate}}</button>
         </div>
         <div *ngIf="empetyCompetitions">{{'Competition.noCompetitions' | translate}}</div>
         <div class="competitions">
@@ -17,7 +17,7 @@
         </div>
     </div>
 </div>
-<div class="box-shadow" *ngIf="true"></div>
-<div class="new-competition" *ngIf="true">
-    <app-new-competition></app-new-competition>
+<div class="box-shadow" *ngIf="!closeNew"></div>
+<div class="new-competition" *ngIf="!closeNew">
+    <app-new-competition (close)="onToggle()"></app-new-competition>
 </div>

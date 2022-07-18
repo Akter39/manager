@@ -14,6 +14,7 @@ export class CompetitionComponent implements OnInit, DoCheck {
   empetyCompetitions!: boolean;
   competitions!: Observable<Competition[]>;
   flag!: boolean;
+  closeNew!: boolean;
 
   comp: Competition[] = [
     new Competition(89, 'Веселый дельфин', new Date(), new Date(), 50, new UserInfo()),
@@ -25,12 +26,17 @@ export class CompetitionComponent implements OnInit, DoCheck {
    }
 
   ngOnInit(): void {
+    this.closeNew = true;
     if (this.router.url == '/main/competition/current') this.flag = true;
     if (this.router.url == '/main/competition/archive') this.flag = false;
     this.competitions = this.receivService.Competition.getCompetitions(1);
     if(!this.empetyCompetitions) {
       this.competitions = of(this.comp);
     }
+  }
+
+  onToggle() {
+    this.closeNew = !this.closeNew;
   }
 
   ngDoCheck(): void {

@@ -23,54 +23,34 @@ details {
         padding: 0.5em;
         grid-template-areas: "l l t t cb cb . . . ."
                              "p p c c   . . . . . ."
-                             "d d d d . y y   b b b"
+                             "y y y y y y   . b b b"
                              "n n n n n n n   b b b";
         grid-template-columns: repeat(10, 1fr);
         grid-template-rows: 1fr 1fr auto auto;
+        .year-dist {
+            grid-area: y;
+            display: flex;
+            column-gap: 1em;
+            .year {
+                width: max-content;                
+            }
+            .distances {
+                width: max-content;
+            }
+        }
+        .note {
+            grid-area: n;
+            background-color: $mainA-color;
+            margin: 0.2em;
+            padding: 0.5em;
+            border-radius: 0.5em;
+        }
     }
     .length {grid-area: l;}
     .track {grid-area: t;}
     .contribution {grid-area: cb;}
     .participents {grid-area: p;}
     .commands {grid-area: c;}
-    .distances {
-        grid-area: d;
-        background-color: $mainA-color;
-        div {
-            border-bottom: 0.01em solid $main-color;
-            padding: 0.2em 0 0.2em 0.5em;
-            &:last-child {
-                border: 0 none;
-            }
-        }
-    }
-    .years {
-        display: flex;
-        grid-area: y;
-        background-color: $mainA-color;
-        & > div {
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-            div {
-                border-bottom: 0.01em solid $main-color;
-                padding: 0.2em 0 0.2em 0.5em;
-                &:last-child {
-                    border-bottom: 0 none;
-                }
-            }
-            &:first-child {
-                border-right: 0.01em solid $main-color;
-            }
-        }
-    }
-    .note {
-        grid-area: n;
-        background-color: $mainA-color;
-        margin: 0.2em;
-        padding: 0.5em;
-        border-radius: 0.5em;
-    }
     .btn {
         grid-area: b;
         display: flex;

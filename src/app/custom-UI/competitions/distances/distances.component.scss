@@ -1,0 +1,33 @@
+@import 'variebles';
+
+.distances {
+    grid-area: d;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    background-color: $mainA-color;
+    width: max-content;
+    .dist-head {
+        background-color: $second-color;
+        padding: 0 1em;
+    }
+    .item {
+        display: grid;
+        grid-template-columns: 4em 7em 7em;
+        div {
+            padding: 0 1em;
+        }
+        &:nth-of-type(odd) {
+            backdrop-filter: brightness(80%);
+        }
+        .dist {
+            grid-column: 1 / 1;
+        }
+        .style {
+            grid-column: 2 / 2;
+        }
+        .gender {
+            grid-column: 3 / 3;
+        }
+    }
+}
