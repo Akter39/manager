@@ -8,14 +8,12 @@ import { OnInit } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  public translate: TranslateService;
-  constructor(translate: TranslateService) { 
-    this.translate = translate;
-    translate.addLangs(['en', 'ru']);
-    translate.setDefaultLang('ru');
+  constructor(private translate: TranslateService) { 
   }
 
   public ngOnInit(): void {
+    this.translate.addLangs(['en', 'ru']);
+    this.translate.setDefaultLang('en');
     this.translate.reloadLang(this.translate.currentLang);
   }
 }

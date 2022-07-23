@@ -8,3 +8,13 @@
   //font-size: max(min(0.8vw, 18px), 8px);
   font-size: min(max(8px, 1vw), 24px);
 }
+
+::-webkit-scrollbar {
+    width: 1em;
+    background-color: $mainC-color;
+  }
+::-webkit-scrollbar-thumb {
+    border-radius: 0.5em;
+    background-color: $second-color;
+  }
+

@@ -24,9 +24,6 @@ const main: Routes = [
 ];
 
 const routes: Routes = [
-  /*{path: '', component: WelcomeComponent, canActivate: [AuthGuard], data: {anon: 'anon'}, children: sign},
-  {path: 'main', component: MainComponent, canActivate: [AuthGuard], children: main},
-  //{path: '', redirectTo: 'welcome'},*/
   {path: '', component: WelcomeComponent, canActivate: [AuthGuard], data: {anon: 'anon'}, children: sign},
   {path: 'main', component: MainComponent, canActivate: [AuthGuard], children: main},
   {path: '**', pathMatch: 'full', redirectTo: ''}

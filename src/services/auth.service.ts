@@ -92,5 +92,4 @@ export interface ConditionSignIn {
   InvalidLoginFormat: boolean;
   InvalidPasswordFormat: boolean;
   CurrentUser?: User;
-  EncodedJwt?: string;
 }

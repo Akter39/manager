@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
@@ -12,7 +13,7 @@ export class NewCompetitionComponent implements OnInit {
   maxStart!: Date;
   @Output() close: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     this.minStart = new Date();

@@ -29,10 +29,6 @@
                     <option value="2">8</option>
                 </select>
             </div>
-            <div class="individ">
-                <label for="individ">{{'Competition.New.individ' | translate}}</label>
-                <input type="checkbox" name="individ" id="individ">
-            </div>
         </fieldset>
         <fieldset class="comp-info">
             <div class="date">
@@ -53,9 +49,15 @@
                 <label for="contribution">{{'Competition.New.contribution' | translate}}</label>
                 <input type="number" name="contribution" id="contribution" min="1">
             </div>
-            <div class="invite-only">
-                <label for="invite-only">{{'Competition.New.invitOnly' | translate}}</label>
-                <input type="checkbox" name="invite-only" id="invite-only">
+            <div class="check">
+                <div class="individ">
+                    <label for="individ">{{'Competition.New.individ' | translate}}</label>
+                    <input type="checkbox" name="individ" id="individ">
+                </div>
+                <div class="invit-only">
+                    <label for="invit-only">{{'Competition.New.invitOnly' | translate}}</label>
+                    <input type="checkbox" name="invit-only" id="invit-only">
+                </div>
             </div>
         </fieldset>
         <fieldset class="max-value">

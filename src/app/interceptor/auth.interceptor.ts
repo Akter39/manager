@@ -13,7 +13,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   constructor(private authService: AuthService) {}
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.authService.getUser().subscribe(u => {
       if(u && u.Token) {
         request = request.clone({

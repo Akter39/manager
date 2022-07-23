@@ -21,7 +21,6 @@ export class SignInComponent implements OnInit {
     InvalidLoginFormat: false,
     InvalidPasswordFormat: false,
     CurrentUser: this.CurrentUser,
-    EncodedJwt: ""
   };
   loginForm!: FormGroup;
   constructor (
