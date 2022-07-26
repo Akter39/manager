@@ -1,6 +1,6 @@
 import { MainModule } from './main/main.module';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule, TranslateLoader, MissingTranslationHandler } from '@ngx-translate/core';
@@ -19,6 +19,9 @@ import { UserRolesDirective } from './directives/user-roles.directive';
 import { DistancesComponent } from './custom-UI/competitions/distances/distances.component';
 import { CustomUiModule } from './custom-UI/custom-ui.module';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { appInitializer } from './app.initializer';
+import { AuthService } from 'src/services/auth.service';
+import { ErrorInterceptor } from './interceptor/error.interceptor';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -56,8 +59,11 @@ export function getBaseUrl() {
     CustomUiModule
   ],
   providers: [
-    [{ provide: "BASE_URL", useFactory: getBaseUrl }],
-    [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}]
+    { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [AuthService] },
+    { provide: "BASE_URL", useFactory: getBaseUrl },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    
   ],
   bootstrap: [AppComponent]
 })

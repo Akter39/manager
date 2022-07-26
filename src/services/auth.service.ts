@@ -12,6 +12,7 @@ import { ApiUrl } from 'src/app/constants/api-url.constants';
 })
 export class AuthService {
   private currentUserSubject: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
+  private refreshTokenTimeout!: ReturnType<typeof setTimeout>;
 
   constructor(
     private http: HttpClient,
@@ -48,25 +49,49 @@ export class AuthService {
    }
    
   signUp(control: FormGroup): Observable<ConditionSignUp> {
-    return  this.http.post<ConditionSignUp>(this.baseUrl + ApiUrl.Auth.signUp, control.value);
+    return  this.http.post<ConditionSignUp>(this.baseUrl + ApiUrl.Auth.signUp, control.value, { withCredentials: true });
   }
 
   signIn(control: FormGroup): Observable<ConditionSignIn> {
-    return  this.http.post<ConditionSignIn>(this.baseUrl + ApiUrl.Auth.signIn, control.value)
-      .pipe(map((condition: ConditionSignIn) => {
+    return  this.http.post<ConditionSignIn>(this.baseUrl + ApiUrl.Auth.signIn, control.value, { withCredentials: true })
+      .pipe(map(condition => {
         if (condition && condition.CurrentUser){
           localStorage.setItem('CurrentUser', JSON.stringify(condition.CurrentUser));
+          this.startRefreshTokenTimer(condition.CurrentUser);
           this.currentUserSubject.next(condition.CurrentUser);
         }
         return condition;
       }));
   }
 
+  refreshToken(): Observable<User | null> {
+    return  this.http.post<User>(this.baseUrl + ApiUrl.Auth.refreshJwt, {}, { withCredentials: true })
+      .pipe(map(u => {
+        this.currentUserSubject.next(u);
+        this.startRefreshTokenTimer(u);
+        return u;
+      }));
+  }
+
   signOut(){
+    this.http.post<any>(this.baseUrl + ApiUrl.Auth.revokeJwt, {}, { withCredentials: true }).subscribe();
     localStorage.removeItem('CurrentUser');
+    this.stopRefreshTokenTimer();
     this.currentUserSubject.next(null);
     this.router.navigate(['/']);
   }
+
+  private startRefreshTokenTimer(user: User) {
+    const jwt = JSON.parse(atob(user.Token.split('.')[1]));
+
+    const expires = new Date(jwt.exp * 1000);
+    const timeout = expires.getTime() - Date.now() - (60 * 1000);
+    this.refreshTokenTimeout = setTimeout(() => this.refreshToken().subscribe(), timeout);
+  }
+
+  private stopRefreshTokenTimer() {
+    clearTimeout(this.refreshTokenTimeout);
+}
 }
 
 export interface ConditionSignUp {
