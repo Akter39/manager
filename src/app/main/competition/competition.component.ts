@@ -29,7 +29,6 @@ export class CompetitionComponent implements OnInit, DoCheck {
     this.closeNew = true;
     if (this.router.url == '/main/competition/current') this.flag = true;
     if (this.router.url == '/main/competition/archive') this.flag = false;
-    this.competitions = this.receivService.Competition.getCompetitions(1);
     if(!this.empetyCompetitions) {
       this.competitions = of(this.comp);
     }

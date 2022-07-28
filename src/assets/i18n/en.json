@@ -14,6 +14,7 @@
 			"length": "Pool length",
 			"mebersComand": "Maximum command members",
 			"members": "Maximum members",
+			"name": "Name",
 			"noLimit": "No limit",
 			"organization": "Organization",
 			"select": "Select value",

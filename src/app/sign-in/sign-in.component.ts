@@ -4,8 +4,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserLoginValidator } from '../validators/user-login.validator';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { AuthService, ConditionSignIn } from 'src/services/auth.service';
 import { User } from '../models/auth/user';
+import { ConditionSignIn } from '../models/auth/condition-sign-in';
+import { AuthService } from 'src/services/auth.service';
 
 @Component({
   selector: 'app-sign-in',

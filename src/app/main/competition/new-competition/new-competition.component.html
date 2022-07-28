@@ -3,11 +3,11 @@
         <div>{{'Competition.New.header' | translate}}</div>
         <img src="../../../../assets/icons/close.png" (click)="onClose()">
     </div>
-    <form [formGroup]="newCompetitionForm">
+    <form [formGroup]="newCompetitionForm" (ngSubmit)="onSumbit()">
         <fieldset class="org-info">
             <div class="org">
                 <label for="org">{{'Competition.New.organization' | translate}}</label>
-                <input formControlName="Organization" readonly id="org">
+                <input formControlName="Organization" name="org" readonly id="org">
             </div>
             <div class="city">
                 <label for="city">{{'Competition.New.city' | translate}}</label>
@@ -15,55 +15,74 @@
             </div>
             <div class="length">
                 <label for="length">{{'Competition.New.length' | translate}}</label>
-                <select name="length" id="length" required>
+                <select name="length" id="length" required formControlName="PoolLength">
                     <option value="">{{'Competition.New.select' | translate}}</option>
-                    <option value="1">25</option>
-                    <option value="2">50</option>
+                    <option *ngFor="let item of lengthList"
+                     [ngValue]="item">{{item}}</option>
                 </select>
             </div>
             <div class="lanes">
                 <label for="lanes">{{'Competition.New.lanes' | translate}}</label>
-                <select name="lines" id="lanes">
+                <select name="lines" id="lanes" required formControlName="PoolLanes">
                     <option value="">{{'Competition.New.select' | translate}}</option>
-                    <option value="1">4</option>
-                    <option value="2">8</option>
+                    <option *ngFor="let item of laneList"
+                     [ngValue]="item">{{item}}</option>
                 </select>
             </div>
         </fieldset>
         <fieldset class="comp-info">
+            <div class="name">
+                <label for="name">{{'Competition.New.name' | translate}}</label>
+                <input formControlName="Name" name="name" id="name">
+            </div>
             <div class="date">
                 <div class="start">
                     <label for="start">{{'Competition.New.start' | translate}}</label>
-                    <input type="date" name="start" id="start">
+                    <input formControlName="StartCompetition" type="date" name="start" id="start">
                 </div>
                 <div class="end">
                     <label for="end">{{'Competition.New.end' | translate}}</label>
-                    <input type="date" name="end" id="end">
+                    <input formControlName="EndCompetition" type="date" name="end" id="end">
                 </div>
             </div>
             <div class="bid">
                 <label for="bid">{{'Competition.New.bid' | translate}}</label>
-                <input type="number" name="bid" id="bid" min="1" max="31" [placeholder]="'Competition.New.days' | translate">
+                <input 
+                formControlName="BidDay" 
+                type="number" name="bid" 
+                id="bid" min="1" max="31" 
+                [placeholder]="'Competition.New.days' | translate">
             </div>
             <div class="contribution">
                 <label for="contribution">{{'Competition.New.contribution' | translate}}</label>
-                <input type="number" name="contribution" id="contribution" min="1">
+                <input 
+                formControlName="Contribution" 
+                type="number" name="contribution" 
+                id="contribution" min="1">
             </div>
             <div class="check">
                 <div class="individ">
                     <label for="individ">{{'Competition.New.individ' | translate}}</label>
-                    <input type="checkbox" name="individ" id="individ">
+                    <input formControlName="Individual" type="checkbox" name="individ" id="individ">
                 </div>
                 <div class="invit-only">
                     <label for="invit-only">{{'Competition.New.invitOnly' | translate}}</label>
-                    <input type="checkbox" name="invit-only" id="invit-only">
+                    <input 
+                    formControlName="InvitOnly" 
+                    type="checkbox" 
+                    name="invit-only" 
+                    id="invit-only">
                 </div>
             </div>
         </fieldset>
         <fieldset class="max-value">
             <div class="members">
                 <label for="members">{{'Competition.New.members' | translate}}</label>
-                <input type="number" name="members" id="members" min="1">
+                <input 
+                formControlName="MaxMembers"
+                type="number" name="members" 
+                id="members" 
+                min="1">
             </div>
             <div class="check-members">
                 <label for="check-members">{{'Competition.New.noLimit' | translate}}</label>
@@ -71,7 +90,7 @@
             </div>
             <div class="comands">
                 <label for="comands">{{'Competition.New.commands' | translate}}</label>
-                <input type="number" name="comands" id="comands" min="1">
+                <input formControlName="MaxComands" type="number" name="comands" id="comands" min="1">
             </div>
             <div class="check-comands">
                 <label for="check-comands">{{'Competition.New.noLimit' | translate}}</label>
@@ -79,7 +98,12 @@
             </div>
             <div class="members-comand">
                 <label for="members-comand">{{'Competition.New.mebersComand' | translate}}</label>
-                <input type="number" name="members-comand" id="members-comand" min="1">
+                <input 
+                formControlName="MaxComandMembers" 
+                type="number" 
+                name="members-comand" 
+                id="members-comand" 
+                min="1">
             </div>
             <div class="check-members-comand">
                 <label for="check-members-comand">{{'Competition.New.noLimit' | translate}}</label>
@@ -94,5 +118,6 @@
                 <app-year-group></app-year-group>
             </div>
         </fieldset>
+        <button class="btn" [disabled]="newCompetitionForm.invalid">создать</button>
     </form>
 </div>

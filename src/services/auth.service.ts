@@ -6,6 +6,8 @@ import { User } from 'src/app/models/auth/user';
 import { Role } from 'src/app/models/auth/role';
 import { Router } from '@angular/router';
 import { ApiUrl } from 'src/app/constants/api-url.constants';
+import { ConditionSignIn } from 'src/app/models/auth/condition-sign-in';
+import { ConditionSignUp } from 'src/app/models/auth/condition-sign-up';
 
 @Injectable({
   providedIn: 'root'
@@ -91,30 +93,5 @@ export class AuthService {
 
   private stopRefreshTokenTimer() {
     clearTimeout(this.refreshTokenTimeout);
-}
-}
-
-export interface ConditionSignUp {
-  Successful: boolean;
-  NameBusy: boolean;
-  NicknameBusy: boolean;
-  EmailBusy: boolean;
-  PhoneBusy: boolean;
-  NotMatchPasswords: boolean;
-  MatchName: boolean;
-  InvalidNameFormat: boolean;
-  InvalidNicknameFormat: boolean;
-  InvalidEmailFormat: boolean;
-  InvalidPhoneFormat: boolean;
-  InvalidPasswordFormat: boolean;
-  InvalidCityFormat: boolean;
-  InvalidOrganizationFormat: boolean;
-}
-
-export interface ConditionSignIn {
-  Successful: boolean;
-  InvalidSignIn: boolean;
-  InvalidLoginFormat: boolean;
-  InvalidPasswordFormat: boolean;
-  CurrentUser?: User;
+  }
 }
