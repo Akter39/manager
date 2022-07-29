@@ -1,4 +1,4 @@
-import { UserInfo } from './user-info';
+import { UserInfo } from './auth/user-info';
 export class Competition {
     Id!: number;
     Name!: string;

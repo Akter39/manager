@@ -6,3 +6,10 @@ export const RegexUser = {
     userOrganization : /^[a-zA-Zа-яА-Я0-9\'\"\s\-]{2,30}$/,
     userEmail: /^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z])+$/
 }
+
+export const RegexCompetition = {
+    name: /^[a-zA-Zа-яА-Я0-9\'\"\s\-\.]{5,50}$/,
+    poolLength: /^25|50$/,
+    poolLanes: /^4|8$/,
+    
+}

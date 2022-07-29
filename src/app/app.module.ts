@@ -1,3 +1,4 @@
+import { DirectivesModule } from './directives/directives.module';
 import { MainModule } from './main/main.module';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
@@ -13,15 +14,12 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { WelcomePageComponent } from './welcome/welcome-page/welcome-page.component';
-import { InputComponent } from './custom-UI/input/input.component';
-import { UserDirective } from './directives/user.directive';
-import { UserRolesDirective } from './directives/user-roles.directive';
-import { DistancesComponent } from './custom-UI/competitions/distances/distances.component';
 import { CustomUiModule } from './custom-UI/custom-ui.module';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { appInitializer } from './app.initializer';
 import { AuthService } from 'src/services/auth.service';
 import { ErrorInterceptor } from './interceptor/error.interceptor';
+import { TestDirective } from './test.directive';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -38,9 +36,8 @@ export function getBaseUrl() {
     SignInComponent,
     SignUpComponent,
     WelcomePageComponent,
-    UserDirective,
-    UserRolesDirective,
-  ],
+    TestDirective,
+    ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -56,7 +53,8 @@ export function getBaseUrl() {
     FormsModule,
     ReactiveFormsModule,
     MainModule,
-    CustomUiModule
+    CustomUiModule,
+    DirectivesModule
   ],
   providers: [
     { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [AuthService] },

@@ -30,7 +30,7 @@ export class AuthService {
 
    public isAuthenticated(role?: Role[]): Observable<boolean> {
     if (role) {
-      return this.getUser().pipe(filter(u => this.hasRole(role, this.currentUserSubject.value?.Roles!)), map(u => !!u))
+      return this.getUser().pipe(filter(u => this.hasRole(role, this.currentUserSubject.value?.Roles!)), map(u => !!u));
     }
     return this.getUser().pipe(map(u => !!u));
    }

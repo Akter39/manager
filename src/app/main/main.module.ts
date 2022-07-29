@@ -1,3 +1,4 @@
+import { DirectivesModule } from './../directives/directives.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -10,6 +11,7 @@ import { CompetitionComponent } from './competition/competition.component';
 import { CompetitionItemComponent } from './competition/competition-item/competition-item.component';
 import { NewCompetitionComponent } from './competition/new-competition/new-competition.component';
 import { CustomUiModule } from '../custom-UI/custom-ui.module';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 @NgModule({
@@ -18,23 +20,25 @@ import { CustomUiModule } from '../custom-UI/custom-ui.module';
     ProfileComponent,
     CompetitionComponent,
     CompetitionItemComponent,
-    NewCompetitionComponent
+    NewCompetitionComponent,
   ],
   imports: [
+    BrowserModule,
     CommonModule,
     TranslateModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    CustomUiModule
+    CustomUiModule,
+    DirectivesModule
   ],
   exports: [
     MainComponent,
     ProfileComponent,
     CompetitionComponent,
     CompetitionItemComponent,
-    NewCompetitionComponent
+    NewCompetitionComponent,
   ]
 })
 export class MainModule { }

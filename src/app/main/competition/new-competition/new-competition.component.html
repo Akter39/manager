@@ -38,11 +38,23 @@
             <div class="date">
                 <div class="start">
                     <label for="start">{{'Competition.New.start' | translate}}</label>
-                    <input formControlName="StartCompetition" type="date" name="start" id="start">
+                    <input 
+                    formControlName="StartCompetition" 
+                    type="date"
+                    name="start" 
+                    id="start"
+                    [min]="minStart"
+                    [max]="maxStart">
                 </div>
-                <div class="end">
+                <div class="end" *ngIf="!newCompetitionForm.controls['StartCompetition'].invalid">
                     <label for="end">{{'Competition.New.end' | translate}}</label>
-                    <input formControlName="EndCompetition" type="date" name="end" id="end">
+                    <input 
+                    formControlName="EndCompetition" 
+                    type="date" 
+                    name="end" 
+                    id="end"
+                    [min]="minEnd"
+                    [max]="maxEnd">
                 </div>
             </div>
             <div class="bid">
@@ -50,7 +62,7 @@
                 <input 
                 formControlName="BidDay" 
                 type="number" name="bid" 
-                id="bid" min="1" max="31" 
+                id="bid" min="2" max="30" 
                 [placeholder]="'Competition.New.days' | translate">
             </div>
             <div class="contribution">
@@ -58,7 +70,7 @@
                 <input 
                 formControlName="Contribution" 
                 type="number" name="contribution" 
-                id="contribution" min="1">
+                id="contribution" min="0">
             </div>
             <div class="check">
                 <div class="individ">
@@ -118,6 +130,10 @@
                 <app-year-group></app-year-group>
             </div>
         </fieldset>
-        <button class="btn" [disabled]="newCompetitionForm.invalid">создать</button>
+        <button class="btn" [disabled]="newCompetitionForm.invalid"
+            *appUserRoles="[Role.MainAdmin, Role.Admin, Role.VipUser]">создать</button>
+        <button class="btn" [disabled]="newCompetitionForm.invalid" 
+            *appUserRoles="[Role.User]">Оплатить</button>
     </form>
 </div>
+  

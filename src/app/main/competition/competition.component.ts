@@ -3,7 +3,7 @@ import { ReceivingService } from './../../../services/receiving.service';
 import { isEmpty, Observable, of, tap } from 'rxjs';
 import { Competition } from './../../models/competition';
 import { Component, OnInit, DoCheck } from '@angular/core';
-import { UserInfo } from 'src/app/models/user-info';
+import { UserInfo } from 'src/app/models/auth/user-info';
 
 @Component({
   selector: 'app-competition',

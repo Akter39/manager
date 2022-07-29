@@ -1,3 +1,4 @@
+import { take } from 'rxjs';
 import { AuthService } from 'src/services/auth.service';
 import { Directive, TemplateRef, ViewContainerRef, OnInit } from '@angular/core';
 
@@ -13,7 +14,7 @@ export class UserDirective implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.authService.isAuthenticated().subscribe(u => {
+    this.authService.isAuthenticated().pipe(take(1)).subscribe(u => {
       if (u) {
         this.viewContainer.createEmbeddedView(this.templateRef);
       } else {
