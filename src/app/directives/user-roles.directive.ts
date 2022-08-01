@@ -19,9 +19,6 @@ export class UserRolesDirective {
         this.viewContainer.clear();
       }
      });
-     /*let flag;
-     this.auth.isAuthenticated(roles).subscribe(u => flag = u);
-     console.log(flag);*/
   }
   constructor(
     private templateRef: TemplateRef<any>,
