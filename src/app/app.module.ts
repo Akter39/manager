@@ -19,7 +19,6 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { appInitializer } from './app.initializer';
 import { AuthService } from 'src/services/auth.service';
 import { ErrorInterceptor } from './interceptor/error.interceptor';
-import { TestDirective } from './test.directive';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -36,8 +35,7 @@ export function getBaseUrl() {
     SignInComponent,
     SignUpComponent,
     WelcomePageComponent,
-    TestDirective,
-    ],
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,

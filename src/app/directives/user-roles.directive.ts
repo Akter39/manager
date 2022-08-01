@@ -1,3 +1,4 @@
+import { take } from 'rxjs';
 import { AuthService } from 'src/services/auth.service';
 import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 import { Role } from '../models/auth/role';
@@ -11,16 +12,16 @@ export class UserRolesDirective {
     if (!roles || !roles.length) {
       throw new Error('Roles value is empty or missed');
     }
-    /*this.auth.isAuthenticated(roles).subscribe(u => {
+    this.auth.isAuthenticated(roles).pipe(take(1)).subscribe(u => {
       if (u) {
         this.viewContainer.createEmbeddedView(this.templateRef);
       } else {
         this.viewContainer.clear();
       }
-     });*/
-     let flag;
+     });
+     /*let flag;
      this.auth.isAuthenticated(roles).subscribe(u => flag = u);
-     console.log(flag);
+     console.log(flag);*/
   }
   constructor(
     private templateRef: TemplateRef<any>,

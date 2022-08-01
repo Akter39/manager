@@ -56,13 +56,13 @@ export class AuthService {
 
   signIn(control: FormGroup): Observable<ConditionSignIn> {
     return  this.http.post<ConditionSignIn>(this.baseUrl + ApiUrl.Auth.signIn, control.value, { withCredentials: true })
-      .pipe(map(condition => {
-        if (condition && condition.CurrentUser){
-          localStorage.setItem('CurrentUser', JSON.stringify(condition.CurrentUser));
-          this.startRefreshTokenTimer(condition.CurrentUser);
-          this.currentUserSubject.next(condition.CurrentUser);
+      .pipe(map(u => {
+        if (u && u.CurrentUser){
+          localStorage.setItem('CurrentUser', JSON.stringify(u.CurrentUser));
+          this.startRefreshTokenTimer(u.CurrentUser);
+          this.currentUserSubject.next(u.CurrentUser);
         }
-        return condition;
+        return u;
       }));
   }
 
@@ -70,6 +70,7 @@ export class AuthService {
     return  this.http.post<User>(this.baseUrl + ApiUrl.Auth.refreshJwt, {}, { withCredentials: true })
       .pipe(map(u => {
         this.currentUserSubject.next(u);
+        localStorage.setItem('CurrentUser', JSON.stringify(u));
         this.startRefreshTokenTimer(u);
         return u;
       }));
