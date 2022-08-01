@@ -1,3 +1,4 @@
+import { CookieService } from './../services/cookie.service';
 import { DirectivesModule } from './directives/directives.module';
 import { MainModule } from './main/main.module';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -59,7 +60,7 @@ export function getBaseUrl() {
     { provide: "BASE_URL", useFactory: getBaseUrl },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
-    
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

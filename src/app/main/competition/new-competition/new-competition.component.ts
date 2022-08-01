@@ -1,3 +1,5 @@
+import { CookieService } from './../../../../services/cookie.service';
+import { Distances } from './../../../models/distance';
 import { RegexUser, RegexCompetition } from './../../../constants/regex.constants';
 import { filter } from 'rxjs';
 import { AuthService } from 'src/services/auth.service';
@@ -14,6 +16,7 @@ import { Role } from 'src/app/models/auth/role';
   styleUrls: ['./new-competition.component.scss']
 })
 export class NewCompetitionComponent implements OnInit {
+  refresh!: string;
   Role = Role;
   newCompetitionForm!: FormGroup;
   currentDate!: Date;
@@ -45,9 +48,14 @@ export class NewCompetitionComponent implements OnInit {
     NotPay: false,
   }
 
-  constructor(private http: HttpClient, private receivingService: ReceivingService, private auth: AuthService) { }
+  constructor(
+    private http: HttpClient, 
+    private receivingService: ReceivingService, 
+    private auth: AuthService, 
+    private cookieService: CookieService) { }
 
   ngOnInit(): void {
+    this.refresh = this.cookieService.get('RefreshToken');
     this.currentDate = new Date();
     this.lengthList = [25, 50];
     this.laneList = [4, 8];

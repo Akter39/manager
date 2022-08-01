@@ -8,7 +8,6 @@ import { Role } from '../models/auth/role';
 })
 export class UserRolesDirective {
   @Input() set appUserRoles(roles: Role[]) {
-    console.log(roles);
     if (!roles || !roles.length) {
       throw new Error('Roles value is empty or missed');
     }
@@ -17,7 +16,7 @@ export class UserRolesDirective {
         this.viewContainer.createEmbeddedView(this.templateRef);
       } else {
         this.viewContainer.clear();
-      }
+      } 
      });
   }
   constructor(

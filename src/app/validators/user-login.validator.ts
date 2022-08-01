@@ -4,7 +4,6 @@ import { RegexUser } from '../constants/regex.constants';
 export class UserLoginValidator {
     public static userLogin: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
         const userLogin = control.value.toString();
-        console.log(userLogin.toString());
         const validLogin = RegexUser.userPhone.test(userLogin) || RegexUser.userName.test(userLogin) || RegexUser.userEmail.test(userLogin);
         return userLogin && !validLogin ? {invalidLogin: true} : null;
         }

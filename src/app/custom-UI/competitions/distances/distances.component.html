@@ -1,13 +1,8 @@
 <div class="distances">
     <div class="dist-head">{{'Competition.distances' | translate}}</div>
-    <div class="item">
-        <div class="dist">50м</div>
-        <div class="style">Батерфляй</div>
-        <div class="gender">Женщины</div>
-    </div>
-    <div class="item">
-        <div class="dist">1500м</div>
-        <div class="style">Кроль</div>
-        <div class="gender">Мужчины</div>
-    </div>
+    <div class="item" *ngFor="let item of distances">
+        <div class="dist">{{item.distance | async}}</div>
+        <div class="style">{{item.style | async}}</div>
+        <div class="gender">{{item.gender | async}}</div>
+    </div>  
 </div>

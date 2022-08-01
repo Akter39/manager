@@ -39,6 +39,22 @@
 		"websiteName": "PROTOCOLS-MANAGER.COM",
 		"сompany": "Bad company"
 	},
+	"Distance": {
+		"Distance": {
+			"meter": "м"
+		},
+		"Gender": {
+			"femail": "женский",
+			"mail": "мужской"
+		},
+		"Style": {
+			"bk": "на спине",
+			"br": "брасс",
+			"fl": "баттерфляй",
+			"fr": "вольный стиль",
+			"im": "комплекс"
+		}
+	},
 	"Main": {
 		"NavMenu": {
 			"competition": "Соревнования",
