@@ -1,7 +1,11 @@
-<div class="container">
+<div class="container" id="main">
     <div class="header">
         <div>{{'Competition.New.header' | translate}}</div>
-        <img src="../../../../assets/icons/close.png" (click)="onClose()">
+        <div class="control-screen">
+            <img src="../../../../assets/icons/fullscreen.png" (click)="onFullScreenToggle()" *ngIf="!isFullScreen">
+            <img src="../../../../assets/icons/closeFullScreen.png" (click)="onFullScreenToggle()" *ngIf="isFullScreen">
+            <img src="../../../../assets/icons/close.png" (click)="onClose()">
+        </div>
     </div>
     <form [formGroup]="newCompetitionForm" (ngSubmit)="onSumbit()">
         <fieldset class="org-info">
@@ -124,7 +128,7 @@
         </fieldset>
         <fieldset class="year-dist">
             <div class="distances">
-                <app-distances></app-distances>
+                <app-distances [newCompetition]="true" (add)="onToggleAdd()" (clear)="onClear()" [distances]="distances"></app-distances>
             </div>
             <div class="year">
                 <app-year-group></app-year-group>
@@ -134,7 +138,6 @@
             *appUserRoles="[Role.MainAdmin, Role.Admin, Role.VipUser]">создать</button>
         <button class="btn" [disabled]="newCompetitionForm.invalid" 
             *appUserRoles="[Role.User]">оплатить</button>
-        <div>{{refresh}}</div>
     </form>
 </div>
   

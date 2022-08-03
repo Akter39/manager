@@ -1,5 +1,11 @@
 <div class="distances">
-    <div class="dist-head">{{'Competition.distances' | translate}}</div>
+    <div class="dist-head">
+        <div>{{'Competition.distances' | translate}}</div>
+        <div class="add-delete" *ngIf="newCompetition">
+            <img src="../../../../assets/icons/delete.png" (click)="onClear()">
+            <img src="../../../../assets/icons/add.png" (click)="onAdd()">
+        </div>
+    </div>
     <div class="item" *ngFor="let item of distances">
         <div class="dist">{{item.distance | async}}</div>
         <div class="style">{{item.style | async}}</div>

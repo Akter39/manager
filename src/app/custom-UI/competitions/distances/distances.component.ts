@@ -1,6 +1,6 @@
 import { TranslateService } from '@ngx-translate/core';
 import { Distance, Distances, Genders, Styles } from './../../../models/distance';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { newArray } from '@angular/compiler/src/util';
 
 @Component({
@@ -9,11 +9,20 @@ import { newArray } from '@angular/compiler/src/util';
   styleUrls: ['./distances.component.scss']
 })
 export class DistancesComponent implements OnInit {
-  distances: Distance[] = new Array();
-  constructor(private tranclate: TranslateService) { }
+  @Input() newCompetition: boolean = false;
+  @Output() clear: EventEmitter<any> = new EventEmitter<any>();
+  @Output() add: EventEmitter<any> = new EventEmitter<any>();
+  @Input() distances: Distance[] = new Array();
+  constructor() { }
 
   ngOnInit(): void {
-    this.distances.push(new Distance(Distances._50, Styles.FL, Genders.mail, this.tranclate))
   }
 
+  onClear() {
+    this.clear.emit();
+  }
+
+  onAdd() {
+    this.add.emit();
+  }
 }

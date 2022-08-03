@@ -1,5 +1,5 @@
 import { CookieService } from './../../../../services/cookie.service';
-import { Distances } from './../../../models/distance';
+import { Distance, Distances, Genders, Styles } from './../../../models/distance';
 import { RegexUser, RegexCompetition } from './../../../constants/regex.constants';
 import { filter } from 'rxjs';
 import { AuthService } from 'src/services/auth.service';
@@ -7,8 +7,10 @@ import { ConditionNewCompetition } from './../../../models/condition-new-competi
 import { ReceivingService } from './../../../../services/receiving.service';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
 import { Role } from 'src/app/models/auth/role';
+import { TranslateService } from '@ngx-translate/core';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-new-competition',
@@ -16,7 +18,8 @@ import { Role } from 'src/app/models/auth/role';
   styleUrls: ['./new-competition.component.scss']
 })
 export class NewCompetitionComponent implements OnInit {
-  refresh!: string;
+  isFullScreen!: boolean;
+  toggleDistances!: boolean;
   Role = Role;
   newCompetitionForm!: FormGroup;
   currentDate!: Date;
@@ -30,6 +33,7 @@ export class NewCompetitionComponent implements OnInit {
   @Output() close: EventEmitter<any> = new EventEmitter<any>();
   lengthList!: number[];
   laneList!: number[];
+  distances: Distance[] = new Array();
 
   public condition: ConditionNewCompetition = {
     Successful: true,
@@ -52,17 +56,29 @@ export class NewCompetitionComponent implements OnInit {
     private http: HttpClient, 
     private receivingService: ReceivingService, 
     private auth: AuthService, 
-    private cookieService: CookieService) { }
+    private cookieService: CookieService,
+    private translate: TranslateService,
+    @Inject(DOCUMENT) document: Document) { }
 
   ngOnInit(): void {
-    this.refresh = this.cookieService.get('lang');
-    this.currentDate = new Date();
-    this.lengthList = [25, 50];
-    this.laneList = [4, 8];
-    this.minStart = new Date(new Date().setDate(this.currentDate.getDate() + 2)).toISOString().slice(0,10);
-    this.maxStart = new Date(new Date().setDate(this.currentDate.getDate() + 174)).toISOString().slice(0,10);
+    this.initializeProperties();
+    this.initializeDate();
     this.initializeForm();
     this.onChangeStart();
+  }
+
+  initializeProperties() {
+    this.toggleDistances = false;
+    this.isFullScreen = false;
+    this.distances.push(new Distance(Distances._50, Styles.FL, Genders.mail, this.translate)) 
+    this.lengthList = [25, 50];
+    this.laneList = [4, 8];
+  }
+
+  initializeDate() {
+    this.currentDate = new Date();
+    this.minStart = new Date(new Date().setDate(this.currentDate.getDate() + 2)).toISOString().slice(0,10);
+    this.maxStart = new Date(new Date().setDate(this.currentDate.getDate() + 174)).toISOString().slice(0,10);
   }
 
   initializeForm() {
@@ -124,5 +140,22 @@ export class NewCompetitionComponent implements OnInit {
       this.minEnd = new Date(u).toISOString().slice(0, 10);
       this.maxEnd = new Date(new Date(this.minEnd).setDate(new Date(this.minEnd).getDate() + 6)).toISOString().slice(0,10);  
     });
+  }
+
+  onClear() {
+    this.distances = [];
+  }
+
+  onToggleAdd() {
+    this.toggleDistances = !this.toggleDistances;
+  }
+
+  onFullScreenToggle() {
+    if (!this.isFullScreen) {
+      document.getElementById('main')!.requestFullscreen();
+    } else {
+      document.exitFullscreen();
+    }
+    this.isFullScreen = !this.isFullScreen;
   }
 }

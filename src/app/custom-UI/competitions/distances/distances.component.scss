@@ -10,6 +10,17 @@
     .dist-head {
         background-color: $second-color;
         padding: 0 1em;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .add-delete {
+            height: 1em;
+            display: flex;
+            column-gap: 1em;
+            img {
+                cursor: pointer;
+            }
+        }
     }
     .item {
         display: grid;
