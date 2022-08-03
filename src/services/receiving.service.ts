@@ -21,20 +21,23 @@ export class ReceivingService {
 
   public Competition = new class {
 
-  constructor(private superThis: ReceivingService) {
-  }
+    constructor(private superThis: ReceivingService) {
+    }
 
-  /*getCompetitions(page: number): Observable<Competition[]> {
-    return this.superThis.http.get<Competition[]>(
-      `${this.superThis.baseUrl + ApiUrl.Competition.}/${page}`);
-  }*/
-
-  newCompetition(control: FormGroup): Observable<ConditionNewCompetition> {
-    return this.superThis.http
-      .post<ConditionNewCompetition>(this.superThis.baseUrl + ApiUrl.Competition.newCompetitions, control.value);
-  }
+    newCompetition(control: FormGroup): Observable<ConditionNewCompetition> {
+      return this.superThis.http
+        .post<ConditionNewCompetition>(this.superThis.baseUrl + ApiUrl.Competition.newCompetitions, control.value);
+    }
 
   }(this);
+
+  public Language = new class {
+    constructor(private superThis: ReceivingService) {}
+
+    setLanguage(): Observable<any> {
+      return this.superThis.http.post(this.superThis.baseUrl + ApiUrl.Language.set, {});
+    }
+  }(this)
 
   getUserInfo(id: number): Observable<UserInfo> {
     return this.http.get<UserInfo>(this.baseUrl);

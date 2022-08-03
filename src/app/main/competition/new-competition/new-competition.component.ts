@@ -55,7 +55,7 @@ export class NewCompetitionComponent implements OnInit {
     private cookieService: CookieService) { }
 
   ngOnInit(): void {
-    this.refresh = this.cookieService.get('RefreshToken');
+    this.refresh = this.cookieService.get('lang');
     this.currentDate = new Date();
     this.lengthList = [25, 50];
     this.laneList = [4, 8];

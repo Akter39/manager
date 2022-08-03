@@ -13,5 +13,8 @@ export const ApiUrl = {
         currentCompetitions: 'api/competition/current',
         archiveCompetitions: 'api/competition/archive',
         searchCompetitions: 'api/competition/search',
+    },
+    Language: {
+        set: 'api/language'
     }
 }
