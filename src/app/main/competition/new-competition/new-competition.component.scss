@@ -1,10 +1,10 @@
 @import 'variebles';
 
 .container {
+    height: 85vh;
+    width: 85vw;
     background-color: $mainA-color;
     border: 0.1em solid $second-color;
-    height: 100%;
-    width: 100%;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -25,7 +25,7 @@
         }
     }
     form {
-        overflow-x: auto;
+        overflow-y: auto;
         background-color: $mainB-color;
         display: flex;
         flex-direction: column;
@@ -153,4 +153,16 @@
             margin: 0 0.5em 0.5em 0.5em;
         }
     }
+}
+
+app-add-distances {
+    position: absolute;
+    top: 2.5em;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 2.5em);
+    background-color: $shadow-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

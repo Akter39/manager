@@ -1,0 +1,82 @@
+@import 'variebles';
+
+.container {
+    width: 50em;
+    height: 20em;
+    z-index: 100;
+    background-color: $mainA-color;
+    border: 0.1em solid $second-color;
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5em 1em;
+        height: 2.5em;
+        backdrop-filter: brightness(80%);
+        img {
+            height: 1em;
+            cursor: pointer;
+        }
+    }
+    .body {
+        padding: 0 1em 0.5em 0.5em;
+        overflow-y: auto;
+        height: calc(100% - 2.5em);
+        form {
+            padding-top: 1em;
+            position: sticky;
+            top: 0;
+            background-color: $mainA-color;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            column-gap: 1em;
+            row-gap: 0.5em;
+            div {
+                display: flex;
+                column-gap: 1em;
+            }
+            .style {
+                select {
+                    width: 15em;
+                }
+            }
+            @media (max-width: 1439px) {
+                div {
+                    flex-direction: column;
+                    &:last-child {
+                        flex-direction: row;
+                        align-items: flex-end;
+                        .btn {
+                            height: 1.5em;
+                        }
+                    }
+                }
+            }
+        }
+        fieldset {
+            margin: 1em 0;
+            padding: 0;
+            .item {
+                display: grid;
+                grid-template-columns: 4em 15em 7em;
+                div {
+                    padding: 0 1em;
+                }
+                &:nth-of-type(odd) {
+                    backdrop-filter: brightness(80%);
+                }
+                .dist {
+                    grid-column: 1 / 1;
+                }
+                .style {
+                    grid-column: 2 / 2;
+                }
+                .gender {
+                    grid-column: 3 / 3;
+                }
+            }
+        }
+    }
+}

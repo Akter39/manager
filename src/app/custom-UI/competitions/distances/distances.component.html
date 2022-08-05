@@ -9,6 +9,6 @@
     <div class="item" *ngFor="let item of distances">
         <div class="dist">{{item.distance | async}}</div>
         <div class="style">{{item.style | async}}</div>
-        <div class="gender">{{item.gender | async}}</div>
+        <div class="gender">{{item.gender | async | lowercase}}</div>
     </div>  
 </div>

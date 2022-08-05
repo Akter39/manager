@@ -50,22 +50,15 @@
     }
 }
 
-.box-shadow {
+app-new-competition {
     position: fixed;
     height: 100vh;
     width: 100vw;
-    background-color: $main-color;
-    opacity: 0.5;
+    background-color: $shadow-box;
     top: 0;
     left: 0;
     z-index: 100;
-}
-
-.new-competition {
-    position: fixed;
-    height: 85vh;
-    width: 85vw;
-    z-index: 150;
-    left: 7.5%;
-    top: 7.5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

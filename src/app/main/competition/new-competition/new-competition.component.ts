@@ -1,3 +1,4 @@
+import { CompetitionsService } from './../../../../services/competitions.service';
 import { CookieService } from './../../../../services/cookie.service';
 import { Distance, Distances, Genders, Styles } from './../../../models/distance';
 import { RegexUser, RegexCompetition } from './../../../constants/regex.constants';
@@ -57,7 +58,7 @@ export class NewCompetitionComponent implements OnInit {
     private receivingService: ReceivingService, 
     private auth: AuthService, 
     private cookieService: CookieService,
-    private translate: TranslateService,
+    private competition: CompetitionsService,
     @Inject(DOCUMENT) document: Document) { }
 
   ngOnInit(): void {
@@ -70,7 +71,7 @@ export class NewCompetitionComponent implements OnInit {
   initializeProperties() {
     this.toggleDistances = false;
     this.isFullScreen = false;
-    this.distances.push(new Distance(Distances._50, Styles.FL, Genders.mail, this.translate)) 
+    this.distances.push(new Distance(Distances._50, Styles.FL, Genders.mail, this.competition)) 
     this.lengthList = [25, 50];
     this.laneList = [4, 8];
   }

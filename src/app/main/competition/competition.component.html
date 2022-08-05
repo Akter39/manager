@@ -17,7 +17,4 @@
         </div>
     </div>
 </div>
-<div class="box-shadow" *ngIf="!closeNew"></div>
-<div class="new-competition" *ngIf="!closeNew">
-    <app-new-competition (close)="onToggle()"></app-new-competition>
-</div>
+<app-new-competition (close)="onToggle()" *ngIf="!closeNew"></app-new-competition>

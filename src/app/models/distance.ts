@@ -1,30 +1,20 @@
+import { CompetitionsService } from './../../services/competitions.service';
 import { map, Observable, of } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 export class Distance {
     _distance!: Distances;
     get distance(): Observable<string> {
-        return this.translate.get('Distance.Distance.meter').pipe(map(u => u = this._distance + u));
+        return this.competitions.getDistanceFullName(this._distance);
     }
     _style!: Styles;
     get style(): Observable<string> {
-        switch(this._style) {
-            case Styles.FL: return this.translate.get('Distance.Style.fl');
-            case Styles.BK: return this.translate.get('Distance.Style.bk');
-            case Styles.BR: return this.translate.get('Distance.Style.br');
-            case Styles.FR: return this.translate.get('Distance.Style.fr');
-            case Styles.IM: return this.translate.get('Distance.Style.im');
-            default: throw new Error('illegal argument');
-        }
+        return this.competitions.getStyleFullName(this._style);
     }
     _gender!: Genders;
     get gender(): Observable<string> {
-        switch(this._gender) {
-            case Genders.mail: return this.translate.get('Distance.Gender.mail');
-            case Genders.mail: return this.translate.get('Distance.Gender.femail');
-            default: throw new Error('illegal argument');
-        }
+        return this.competitions.getSexFullName(this._gender);
     }
-    constructor(distance: Distances, style: Styles, gender: Genders, private translate: TranslateService) {
+    constructor(distance: Distances, style: Styles, gender: Genders, private competitions: CompetitionsService) {
         this._distance = distance;
         this._style = style;
         this._gender = gender;

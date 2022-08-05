@@ -7,6 +7,7 @@ import { AppRoutingModule } from '../app-routing.module';
 import { DistancesComponent } from './competitions/distances/distances.component';
 import { InputComponent } from './input/input.component';
 import { YearGroupComponent } from './competitions/year-group/year-group.component';
+import { AddDistancesComponent } from './competitions/add-distances/add-distances.component';
 
 
 
@@ -14,7 +15,8 @@ import { YearGroupComponent } from './competitions/year-group/year-group.compone
   declarations: [
     InputComponent,
     DistancesComponent,
-    YearGroupComponent
+    YearGroupComponent,
+    AddDistancesComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { YearGroupComponent } from './competitions/year-group/year-group.compone
   exports: [
     InputComponent,
     DistancesComponent,
-    YearGroupComponent
+    YearGroupComponent,
+    AddDistancesComponent
   ]
 })
 export class CustomUiModule { }

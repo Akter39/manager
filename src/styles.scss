@@ -22,6 +22,7 @@
     border: 0 none;
     background-color: $second-color;
     border-radius: 0.2em;
+    text-transform: lowercase;
     &:hover {
       background-color: $secondA-color;
     }

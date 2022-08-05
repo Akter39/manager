@@ -1,12 +1,17 @@
 {
 	"Competition": {
 		"New": {
+			"add": "Add",
+			"addDistances": "Add Distances",
+			"all": "All",
 			"bid": "Open application for",
 			"city": "City",
 			"commands": "Maximum commands",
 			"contribution": "Entry fee",
 			"days": "Days",
+			"distance": "Distance",
 			"end": "End",
+			"gender": "Gender",
 			"header": "Crate new competition",
 			"individ": "Allow individual participation",
 			"invitOnly": "By invition only",
@@ -18,7 +23,8 @@
 			"noLimit": "No limit",
 			"organization": "Organization",
 			"select": "Select value",
-			"start": "Start"
+			"start": "Start",
+			"style": "Style"
 		},
 		"apply": "Apply",
 		"archiveCompetitions": "Archive",
@@ -51,8 +57,10 @@
 			"bk": "backstroke",
 			"br": "breaststroke",
 			"fl": "butterfly",
-			"fr": "breaststroke",
-			"im": "individual medley"
+			"fr": "freestyle",
+			"im": "individual medley",
+			"rlfr": "freestyle relay",
+			"rlim": "individual medley relay"
 		}
 	},
 	"Main": {
