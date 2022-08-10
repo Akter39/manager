@@ -70,7 +70,6 @@ export class NewCompetitionComponent implements OnInit {
   initializeProperties() {
     this.toggleDistances = false;
     this.isFullScreen = false;
-    this.distances.push(new Distance(Distances._50, Styles.FL, Genders.mail, this.competition)) 
     this.lengthList = [25, 50];
     this.laneList = [4, 8];
   }
