@@ -25,7 +25,6 @@ export class ErrorInterceptor implements HttpInterceptor {
 
       const err = (error && error.error && error.error.message) || error.statusText;
       console.error(err);
-      //return throwError(err);
       throw new Error('Error authorization');
     }))
   }

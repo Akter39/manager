@@ -10,7 +10,6 @@ import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
 import { Role } from 'src/app/models/auth/role';
-import { TranslateService } from '@ngx-translate/core';
 import { DOCUMENT } from '@angular/common';
 
 @Component({

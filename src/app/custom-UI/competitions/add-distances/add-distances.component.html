@@ -4,6 +4,13 @@
         <img src="../../../../assets/icons/close.png" (click)="onClose()">
     </div>
     <div class="body">
+        <div class="control">
+            <button>очистить</button>
+            <div class="sort">
+                <label for="sort">Сортировка</label>
+                <input type="checkbox" name="sort" id="sort" [checked]="isSort" (click)="isSortToggle()">
+            </div>
+        </div>
         <form class="head" [formGroup]="AddDistancesForm" (ngSubmit)="onSumbit()">
             <div class="dist">
                 <label for="distance">{{'Competition.New.distance' | translate}}</label>
@@ -16,7 +23,7 @@
             <div class="style">
                 <label for="styles">{{'Competition.New.style' | translate}}</label>
                 <select name="styles" id="styles" formControlName="Style">
-                    <option value="1">{{'Competition.New.all' | translate | lowercase}}</option>
+                    <option value="all">{{'Competition.New.all' | translate | lowercase}}</option>
                     <option *ngFor="let item of styleList"
                      [ngValue]="item">{{item | async}}</option>
                 </select>
@@ -24,7 +31,7 @@
             <div class="gender">
                 <label for="gender">{{'Competition.New.gender' | translate}}</label>
                 <select name="gender" id="gender" formControlName="Gender">
-                    <option value="1">{{'Competition.New.all' | translate | lowercase}}</option>
+                    <option value="all">{{'Competition.New.all' | translate | lowercase}}</option>
                     <option *ngFor="let item of genderList"
                      [ngValue]="item">{{item | async}}</option>
                 </select>
@@ -34,7 +41,7 @@
             </div>
         </form>
         <fieldset>
-            <div class="item" *ngFor="let item of Distances">
+            <div class="item" *ngFor="let item of distances">
                 <div class="dist">{{item.distance | async}}</div>
                 <div class="style">{{item.style | async}}</div>
                 <div class="gender">{{item.gender | async | lowercase}}</div>

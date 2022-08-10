@@ -1,13 +1,9 @@
-/*import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { MissingTranslationHandler, MissingTranslationHandlerParams } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MissingTranslationService {
-
-  constructor() { }
-}*/
-import { MissingTranslationHandler, MissingTranslationHandlerParams } from '@ngx-translate/core';
 
 export class MissingTranslationService {
 

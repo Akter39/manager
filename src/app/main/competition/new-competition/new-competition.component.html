@@ -133,7 +133,7 @@
                 (add)="onToggleAdd()" 
                 (clear)="onClear()" 
                 [distances]="distances"></app-distances>
-            <app-add-distances *ngIf="toggleDistances" (close)="onToggleAdd()"></app-add-distances>
+                <app-add-distances *ngIf="toggleDistances" (close)="onToggleAdd()" [distances]="distances"></app-add-distances>
             </div>
             <div class="year">
                 <app-year-group></app-year-group>

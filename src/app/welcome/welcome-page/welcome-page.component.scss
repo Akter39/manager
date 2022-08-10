@@ -9,7 +9,6 @@
     justify-content: space-between;
 }
 
-/*#region header*/
 .header {
     align-self: stretch;
     display: flex;
@@ -82,9 +81,7 @@
         }
     }
 }
-/*#endregion*/
 
-/*#region main*/
 .main {
     flex-grow: 1;
     display: flex;
@@ -137,4 +134,3 @@
         padding: 0 10%;
     }
 }
-/*#endregion*/
