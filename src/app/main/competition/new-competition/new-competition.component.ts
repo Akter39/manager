@@ -2,12 +2,12 @@ import { CompetitionsService } from './../../../../services/competitions.service
 import { CookieService } from './../../../../services/cookie.service';
 import { Distance, Distances, Genders, Styles } from './../../../models/distance';
 import { RegexUser, RegexCompetition } from './../../../constants/regex.constants';
-import { filter } from 'rxjs';
+import { filter, from, Observable, of } from 'rxjs';
 import { AuthService } from 'src/services/auth.service';
 import { ConditionNewCompetition } from './../../../models/condition-new-competition';
 import { ReceivingService } from './../../../../services/receiving.service';
 import { HttpClient } from '@angular/common/http';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
 import { Role } from 'src/app/models/auth/role';
 import { DOCUMENT } from '@angular/common';
@@ -58,6 +58,7 @@ export class NewCompetitionComponent implements OnInit {
     private auth: AuthService, 
     private cookieService: CookieService,
     private competition: CompetitionsService,
+    private formBuilder: FormBuilder,
     @Inject(DOCUMENT) document: Document) { }
 
   ngOnInit(): void {
@@ -81,22 +82,22 @@ export class NewCompetitionComponent implements OnInit {
   }
 
   initializeForm() {
-    this.newCompetitionForm = new FormGroup ({
-      "Name": new FormControl('', [Validators.required, Validators.pattern(RegexCompetition.name)]),
-      "Organization": new FormControl(this.getOrganization(),
-        [Validators.required, Validators.pattern(RegexUser.userOrganization)]),
-      "City": new FormControl(this.getCity(), [Validators.required, Validators.pattern(RegexUser.userCity)]),
-      "StartCompetition": new FormControl('', [Validators.required]),
-      "EndCompetition": new FormControl('', [Validators.required]),
-      "PoolLength": new FormControl('', [Validators.required, Validators.pattern(RegexCompetition.poolLength)]),
-      "PoolLanes": new FormControl('', [Validators.required, Validators.pattern(RegexCompetition.poolLanes)]),
-      "BidDay": new FormControl('2', [Validators.required, Validators.min(2), Validators.max(30)]),
-      "Contribution": new FormControl('0', [Validators.required, Validators.min(0)]),
-      "Individual": new FormControl(false, [Validators.required]),
-      "InvitOnly": new FormControl(false, [Validators.required]),
-      "MaxMembers": new FormControl('', [Validators.required, Validators.min(-1)]),
-      "MaxComands": new FormControl('', [Validators.required, Validators.min(-1)]),
-      "MaxComandMembers": new FormControl('', [Validators.required, Validators.min(-1)]),
+    this.newCompetitionForm = this.formBuilder.group ({
+      Name: ['', [Validators.required, Validators.pattern(RegexCompetition.name)]],
+      Organization: [this.getOrganization(),
+        [Validators.required, Validators.pattern(RegexUser.userOrganization)]],
+      City: [this.getCity(), [Validators.required, Validators.pattern(RegexUser.userCity)]],
+      StartCompetition: ['', [Validators.required]],
+      EndCompetition: ['', [Validators.required]],
+      PoolLength: ['', [Validators.required, Validators.pattern(RegexCompetition.poolLength)]],
+      PoolLanes: ['', [Validators.required, Validators.pattern(RegexCompetition.poolLanes)]],
+      BidDay: ['2', [Validators.required, Validators.min(2), Validators.max(30)]],
+      Contribution: ['0', [Validators.required, Validators.min(0)]],
+      Individual: [false, [Validators.required]],
+      InvitOnly: [false, [Validators.required]],
+      MaxMembers: ['', [Validators.required, Validators.min(-1)]],
+      MaxComands: ['', [Validators.required, Validators.min(-1)]],
+      MaxComandMembers: ['', [Validators.required, Validators.min(-1)]],
     });
   }
 
@@ -156,5 +157,8 @@ export class NewCompetitionComponent implements OnInit {
       document.exitFullscreen();
     }
     this.isFullScreen = !this.isFullScreen;
+  }
+  of(object: any) {
+    return of(object);
   }
 }
