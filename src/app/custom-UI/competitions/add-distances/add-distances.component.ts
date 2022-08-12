@@ -174,8 +174,7 @@ export class AddDistancesComponent implements OnInit {
             }
             break;
           }
-          case Distances._4x100:
-          case Distances._4x200: {
+          case Distances._4x100: {
             this.styleList = this.bufferStyleList.slice(5, 7);
             if (this.AddDistancesForm.get('Style')?.value == 'all') break;
             switch(this.competition.getStyleEnum(this.AddDistancesForm.get('Style')?.value)) {
@@ -184,6 +183,22 @@ export class AddDistancesComponent implements OnInit {
               case Styles.BR:
               case Styles.FR:
               case Styles.IM: {
+                this.AddDistancesForm.get('Style')?.setValue('all');
+                break;
+              }
+            }
+            break;
+          };
+          case Distances._4x200: {
+            this.styleList = this.bufferStyleList.slice(5, 6);
+            if (this.AddDistancesForm.get('Style')?.value == 'all') break;
+            switch(this.competition.getStyleEnum(this.AddDistancesForm.get('Style')?.value)) {
+              case Styles.FL:
+              case Styles.BK:
+              case Styles.BR:
+              case Styles.FR:
+              case Styles.IM:
+              case Styles.RLIM: {
                 this.AddDistancesForm.get('Style')?.setValue('all');
                 break;
               }

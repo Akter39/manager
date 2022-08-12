@@ -38,7 +38,8 @@
 		"numberlanes": "Количество дорожек",
 		"poolLength": "Длина бассейна",
 		"teams": "Команды",
-		"women": "Женщины"
+		"women": "Женщины",
+		"yearGroup": "Возрастные группы"
 	},
 	"Contacts": {
 		"Email": "protocols-manager@admin.xyz",

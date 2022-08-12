@@ -132,14 +132,17 @@
                     [newCompetition]="true" 
                     (add)="onToggleAdd()" 
                     (clear)="onClear()" 
-                    [distances]="distances"
-                    [formGroup]="newCompetitionForm"></app-distances>
+                    [distances]="distances"></app-distances>
                 <app-add-distances *ngIf="toggleDistances" 
                     (close)="onToggleAdd()" 
                     [distances]="distances"></app-add-distances>
             </div>
             <div class="year">
-                <app-year-group></app-year-group>
+                <app-year-group
+                [newYearGroup]="true"
+                (add)="onToggleAddYear()" 
+                (clear)="onClearYear()"
+                [yearGroup]="yearGroup"></app-year-group>
             </div>
         </fieldset>
         <button class="btn" [disabled]="newCompetitionForm.invalid"

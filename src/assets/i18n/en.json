@@ -38,7 +38,8 @@
 		"numberlanes": "Number of lanes",
 		"poolLength": "Pool length",
 		"teams": "Teams",
-		"women": "Women"
+		"women": "Women",
+		"yearGroup": "Age Group"
 	},
 	"Contacts": {
 		"Email": "protocols-manager@admin.xyz",

@@ -1,14 +1,23 @@
 <div class="year">
-    <div class="group">Возрастные группы</div>
-    <div class="men">
-        <div>Мужчины</div>
-        <div>2001-2003</div>
-        <div>2003-2004</div>
-        <div>2005+</div>
+    <div class="year-head">
+        <div>{{'Competition.yearGroup' | translate}}</div>
+        <div class="add-delete" *ngIf="newYearGroup">
+            <img src="../../../../assets/icons/delete.png" (click)="onClear()">
+            <img src="../../../../assets/icons/add.png" (click)="onAdd()">
+        </div>
     </div>
-    <div class="women">
-        <div>Женщины</div>
-        <div>2001-2003</div>
-        <div>2005+</div>
+    <div class="body">
+        <div class="men">
+            <div class="head"><div>{{'Competition.men' | translate}}</div></div>
+            <div *ngFor="let item of men">{{item.startYear.getFullYear()}}
+                <span *ngIf="!item.infinity"> - {{item.endYear!.getFullYear()}}</span>
+                <span *ngIf="item.infinity">+</span></div>
+        </div>
+        <div class="women">
+            <div class="head"><div>{{'Competition.women' | translate}}</div></div>
+            <div *ngFor="let item of women">{{item.startYear.getFullYear()}}
+                <span *ngIf="!item.infinity"> - {{item.endYear!.getFullYear()}}</span>
+                <span *ngIf="item.infinity">+</span></div>
+        </div>
     </div>
 </div>

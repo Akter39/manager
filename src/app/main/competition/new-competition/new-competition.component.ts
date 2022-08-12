@@ -1,3 +1,4 @@
+import { YearGroup } from './../../../models/year-group';
 import { CompetitionsService } from './../../../../services/competitions.service';
 import { CookieService } from './../../../../services/cookie.service';
 import { Distance, Distances, Genders, Styles } from './../../../models/distance';
@@ -34,6 +35,7 @@ export class NewCompetitionComponent implements OnInit {
   lengthList!: number[];
   laneList!: number[];
   distances: Distance[] = new Array();
+  yearGroup: YearGroup[] = new Array();
 
   public condition: ConditionNewCompetition = {
     Successful: true,
@@ -160,5 +162,13 @@ export class NewCompetitionComponent implements OnInit {
   }
   of(object: any) {
     return of(object);
+  }
+
+  onToggleAddYear() {
+
+  }
+
+  onClearYear() {
+
   }
 }

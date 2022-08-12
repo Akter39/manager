@@ -2,26 +2,52 @@
 
 
 .year {
-    display: grid;
+    /*display: grid;
     align-self: flex-start;
     width: max-content;
-    grid-template-columns: minmax(max-content, 7em) minmax(max-content, 7em);
-    background-color: $mainA-color;    
-    .group {
+    //grid-template-columns: minmax(max-content, 7em) minmax(max-content, 7em);
+    background-color: $mainA-color;*/
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    background-color: $mainA-color;
+    .year-head {
         background-color: $second-color;
         grid-area: 1 / 1 / 1 / 3;
         padding: 0 1em;
-    }
-    .men div:nth-child(even) {
-        backdrop-filter: brightness(80%);
-    }
-    .women div:nth-child(odd) {
-        backdrop-filter: brightness(80%);
-    }
-    .men,
-    .women {
-        div {
-            padding: 0 1em;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .add-delete {
+            height: 1em;
+            display: flex;
+            column-gap: 1em;
+            img {
+                cursor: pointer;
+            }
+        }
+    }    
+    .body {
+        display: grid;
+        grid-template-columns: 7em 7em;
+        .men div:not(.head):nth-child(even) {
+            backdrop-filter: brightness(80%);
+        }
+        .women div:not(.head):nth-child(odd) {
+            backdrop-filter: brightness(80%);
+        }
+        .men,
+        .women {
+            .head {
+                background-color: $second-color;
+                &#women div {
+                    backdrop-filter: brightness(10%);
+                    width: 100%;
+                }
+            }
+            div:not(.head) {
+                padding: 0 1em;
+            }
         }
     }
 }
