@@ -21,6 +21,7 @@ import { DOCUMENT } from '@angular/common';
 export class NewCompetitionComponent implements OnInit {
   isFullScreen!: boolean;
   toggleDistances!: boolean;
+  toggleYearGroup!: boolean;
   Role = Role;
   newCompetitionForm!: FormGroup;
   currentDate!: Date;
@@ -71,6 +72,7 @@ export class NewCompetitionComponent implements OnInit {
   }
 
   initializeProperties() {
+    this.toggleYearGroup = false;
     this.toggleDistances = false;
     this.isFullScreen = false;
     this.lengthList = [25, 50];
@@ -165,10 +167,10 @@ export class NewCompetitionComponent implements OnInit {
   }
 
   onToggleAddYear() {
-
+    this.toggleYearGroup = !this.toggleYearGroup;
   }
 
   onClearYear() {
-
+    this.yearGroup = [];
   }
 }

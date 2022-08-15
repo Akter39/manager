@@ -29,25 +29,22 @@
     }    
     .body {
         display: grid;
-        grid-template-columns: 7em 7em;
-        .men div:not(.head):nth-child(even) {
+        grid-template-columns: 9em 9em;
+        text-align: center;
+        .men .item:nth-of-type(odd) {
             backdrop-filter: brightness(80%);
         }
-        .women div:not(.head):nth-child(odd) {
+        .women .item:nth-of-type(even) {
             backdrop-filter: brightness(80%);
         }
         .men,
         .women {
             .head {
                 background-color: $second-color;
-                &#women div {
-                    backdrop-filter: brightness(10%);
-                    width: 100%;
-                }
             }
-            div:not(.head) {
+            /*div:not(.head) {
                 padding: 0 1em;
-            }
+            }*/
         }
     }
 }

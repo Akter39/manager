@@ -1,14 +1,17 @@
+import { Genders } from 'src/app/models/distance';
 export class YearGroup {
-    startYear!: Date;
-    endYear?: Date;
-    infinity!: boolean;
+    startYear: number;
+    endYear?: number;
+    infinity: boolean;
+    gender: Genders;
 
-    constructor(startYear: number, infinity: boolean, endYear?: number) {
-        this.startYear = new Date(startYear, 1);
+    constructor(startYear: number, infinity: boolean, gender: Genders, endYear?: number) {
+        this.startYear = startYear;
         this.infinity = infinity;
+        this.gender = gender;
         if (!!endYear) {
             if (infinity) throw new Error('Argument excteption');
-            this.endYear = new Date(endYear, 1);
+            this.endYear = endYear;
         }
     }
 }

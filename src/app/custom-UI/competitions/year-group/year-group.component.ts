@@ -1,3 +1,4 @@
+import { Genders } from './../../../models/distance';
 import { YearGroup } from './../../../models/year-group';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
@@ -11,14 +12,23 @@ export class YearGroupComponent implements OnInit {
   @Input() yearGroup: YearGroup[] = new Array();
   @Output() clear: EventEmitter<any> = new EventEmitter<any>();
   @Output() add: EventEmitter<any> = new EventEmitter<any>();
-  men: YearGroup[] = new Array();
-  women: YearGroup[] = new Array();
+  isAdditional!: boolean;
+  additionalMen: string[] = new Array();
+  additionalWomen: string[] = new Array();
 
   constructor() { }
 
   ngOnInit(): void {
-    this.men.push(new YearGroup(1997, true));
-    this.women.push(new YearGroup(2000, false, 2002));
+    this.yearGroup.push(new YearGroup(1997, true, Genders.mail));
+    this.yearGroup.push(new YearGroup(1997, true, Genders.mail));
+    this.yearGroup.push(new YearGroup(1997, true, Genders.mail));
+    this.yearGroup.push(new YearGroup(2000, false, Genders.femail, 2002));
+    this.yearGroup.push(new YearGroup(2000, false, Genders.femail, 2002));
+    this.yearGroup.push(new YearGroup(2000, false, Genders.femail, 2002));
+    this.yearGroup.push(new YearGroup(2000, false, Genders.femail, 2002));
+    this.yearGroup.push(new YearGroup(2000, false, Genders.femail, 2002));
+    this.isAdditional = false;
+    this.additional();
   }
 
   onClear() {
@@ -27,5 +37,28 @@ export class YearGroupComponent implements OnInit {
 
   onAdd() {
     this.add.emit();
+  }
+
+  gender(index: number): boolean {
+    if (this.yearGroup[index].gender == Genders.mail) return true;
+    return false;
+  }
+
+  additional() {
+    let i: number = this.yearGroup.filter(u => u.gender == Genders.mail).length 
+      - this.yearGroup.filter(u => u.gender == Genders.femail).length;
+    if (i == 0) return;
+    else this.isAdditional = true;
+    if (i > 0) {
+      for (let j = 0; j < Math.abs(i); j++) {
+        this.additionalWomen.push("");
+      }
+      return;
+    }
+    if (i < 0) {
+      for (let j = 0; j < Math.abs(i); j++) {
+        this.additionalMen.push("");
+      }
+    }
   }
 }

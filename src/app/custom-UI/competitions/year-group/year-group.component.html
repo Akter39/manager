@@ -9,15 +9,33 @@
     <div class="body">
         <div class="men">
             <div class="head"><div>{{'Competition.men' | translate}}</div></div>
-            <div *ngFor="let item of men">{{item.startYear.getFullYear()}}
-                <span *ngIf="!item.infinity"> - {{item.endYear!.getFullYear()}}</span>
-                <span *ngIf="item.infinity">+</span></div>
+            <ng-container *ngFor="let item of yearGroup; index as i">
+                <div *ngIf="gender(i)" class="item">
+                    <div>
+                        {{item.startYear}}
+                        <span *ngIf="!item.infinity"> - {{item.endYear!}}</span>
+                        <span *ngIf="item.infinity">+</span>
+                    </div>
+                </div>
+            </ng-container>
+            <div *ngFor="let item of additionalMen" class="item">
+                <div>⠀</div>
+            </div>
         </div>
         <div class="women">
             <div class="head"><div>{{'Competition.women' | translate}}</div></div>
-            <div *ngFor="let item of women">{{item.startYear.getFullYear()}}
-                <span *ngIf="!item.infinity"> - {{item.endYear!.getFullYear()}}</span>
-                <span *ngIf="item.infinity">+</span></div>
+            <ng-container *ngFor="let item of yearGroup; index as i">
+                <div *ngIf="!gender(i)" class="item">
+                    <div *ngIf="!gender(i)">
+                        {{item.startYear}}
+                        <span *ngIf="!item.infinity"> - {{item.endYear!}}</span>
+                        <span *ngIf="item.infinity">+</span>
+                    </div>
+                </div>
+            </ng-container>
+            <div *ngFor="let item of additionalWomen" class="item">
+                <div>⠀</div>
+            </div>
         </div>
     </div>
 </div>
