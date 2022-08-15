@@ -2,7 +2,7 @@
 
 .container {
     height: 85vh;
-    width: 85vw;
+    width: 90vw;
     background-color: $mainA-color;
     border: 0.1em solid $second-color;
     display: flex;
@@ -159,7 +159,7 @@
     }
 }
 
-app-add-distances {
+app-add-distances, app-add-year-group {
     position: absolute;
     top: 2.5em;
     left: 0;

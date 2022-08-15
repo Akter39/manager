@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./year-group.component.scss']
 })
 export class YearGroupComponent implements OnInit {
+  @Input() isSort: boolean = true;
   @Input() newYearGroup: boolean = false;
   @Input() yearGroup: YearGroup[] = new Array();
   @Output() clear: EventEmitter<any> = new EventEmitter<any>();
@@ -19,14 +20,6 @@ export class YearGroupComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.yearGroup.push(new YearGroup(1997, true, Genders.mail));
-    this.yearGroup.push(new YearGroup(1997, true, Genders.mail));
-    this.yearGroup.push(new YearGroup(1997, true, Genders.mail));
-    this.yearGroup.push(new YearGroup(2000, false, Genders.femail, 2002));
-    this.yearGroup.push(new YearGroup(2000, false, Genders.femail, 2002));
-    this.yearGroup.push(new YearGroup(2000, false, Genders.femail, 2002));
-    this.yearGroup.push(new YearGroup(2000, false, Genders.femail, 2002));
-    this.yearGroup.push(new YearGroup(2000, false, Genders.femail, 2002));
     this.isAdditional = false;
     this.additional();
   }
@@ -38,7 +31,7 @@ export class YearGroupComponent implements OnInit {
   }
 
   onAdd() {
-    this.add.emit();
+    this.add.emit(this.isSort);
   }
 
   gender(index: number): boolean {

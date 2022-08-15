@@ -1,0 +1,52 @@
+@import 'variebles';
+
+.container {
+    width: 80em;
+    height: 30em;
+    z-index: 100;
+    background-color: $mainA-color;
+    border: 0.1em solid $second-color;
+    margin: 0.5em;
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5em 1em;
+        height: 2.5em;
+        backdrop-filter: brightness(80%);
+        img {
+            height: 1em;
+            cursor: pointer;
+        }
+    }
+    .body {
+        padding: 0.5em 1em 0.5em 0.5em;
+        overflow-y: auto;
+        height: calc(100% - 2.5em);
+        .control {
+            display: flex;
+            align-items: center;
+            column-gap: 1em;
+            .sort {
+                display: flex;
+                align-items: center;
+            }
+        }
+        form {
+            padding-top: 1em;
+            position: sticky;
+            top: 0;
+            background-color: $mainA-color;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            column-gap: 1em;
+            row-gap: 0.5em;
+            div {
+                display: flex;
+                column-gap: 1em;
+            }
+        }
+    }
+}

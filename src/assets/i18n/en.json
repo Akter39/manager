@@ -3,6 +3,7 @@
 		"New": {
 			"add": "Add",
 			"addDistances": "Add Distances",
+			"addYearGroup": "Add year group",
 			"all": "All",
 			"bid": "Open application for",
 			"city": "City",
@@ -11,9 +12,11 @@
 			"days": "Days",
 			"distance": "Distance",
 			"end": "End",
+			"endYear": "To",
 			"gender": "Gender",
 			"header": "Crate new competition",
 			"individ": "Allow individual participation",
+			"infinity": "To infinity",
 			"invitOnly": "By invition only",
 			"lanes": "Pool lanes",
 			"length": "Pool length",
@@ -24,6 +27,7 @@
 			"organization": "Organization",
 			"select": "Select value",
 			"start": "Start",
+			"startYear": "From",
 			"style": "Style"
 		},
 		"apply": "Apply",

@@ -1,9 +1,43 @@
 <div class="container">
-    <div class="head">
+    <div class="header">
         <div>{{'Competition.New.addYearGroup' | translate}}</div>
         <img src="../../../../assets/icons/close.png" (click)="onClose()">
     </div>
     <div class="body">
-
+        <div class="control">
+            <button>очистить</button>
+            <div class="sort">
+                <label for="sort">Сортировка</label>
+                <input type="checkbox" name="sort" id="sort" [checked]="isSort" (click)="isSortToggle()">
+            </div>
+        </div>
+        <form class="head" [formGroup]="AddYearForm" (ngSubmit)="onSumbit()">
+            <div class="startYear">
+                <label for="startYear">{{'Competition.New.startYear' | translate}}</label>
+                <select name="startYear" id="startYear" formControlName="StartYear">
+                    <option value="">{{'Competition.New.select' | translate | lowercase}}</option>
+                    <option *ngFor="let item of startYear">{{item | async}}</option>
+                </select>
+            </div>
+            <div class="endYear">
+                <label for="endYear">{{'Competition.New.endYear' | translate}}</label>
+                <select name="endYear" id="endYear" formControlName="EndYear">
+                    <option value="">{{'Competition.New.select' | translate | lowercase}}</option>
+                    <option value="+">{{'Competition.New.infinity' | translate | lowercase}}</option>
+                    <option *ngFor="let item of endYear">{{item | async}}</option>
+                </select>
+            </div>
+            <div class="gender">
+                <label for="gender">{{'Competition.New.gender' | translate}}</label>
+                <select name="gender" id="gender" formControlName="Gender">
+                    <option value="all">{{'Competition.New.all' | translate | lowercase}}</option>
+                    <option *ngFor="let item of genderList"
+                     [ngValue]="item">{{item | async}}</option>
+                </select>
+            </div>
+            <div>
+                <button class="btn" [disabled]="AddYearForm.invalid">{{'Competition.New.add' | translate}}</button>
+            </div>
+        </form>
     </div>
 </div>

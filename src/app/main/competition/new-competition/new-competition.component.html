@@ -134,7 +134,8 @@
                     (clear)="onClear()" 
                     [distances]="distances"
                     [isSort]="isSortDistance"></app-distances>
-                <app-add-distances *ngIf="toggleDistances" 
+                <app-add-distances 
+                    *ngIf="toggleDistances" 
                     (close)="onToggleAdd($event)" 
                     [distances]="distances"
                     [isSort]="isSortDistance"></app-add-distances>
@@ -142,9 +143,15 @@
             <div class="year">
                 <app-year-group
                 [newYearGroup]="true"
-                (add)="onToggleAddYear()" 
+                (add)="onToggleAddYear($event)" 
                 (clear)="onClearYear()"
-                [yearGroup]="yearGroup"></app-year-group>
+                [yearGroup]="yearGroup"
+                [isSort]="isSortYear"></app-year-group>
+                <app-add-year-group 
+                *ngIf="toggleYearGroup"
+                (close)="onToggleAddYear($event)"
+                [yearGroup]="yearGroup"
+                [isSort]="isSortYear"></app-add-year-group>
             </div>
         </fieldset>
         <button class="btn" [disabled]="newCompetitionForm.invalid"

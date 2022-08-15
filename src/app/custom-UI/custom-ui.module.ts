@@ -32,7 +32,8 @@ import { AddYearGroupComponent } from './competitions/add-year-group/add-year-gr
     InputComponent,
     DistancesComponent,
     YearGroupComponent,
-    AddDistancesComponent
+    AddDistancesComponent,
+    AddYearGroupComponent
   ]
 })
 export class CustomUiModule { }

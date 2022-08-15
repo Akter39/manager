@@ -38,6 +38,7 @@ export class NewCompetitionComponent implements OnInit {
   distances: Distance[] = new Array();
   yearGroup: YearGroup[] = new Array();
   isSortDistance!: boolean;
+  isSortYear!: boolean;
 
   public condition: ConditionNewCompetition = {
     Successful: true,
@@ -79,6 +80,7 @@ export class NewCompetitionComponent implements OnInit {
     this.lengthList = [25, 50];
     this.laneList = [4, 8];
     this.isSortDistance = true;
+    this.isSortYear = true;
   }
 
   initializeDate() {
@@ -169,7 +171,8 @@ export class NewCompetitionComponent implements OnInit {
     return of(object);
   }
 
-  onToggleAddYear() {
+  onToggleAddYear(isSort: boolean) {
+    this.isSortYear = isSort;
     this.toggleYearGroup = !this.toggleYearGroup;
   }
 
