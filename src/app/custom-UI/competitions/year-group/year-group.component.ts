@@ -32,6 +32,8 @@ export class YearGroupComponent implements OnInit {
   }
 
   onClear() {
+    this.additionalWomen = [];
+    this.additionalMen = [];
     this.clear.emit();
   }
 

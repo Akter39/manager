@@ -59,7 +59,7 @@ export class AddDistancesComponent implements OnInit {
   }
 
   onClose() {
-    this.close.emit();
+    this.close.emit(this.isSort);
   }
 
   onSumbit() {

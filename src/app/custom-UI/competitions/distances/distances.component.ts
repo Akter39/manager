@@ -14,6 +14,7 @@ import { Component, Input, OnInit, Output, EventEmitter, Optional, DoCheck } fro
   ]
 })
 export class DistancesComponent implements OnInit, DoCheck {
+  @Input() isSort: boolean = true;
   @Input() newCompetition: boolean = false;
   @Output() clear: EventEmitter<any> = new EventEmitter<any>();
   @Output() add: EventEmitter<any> = new EventEmitter<any>();
@@ -61,6 +62,6 @@ export class DistancesComponent implements OnInit, DoCheck {
   }
 
   onAdd() {
-    this.add.emit();
+    this.add.emit(this.isSort);
   }
 }

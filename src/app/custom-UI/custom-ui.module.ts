@@ -8,6 +8,7 @@ import { DistancesComponent } from './competitions/distances/distances.component
 import { InputComponent } from './input/input.component';
 import { YearGroupComponent } from './competitions/year-group/year-group.component';
 import { AddDistancesComponent } from './competitions/add-distances/add-distances.component';
+import { AddYearGroupComponent } from './competitions/add-year-group/add-year-group.component';
 
 
 
@@ -16,7 +17,8 @@ import { AddDistancesComponent } from './competitions/add-distances/add-distance
     InputComponent,
     DistancesComponent,
     YearGroupComponent,
-    AddDistancesComponent
+    AddDistancesComponent,
+    AddYearGroupComponent
   ],
   imports: [
     CommonModule,
