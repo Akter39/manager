@@ -16,7 +16,7 @@
                 <label for="startYear">{{'Competition.New.startYear' | translate}}</label>
                 <select name="startYear" id="startYear" formControlName="StartYear">
                     <option value="">{{'Competition.New.select' | translate | lowercase}}</option>
-                    <option *ngFor="let item of startYear">{{item | async}}</option>
+                    <option *ngFor="let item of startYear | async">{{item}}</option>
                 </select>
             </div>
             <div class="endYear">
@@ -24,7 +24,7 @@
                 <select name="endYear" id="endYear" formControlName="EndYear">
                     <option value="">{{'Competition.New.select' | translate | lowercase}}</option>
                     <option value="+">{{'Competition.New.infinity' | translate | lowercase}}</option>
-                    <option *ngFor="let item of endYear">{{item | async}}</option>
+                    <option *ngFor="let item of endYear | async">{{item}}</option>
                 </select>
             </div>
             <div class="gender">
