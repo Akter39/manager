@@ -1,9 +1,10 @@
 import { CookieService } from './../services/cookie.service';
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { OnInit } from '@angular/core';
 import { ReceivingService } from 'src/services/receiving.service';
+import { DOCUMENT } from '@angular/common';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,7 +14,8 @@ export class AppComponent implements OnInit {
   constructor(
     private translate: TranslateService, 
     private receiving: ReceivingService, 
-    private cookieService: CookieService) { 
+    private cookieService: CookieService,
+    @Inject(DOCUMENT) private document: Document) { 
   }
 
   public ngOnInit(): void {
@@ -33,6 +35,7 @@ export class AppComponent implements OnInit {
       });
       lang = this.cookieService.get('lang');
     }
+    this.document.documentElement.lang = lang;
     return lang;
   }
 }
