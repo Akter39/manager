@@ -9,7 +9,7 @@ details {
         padding: 0 0.5em;
         & > span {
             display: inline-grid;
-            width: calc(100% - 1.1em);
+            width: calc(100% - 1.2em);
             grid-template-columns: 10fr 2fr auto;
             column-gap: 0.1em;
         }
