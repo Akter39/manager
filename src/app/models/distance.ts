@@ -1,4 +1,4 @@
-import { CompetitionsService } from './../../services/competitions.service';
+import { CompetitionsService } from '../services/competitions.service';
 import { map, Observable, of } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 export class Distance {

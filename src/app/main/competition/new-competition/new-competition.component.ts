@@ -1,12 +1,12 @@
 import { YearGroup } from './../../../models/year-group';
-import { CompetitionsService } from './../../../../services/competitions.service';
-import { CookieService } from './../../../../services/cookie.service';
+import { CompetitionsService } from '../../../services/competitions.service';
+import { CookieService } from '../../../services/cookie.service';
 import { Distance, Distances, Genders, Styles } from './../../../models/distance';
 import { RegexUser, RegexCompetition } from './../../../constants/regex.constants';
 import { filter, from, Observable, of } from 'rxjs';
-import { AuthService } from 'src/services/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { ConditionNewCompetition } from './../../../models/condition-new-competition';
-import { ReceivingService } from './../../../../services/receiving.service';
+import { ReceivingService } from '../../../services/receiving.service';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
@@ -38,7 +38,6 @@ export class NewCompetitionComponent implements OnInit {
   distances: Distance[] = new Array();
   yearGroup: YearGroup[] = new Array();
   isSortDistance!: boolean;
-  isSortYear!: boolean;
 
   public condition: ConditionNewCompetition = {
     Successful: true,
@@ -80,7 +79,6 @@ export class NewCompetitionComponent implements OnInit {
     this.lengthList = [25, 50];
     this.laneList = [4, 8];
     this.isSortDistance = true;
-    this.isSortYear = true;
   }
 
   initializeDate() {
@@ -171,8 +169,7 @@ export class NewCompetitionComponent implements OnInit {
     return of(object);
   }
 
-  onToggleAddYear(isSort: boolean) {
-    this.isSortYear = isSort;
+  onToggleAddYear() {
     this.toggleYearGroup = !this.toggleYearGroup;
   }
 

@@ -143,15 +143,11 @@
             <div class="year">
                 <app-year-group
                 [newYearGroup]="true"
-                (add)="onToggleAddYear($event)" 
-                (clear)="onClearYear()"
-                [yearGroup]="yearGroup"
-                [isSort]="isSortYear"></app-year-group>
+                (add)="onToggleAddYear()" 
+                (clear)="onClearYear()"></app-year-group>
                 <app-add-year-group 
                 *ngIf="toggleYearGroup"
-                (close)="onToggleAddYear($event)"
-                [yearGroup]="yearGroup"
-                [isSort]="isSortYear"></app-add-year-group>
+                (close)="onToggleAddYear()"></app-add-year-group>
             </div>
         </fieldset>
         <button class="btn" [disabled]="newCompetitionForm.invalid"

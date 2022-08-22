@@ -1,4 +1,4 @@
-import { AuthService } from 'src/services/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { map, Observable, TimeoutError, timer } from 'rxjs';
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { Router } from '@angular/router';

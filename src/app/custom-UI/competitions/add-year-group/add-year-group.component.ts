@@ -1,9 +1,11 @@
-import { filter, from, map, Observable, of, zip } from 'rxjs';
+import { YearGroupService } from '../../../services/year-group.service';
+import { YearBusy } from './../../../models/year-busy';
+import { filter, map, Observable, of, zip, tap, take } from 'rxjs';
 import { YearGroup } from './../../../models/year-group';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Distance, Genders } from 'src/app/models/distance';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { CompetitionsService } from 'src/services/competitions.service';
+import { CompetitionsService } from 'src/app/services/competitions.service';
 
 @Component({
   selector: 'app-add-year-group',
@@ -11,22 +13,24 @@ import { CompetitionsService } from 'src/services/competitions.service';
   styleUrls: ['./add-year-group.component.scss']
 })
 export class AddYearGroupComponent implements OnInit {
-  @Input() isSort: boolean = true;
-  @Input() yearGroup: YearGroup[] = new Array();
+  //@Input() isSort: boolean = true;
+  //@Input() yearGroup: YearGroup[] = new Array();
   @Output() close: EventEmitter<any> = new EventEmitter<any>();
-  startYear: Observable<number[]> = new Observable<number[]>;
-  endYear: Observable<number[]> = new Observable<number[]>;
+  startYear: Observable<YearBusy[]> = new Observable<YearBusy[]>();
+  endYear: Observable<YearBusy[]> = new Observable<YearBusy[]>();
   genderList: Observable<string>[] = new Array();
-  currentYear!: number;
+  //currentYear!: number;
   AddYearForm!: FormGroup;
-  isInfinity!: FormGroup;
-  freeYearMen: Observable<number[]> = new Observable<number[]>;
-  freeYearWomen: Observable<number[]> = new Observable<number[]>;
+  //isMenInfinity!: boolean;
+  //isWomenInfinity!: boolean;
+  //freeYearMen: Observable<YearBusy[]> = new Observable<YearBusy[]>();
+  //freeYearWomen: Observable<YearBusy[]> = new Observable<YearBusy[]>();
 
 
   constructor(
     private formBuilder: FormBuilder, 
-    private competition: CompetitionsService) { }
+    private competition: CompetitionsService,
+    private yearGroup: YearGroupService) { }
 
   ngOnInit(): void {
     this.initializeProperties();
@@ -35,14 +39,8 @@ export class AddYearGroupComponent implements OnInit {
   }
 
   initializeProperties() {
-    this.currentYear = new Date().getFullYear();
-    for (let i = this.currentYear; i >= 1900; i--) {
-      this.freeYearMen.subscribe(u => u.push(i));
-      this.freeYearWomen.subscribe(u => u.push(i));
-    }
-
-    this.intersection();
-
+    this.yearGroup.init();
+    this.startYear = this.yearGroup.intersection();
     for (let item of Object.keys(Genders)) {
       this.genderList.push(this.competition.getGenderFullName(Genders[item as keyof typeof Genders]));
     }
@@ -59,7 +57,7 @@ export class AddYearGroupComponent implements OnInit {
   }
 
   onClose() {
-    this.close.emit(this.isSort);
+    this.close.emit();
   }
 
   onSumbit() {
@@ -67,79 +65,82 @@ export class AddYearGroupComponent implements OnInit {
       for (let gender of this.genderList) {
         if (this.AddYearForm.get('EndYear')?.value == '+') {
           this.addYear(
-            this.AddYearForm.get('StartYear')?.value,
+            +this.AddYearForm.get('StartYear')?.value,
             this.competition.getGenderEnum(gender));
         } else
         this.addYear(
-          this.AddYearForm.get('StartYear')?.value,
+          +this.AddYearForm.get('StartYear')?.value,
           this.competition.getGenderEnum(gender), 
-          this.AddYearForm.get('EndYear')?.value);
+          +this.AddYearForm.get('EndYear')?.value);
       }
-      return;
-    }
+    } else
     if (this.AddYearForm.get('EndYear')?.value == '+') {
       this.addYear(
-        this.AddYearForm.get('StartYear')?.value,
+        +this.AddYearForm.get('StartYear')?.value,
         this.competition.getGenderEnum(this.AddYearForm.get('Gender')?.value));
     } else
     this.addYear(
-      this.AddYearForm.get('StartYear')?.value,
+      +this.AddYearForm.get('StartYear')?.value,
       this.competition.getGenderEnum(this.AddYearForm.get('Gender')?.value), 
-      this.AddYearForm.get('EndYear')?.value);
-    
-    this.intersection();
+      +this.AddYearForm.get('EndYear')?.value);
+    this.reloadForm();
+    this.startYear = this.yearGroup.intersection();
   }
 
   addYear(startYear: number, gender: Genders, endYear?: number) {
-    if (endYear) {
-      this.yearGroup.push(new YearGroup(startYear, false, gender, endYear));
-      if (gender = Genders.mail) this.freeYearMen.subscribe(u =>  u.slice(u.indexOf(startYear), endYear - startYear + 1));
-      if (gender = Genders.femail) this.freeYearWomen.subscribe(u =>  u.slice(u.indexOf(startYear), endYear - startYear + 1));
-    } else {
-      this.yearGroup.push(new YearGroup(startYear, true, gender));
-      if (gender = Genders.mail) this.freeYearMen.subscribe(u =>  u.slice(u.indexOf(startYear)));
-      if (gender = Genders.femail) this.freeYearWomen.subscribe(u =>  u.slice(u.indexOf(startYear)));
+    if(endYear) {
+      if(gender == Genders.mail) this.yearGroup.Men.add(startYear, endYear);
+      else
+      if(gender == Genders.femail) this.yearGroup.Women.add(startYear, endYear);
+    } else
+    {
+      if(gender == Genders.mail) this.yearGroup.Men.add(startYear);
+      else
+      if(gender == Genders.femail) this.yearGroup.Women.add(startYear);
     }
-  }
-
-  intersection() {
-    /*this.startYear = this.freeYearMen.filter(u => {
-      let flag: boolean = false;
-      for (let item of this.freeYearWomen) {
-        item.subscribe((x) => {
-          u.subscribe((z) => {
-            if (x == z) flag = true;
-          });
-        });
-        if (flag) return true;
-      }
-      return false;
-    });*/
-    this.startYear = zip(this.freeYearMen, this.freeYearWomen).pipe(
-      filter(([men, women]) => men==women), 
-      map(([men, women]) => men))
   }
 
   isSortToggle() {
-    this.isSort = !this.isSort;
+    /*this.isSort = !this.isSort;
     if (this.isSort) {
       this.sort();
-    }
-  }
-
-  sort() {
-    
+    }*/
   }
 
   onChangeItem() {
     this.AddYearForm.get('StartYear')?.valueChanges.subscribe(u => {
       if (u) {
-       this.AddYearForm.get('EndYear')?.enable(); 
-       this.AddYearForm.get('Gender')?.enable();
-       for (let i = this.currentYear; i >= u; i--) {
-        this.endYear.subscribe(u => u.push(i));
-      }
+        this.AddYearForm.get('EndYear')?.enable(); 
+        this.AddYearForm.get('Gender')?.enable();
+        let buffer: number[] = new Array();
+        this.startYear.subscribe(x => {
+          let start: number = -1;
+          let end: number = -1;
+          for (let i = 0; i < x.length; i++) {
+            if(x[i].year == +u) {
+              end = i;
+              break;
+            }
+          }
+          for(let i = end; i >= 0; i--) {
+            console.log(x[i]);
+            if(x[i].isBusy == false) start = i + 1;
+            if(i == 0 || start == -1) start = 0;
+          }
+          console.log(start);
+          if(end == -1 || start == -1) throw new Error('startYear or endYear is incorrect');
+          this.endYear = of(x.filter(u => u.isBusy).slice(start, end))
+        })
+      } else {
+        this.AddYearForm.get('EndYear')?.setValue('');
+        this.AddYearForm.get('EndYear')?.disable();
+        this.AddYearForm.get('Gender')?.disable();
       }
     })
+  }
+
+  reloadForm() {
+    this.AddYearForm.get('StartYear')?.setValue('');
+    this.AddYearForm.get('EndYear')?.setValue('');
   }
 }

@@ -1,6 +1,6 @@
 import { Style } from 'src/app/models/style';
 import { Observable, BehaviorSubject, isEmpty } from 'rxjs';
-import { CompetitionsService } from './../../../../services/competitions.service';
+import { CompetitionsService } from '../../../services/competitions.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';

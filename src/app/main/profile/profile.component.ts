@@ -1,5 +1,5 @@
 import { map, Observable } from 'rxjs';
-import { AuthService } from 'src/services/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

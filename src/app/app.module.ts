@@ -1,4 +1,4 @@
-import { CookieService } from './../services/cookie.service';
+import { CookieService } from './services/cookie.service';
 import { DirectivesModule } from './directives/directives.module';
 import { MainModule } from './main/main.module';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -7,7 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule, TranslateLoader, MissingTranslationHandler, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { MissingTranslationService } from 'src/services/missing-translation.service';
+import { MissingTranslationService } from 'src/app/services/missing-translation.service';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -18,7 +18,7 @@ import { WelcomePageComponent } from './welcome/welcome-page/welcome-page.compon
 import { CustomUiModule } from './custom-UI/custom-ui.module';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { appInitializer } from './app.initializer';
-import { AuthService } from 'src/services/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { ErrorInterceptor } from './interceptor/error.interceptor';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {

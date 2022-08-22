@@ -1,5 +1,5 @@
 import { take } from 'rxjs';
-import { AuthService } from 'src/services/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 import { Role } from '../models/auth/role';
 

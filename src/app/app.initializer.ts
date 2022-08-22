@@ -1,5 +1,5 @@
 import { firstValueFrom} from 'rxjs';
-import { AuthService } from "src/services/auth.service";
+import { AuthService } from "src/app/services/auth.service";
 
 
 export function appInitializer(auth: AuthService) {

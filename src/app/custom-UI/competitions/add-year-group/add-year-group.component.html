@@ -8,7 +8,7 @@
             <button>очистить</button>
             <div class="sort">
                 <label for="sort">Сортировка</label>
-                <input type="checkbox" name="sort" id="sort" [checked]="isSort" (click)="isSortToggle()">
+                <input type="checkbox" name="sort" id="sort" [checked]="true" (click)="isSortToggle()">
             </div>
         </div>
         <form class="head" [formGroup]="AddYearForm" (ngSubmit)="onSumbit()">
@@ -16,7 +16,9 @@
                 <label for="startYear">{{'Competition.New.startYear' | translate}}</label>
                 <select name="startYear" id="startYear" formControlName="StartYear">
                     <option value="">{{'Competition.New.select' | translate | lowercase}}</option>
-                    <option *ngFor="let item of startYear | async">{{item}}</option>
+                    <ng-container *ngFor="let item of startYear | async">
+                        <option *ngIf="item.isBusy">{{item.year}}</option>
+                    </ng-container>
                 </select>
             </div>
             <div class="endYear">
@@ -24,15 +26,16 @@
                 <select name="endYear" id="endYear" formControlName="EndYear">
                     <option value="">{{'Competition.New.select' | translate | lowercase}}</option>
                     <option value="+">{{'Competition.New.infinity' | translate | lowercase}}</option>
-                    <option *ngFor="let item of endYear | async">{{item}}</option>
+                    <ng-container *ngFor="let item of endYear | async">
+                        <option *ngIf="item.isBusy">{{item.year}}</option>
+                    </ng-container>
                 </select>
             </div>
             <div class="gender">
                 <label for="gender">{{'Competition.New.gender' | translate}}</label>
                 <select name="gender" id="gender" formControlName="Gender">
                     <option value="all">{{'Competition.New.all' | translate | lowercase}}</option>
-                    <option *ngFor="let item of genderList"
-                     [ngValue]="item">{{item | async}}</option>
+                    <option *ngFor="let item of genderList">{{item | async}}</option>
                 </select>
             </div>
             <div>

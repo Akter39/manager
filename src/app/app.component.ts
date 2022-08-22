@@ -1,9 +1,9 @@
-import { CookieService } from './../services/cookie.service';
+import { CookieService } from './services/cookie.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { OnInit } from '@angular/core';
-import { ReceivingService } from 'src/services/receiving.service';
+import { ReceivingService } from 'src/app/services/receiving.service';
 import { DOCUMENT } from '@angular/common';
 @Component({
   selector: 'app-root',

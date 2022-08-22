@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { ReceivingService } from './../../../services/receiving.service';
+import { ReceivingService } from '../../services/receiving.service';
 import { isEmpty, Observable, of, tap } from 'rxjs';
 import { Competition } from './../../models/competition';
 import { Component, OnInit, DoCheck } from '@angular/core';

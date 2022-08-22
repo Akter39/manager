@@ -1,5 +1,5 @@
 import { Observable, filter, of } from 'rxjs';
-import { CompetitionsService } from './../../../../services/competitions.service';
+import { CompetitionsService } from '../../../services/competitions.service';
 import { Distances, Genders, Styles } from 'src/app/models/distance';
 import { ControlContainer, FormBuilder, FormGroup, FormGroupDirective, FormArray } from '@angular/forms';
 import { Distance } from './../../../models/distance';

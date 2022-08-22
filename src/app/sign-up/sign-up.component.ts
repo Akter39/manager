@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RegexUser } from '../constants/regex.constants';
 import { PasswordMatchValidator } from '../validators/password-match.validator';
-import { AuthService } from 'src/services/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { NameMatchValidator } from '../validators/name-match.validator';
 import { ConditionSignUp } from '../models/auth/condition-sign-up';
 
