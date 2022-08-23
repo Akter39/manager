@@ -9,18 +9,15 @@ import { CompetitionsService } from './competitions.service';
   providedIn: 'root'
 })
 export class YearGroupService {
-  private isInit: boolean;
   currentYear!: number;
   yearGroups: YearGroup[] = new Array();
   year: any;
-  freeYearMen: any;
+  isSort!: boolean;
   constructor(private competition: CompetitionsService) {
-    this.isInit = false;
    }
 
    init() {
     this.initProperties();
-    this.isInit = true;
    }
 
    private initProperties() {
@@ -35,6 +32,7 @@ export class YearGroupService {
     this.Women.years = of(bufferWomen);
     this.Men.isInfinity = false;
     this.Women.isInfinity = false;
+    this.isSort = true;
    }
 
    public Men = new class {
@@ -44,10 +42,26 @@ export class YearGroupService {
 
     }
 
-    add(startYear: number, endYear?: number) {
-      if (endYear) this.superThis.addYear(startYear, Genders.mail, this.years, endYear);
-      else
-      this.superThis.addYear(startYear, Genders.mail, this.years);
+    add(startYear: number, infinity: boolean, endYear?: number) {
+      if (endYear) {
+        if(endYear == this.superThis.currentYear) this.isInfinity = true;
+        this.superThis.addYear(startYear, false, Genders.mail, this.years, endYear);
+      } else if(infinity) {
+        this.isInfinity = true;
+        this.superThis.addYear(startYear, true, Genders.mail, this.years);
+      } else {
+        this.superThis.addYear(startYear, false, Genders.mail, this.years);
+      }
+    }
+
+    clear() {
+      this.years.subscribe(u => {
+        for(let item of u) {
+          item.isBusy = true;
+        }
+      })
+      this.superThis.yearGroups.filter(u => u.gender == Genders.mail);
+      this.isInfinity = false;
     }
    }(this)
 
@@ -58,10 +72,26 @@ export class YearGroupService {
 
     }
 
-    add(startYear: number, endYear?: number) {
-      if (endYear) this.superThis.addYear(startYear, Genders.femail, this.years, endYear);
-      else
-      this.superThis.addYear(startYear, Genders.femail, this.years);
+    add(startYear: number, infinity: boolean, endYear?: number) {
+      if (endYear) {
+        if(endYear == this.superThis.currentYear) this.isInfinity = true;
+        this.superThis.addYear(startYear, false, Genders.femail, this.years, endYear);
+      } else if(infinity) {
+        this.isInfinity = true;
+        this.superThis.addYear(startYear, true, Genders.femail, this.years);
+      } else {
+        this.superThis.addYear(startYear, false, Genders.femail, this.years);
+      }
+    }
+
+    clear() {
+      this.years.subscribe(u => {
+        for(let item of u) {
+          item.isBusy = true;
+        }
+      })
+      this.superThis.yearGroups.filter(u => u.gender == Genders.mail);
+      this.isInfinity = false;
     }
    }(this)
 
@@ -69,22 +99,18 @@ export class YearGroupService {
     let startYear: Observable<YearBusy[]> = new Observable<YearBusy[]>();
     this.Men.years.subscribe(u => {
       this.Women.years.subscribe(x => {
-        let men = u.filter(u => u.isBusy);
-        let women = x.filter(u => u.isBusy);
-        let result = men.filter(u => {
-          for (let item of women) {
-            if (item.year == u.year) return true;
-          }
-          return false;
-        })
+        let result: YearBusy[] = u;
+        for(let i = 0; i < u.length; i++) {
+          if(result[i].isBusy == false || x[i].isBusy == false) result[i].isBusy = false;
+          
+        }
         startYear = of(result);
       })
     });
     return startYear;
-    //throw new Error('Error get intersetcion startYear');
   }
 
-  addYear(startYear: number, gender: Genders, years: Observable<YearBusy[]>, endYear?: number) {
+  private addYear(startYear: number, infinity: boolean, gender: Genders, years: Observable<YearBusy[]>, endYear?: number) {
     if (endYear) {
       this.yearGroups.push(new YearGroup(startYear, false, gender, endYear));
       years.subscribe(u => {
@@ -102,7 +128,7 @@ export class YearGroupService {
             u[i].isBusy = false;
         }
       });
-    } else {
+    } else if (infinity) {
       this.yearGroups.push(new YearGroup(startYear, true, gender));
       years.subscribe(u => {      
         let end: number = -1;
@@ -117,6 +143,45 @@ export class YearGroupService {
             u[i].isBusy = false;
         }
       });
+    } else {
+      this.yearGroups.push(new YearGroup(startYear, false, gender));
+      years.subscribe(u => {
+        for(let i = 0; i < u.length; i++) {
+          if(u[i].year == startYear) {
+            u[i].isBusy = false;
+            break;
+          }
+        }
+      })
     }
+    if(this.isSort) this.sort();
+  }
+
+  clear() {
+    this.Men.clear();
+    this.Women.clear();
+    this.yearGroups = [];
+  }
+
+  isSortToggle() {
+    this.isSort = !this.isSort;
+    if (this.isSort) {
+      this.sort();
+    }
+  }
+
+  private sort() {
+    this.yearGroups.sort((a,b) => {
+      if(a.gender == Genders.mail && b.gender == Genders.femail) return 1;
+      if(a.gender == Genders.femail && b.gender == Genders.mail) return -1;
+      if(a.gender == b.gender) return 0;
+      throw new Error('Incorrect yearGroups');
+    });
+    this.yearGroups.sort((a,b) => {
+      if(a.gender != b.gender) return 0;
+      if(a.startYear < b.startYear) return 1;
+      if(a.startYear > b.startYear) return -1;
+      throw new Error('Incorrect yearGroups');
+    });
   }
 }

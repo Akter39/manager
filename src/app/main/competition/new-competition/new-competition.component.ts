@@ -1,4 +1,3 @@
-import { YearGroup } from './../../../models/year-group';
 import { CompetitionsService } from '../../../services/competitions.service';
 import { CookieService } from '../../../services/cookie.service';
 import { Distance, Distances, Genders, Styles } from './../../../models/distance';
@@ -12,6 +11,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
 import { Role } from 'src/app/models/auth/role';
 import { DOCUMENT } from '@angular/common';
+import { YearGroupService } from 'src/app/services/year-group.service';
 
 @Component({
   selector: 'app-new-competition',
@@ -36,7 +36,6 @@ export class NewCompetitionComponent implements OnInit {
   lengthList!: number[];
   laneList!: number[];
   distances: Distance[] = new Array();
-  yearGroup: YearGroup[] = new Array();
   isSortDistance!: boolean;
 
   public condition: ConditionNewCompetition = {
@@ -63,6 +62,7 @@ export class NewCompetitionComponent implements OnInit {
     private cookieService: CookieService,
     private competition: CompetitionsService,
     private formBuilder: FormBuilder,
+    private yearGroup: YearGroupService,
     @Inject(DOCUMENT) document: Document) { }
 
   ngOnInit(): void {
@@ -79,6 +79,7 @@ export class NewCompetitionComponent implements OnInit {
     this.lengthList = [25, 50];
     this.laneList = [4, 8];
     this.isSortDistance = true;
+    this.yearGroup.init();
   }
 
   initializeDate() {
@@ -174,6 +175,6 @@ export class NewCompetitionComponent implements OnInit {
   }
 
   onClearYear() {
-    this.yearGroup = [];
+    this.yearGroup.clear();
   }
 }

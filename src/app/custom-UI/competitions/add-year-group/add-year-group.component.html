@@ -8,7 +8,7 @@
             <button>очистить</button>
             <div class="sort">
                 <label for="sort">Сортировка</label>
-                <input type="checkbox" name="sort" id="sort" [checked]="true" (click)="isSortToggle()">
+                <input type="checkbox" name="sort" id="sort" [checked]="yearGroup.isSort" (click)="isSortToggle()">
             </div>
         </div>
         <form class="head" [formGroup]="AddYearForm" (ngSubmit)="onSumbit()">
@@ -25,7 +25,7 @@
                 <label for="endYear">{{'Competition.New.endYear' | translate}}</label>
                 <select name="endYear" id="endYear" formControlName="EndYear">
                     <option value="">{{'Competition.New.select' | translate | lowercase}}</option>
-                    <option value="+">{{'Competition.New.infinity' | translate | lowercase}}</option>
+                    <option value="+" *ngIf="!isInfinity">{{'Competition.New.infinity' | translate | lowercase}}</option>
                     <ng-container *ngFor="let item of endYear | async">
                         <option *ngIf="item.isBusy">{{item.year}}</option>
                     </ng-container>
@@ -35,7 +35,8 @@
                 <label for="gender">{{'Competition.New.gender' | translate}}</label>
                 <select name="gender" id="gender" formControlName="Gender">
                     <option value="all">{{'Competition.New.all' | translate | lowercase}}</option>
-                    <option *ngFor="let item of genderList">{{item | async}}</option>
+                    <option *ngFor="let item of genderList"
+                    [ngValue]="item">{{item | async}}</option>
                 </select>
             </div>
             <div>

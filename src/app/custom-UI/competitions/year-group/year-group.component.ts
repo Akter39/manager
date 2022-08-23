@@ -34,13 +34,16 @@ export class YearGroupComponent implements OnInit {
   }
 
   gender(index: number): boolean {
-    if (this.yearGroup.yearGroups[index].gender == Genders.mail) return true;
+    if(this.yearGroup.yearGroups[index].gender == Genders.mail) return true;
     return false;
   }
 
   additional() {
-    let i: number = this.yearGroup.yearGroups.filter(u => u.gender == Genders.mail).length 
-      - this.yearGroup.yearGroups.filter(u => u.gender == Genders.femail).length;
+    let menLength!: number;
+    let womenLength!: number;
+    menLength = this.yearGroup.yearGroups.filter(u => u.gender == Genders.mail).length;
+    womenLength = this.yearGroup.yearGroups.filter(u => u.gender == Genders.femail).length;
+    let i: number = menLength - womenLength;
     if (i == 0) return;
     else this.isAdditional = true;
     if (i > 0) {

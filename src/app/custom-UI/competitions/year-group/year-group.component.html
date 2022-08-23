@@ -13,7 +13,7 @@
                 <div *ngIf="gender(i)" class="item">
                     <div>
                         {{item.startYear}}
-                        <span *ngIf="!item.infinity"> - {{item.endYear!}}</span>
+                        <span *ngIf="item.endYear"> - {{item.endYear!}}</span>
                         <span *ngIf="item.infinity">+</span>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                 <div *ngIf="!gender(i)" class="item">
                     <div *ngIf="!gender(i)">
                         {{item.startYear}}
-                        <span *ngIf="!item.infinity"> - {{item.endYear!}}</span>
+                        <span *ngIf="item.endYear"> - {{item.endYear!}}</span>
                         <span *ngIf="item.infinity">+</span>
                     </div>
                 </div>
