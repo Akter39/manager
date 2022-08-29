@@ -2,11 +2,6 @@
 
 
 .year {
-    /*display: grid;
-    align-self: flex-start;
-    width: max-content;
-    //grid-template-columns: minmax(max-content, 7em) minmax(max-content, 7em);
-    background-color: $mainA-color;*/
     display: flex;
     flex-direction: column;
     align-self: flex-start;
@@ -42,9 +37,6 @@
             .head {
                 background-color: $second-color;
             }
-            /*div:not(.head) {
-                padding: 0 1em;
-            }*/
         }
     }
 }
