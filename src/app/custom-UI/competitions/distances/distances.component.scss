@@ -5,7 +5,7 @@
     flex-direction: column;
     align-self: flex-start;
     background-color: $mainA-color;
-    width: 20em;
+    //width: 20em;
     .dist-head {
         background-color: $second-color;
         padding: 0 1em;
@@ -23,7 +23,7 @@
     }
     .item {
         display: grid;
-        grid-template-columns: 4em 9em 7em;
+        grid-template-columns: 20% 45% 35%;
         div {
             padding: 0 1em;
         }

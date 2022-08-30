@@ -14,7 +14,9 @@ import { ThisReceiver } from '@angular/compiler';
   styleUrls: ['./add-year-group.component.scss']
 })
 export class AddYearGroupComponent implements OnInit {
+  @Output() clear: EventEmitter<any> = new EventEmitter<any>();
   @Output() close: EventEmitter<any> = new EventEmitter<any>();
+  @Output() deleteItem: EventEmitter<any> = new EventEmitter<any>();
   isInfinity!: boolean;
   startYear: Observable<YearBusy[]> = new Observable<YearBusy[]>();
   endYear: Observable<YearBusy[]> = new Observable<YearBusy[]>();
@@ -154,6 +156,7 @@ export class AddYearGroupComponent implements OnInit {
     });
 
     this.AddYearForm.get('Gender')?.valueChanges.subscribe(u => {
+      this.reloadForm();
       if(u == 'all') {
         this.startYear = this.yearGroup.intersection();
         return;
@@ -167,5 +170,22 @@ export class AddYearGroupComponent implements OnInit {
   reloadForm() {
     this.AddYearForm.get('StartYear')?.setValue('');
     this.AddYearForm.get('EndYear')?.setValue('');
+  }
+
+  onClear() {
+    this.reloadForm();
+    this.clear.emit();
+  }
+
+  onDeleteItem(i: number) {
+    this.deleteItem.emit(i);
+    this.reloadForm();
+    if(this.AddYearForm.get('Gender')?.value == 'all') this.startYear = this.yearGroup.intersection();
+    else
+    if(this.AddYearForm.get('Gender')?.value == Genders.mail) this.startYear = this.yearGroup.Men.years;
+    else
+    if(this.AddYearForm.get('Gender')?.value == Genders.femail) this.startYear = this.yearGroup.Women.years;
+    //this.yearGroup.Men.years.subscribe(u => console.log(u));
+    //this.yearGroup.Women.years.subscribe(u => console.log(u));
   }
 }

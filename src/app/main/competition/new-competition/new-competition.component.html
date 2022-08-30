@@ -7,7 +7,7 @@
             <img src="../../../../assets/icons/close.png" (click)="onClose()">
         </div>
     </div>
-    <form [formGroup]="newCompetitionForm" (ngSubmit)="onSumbit()">
+    <form [formGroup]="newCompetitionForm">
         <fieldset class="org-info">
             <div class="org">
                 <label for="org">{{'Competition.New.organization' | translate}}</label>
@@ -147,11 +147,14 @@
                 (clear)="onClearYear()"></app-year-group>
                 <app-add-year-group 
                 *ngIf="toggleYearGroup"
-                (close)="onToggleAddYear()"></app-add-year-group>
+                (close)="onToggleAddYear()"
+                (clear)="onClearYear()"
+                (deleteItem)="onDeleteItem($event)"></app-add-year-group>
             </div>
         </fieldset>
         <button class="btn" [disabled]="newCompetitionForm.invalid"
-            *appUserRoles="[Role.MainAdmin, Role.Admin, Role.VipUser]">создать</button>
+            *appUserRoles="[Role.MainAdmin, Role.Admin, Role.VipUser]"
+            (click)="onSumbit()">создать</button>
         <button class="btn" [disabled]="newCompetitionForm.invalid" 
             *appUserRoles="[Role.User]">оплатить</button>
     </form>

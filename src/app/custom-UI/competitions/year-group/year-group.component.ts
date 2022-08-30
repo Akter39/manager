@@ -1,6 +1,5 @@
 import { YearGroupService } from '../../../services/year-group.service';
 import { Genders } from './../../../models/distance';
-import { YearGroup } from './../../../models/year-group';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
@@ -10,11 +9,17 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class YearGroupComponent implements OnInit {
   @Input() newYearGroup: boolean = false;
+  _isEdit: boolean = false;
+  @Input() set isEdit(value: boolean) {
+    this._isEdit = value; 
+  }
   @Output() clear: EventEmitter<any> = new EventEmitter<any>();
   @Output() add: EventEmitter<any> = new EventEmitter<any>();
+  @Output() deleteItem: EventEmitter<any> = new EventEmitter<any>();
   isAdditional!: boolean;
   additionalMen: string[] = new Array();
   additionalWomen: string[] = new Array();
+  Genders = Genders;
 
   constructor(public yearGroup: YearGroupService) { }
 
@@ -27,6 +32,10 @@ export class YearGroupComponent implements OnInit {
     this.additionalWomen = [];
     this.additionalMen = [];
     this.clear.emit();
+  }
+
+  onDeleteItem(i: number) {
+    this.deleteItem.emit(i);
   }
 
   onAdd() {

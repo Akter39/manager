@@ -1,5 +1,5 @@
 <div class="year">
-    <div class="year-head">
+    <div class="year-head" *ngIf="!_isEdit">
         <div>{{'Competition.yearGroup' | translate}}</div>
         <div class="add-delete" *ngIf="newYearGroup">
             <img src="../../../../assets/icons/delete.png" (click)="onClear()">
@@ -16,6 +16,7 @@
                         <span *ngIf="item.endYear"> - {{item.endYear!}}</span>
                         <span *ngIf="item.infinity">+</span>
                     </div>
+                    <img class="delete" *ngIf="_isEdit" src="../../../../assets/icons/minus.png" (click)="onDeleteItem(i)">
                 </div>
             </ng-container>
             <div *ngFor="let item of additionalMen" class="item">
@@ -31,6 +32,7 @@
                         <span *ngIf="item.endYear"> - {{item.endYear!}}</span>
                         <span *ngIf="item.infinity">+</span>
                     </div>
+                    <img class="delete" *ngIf="_isEdit" src="../../../../assets/icons/minus.png" (click)="onDeleteItem(i)">
                 </div>
             </ng-container>
             <div *ngFor="let item of additionalWomen" class="item">

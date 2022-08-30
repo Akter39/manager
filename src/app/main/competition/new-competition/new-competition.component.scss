@@ -143,10 +143,10 @@
             display: flex;
             column-gap: 1em;
             .year {
-                width: max-content;                
+                width: 18em;                
             }
             .distances {
-                width: max-content;
+                width: 20em;
             }
             @media (max-width: 410px) {
                 flex-direction: column;

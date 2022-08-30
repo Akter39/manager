@@ -177,4 +177,8 @@ export class NewCompetitionComponent implements OnInit {
   onClearYear() {
     this.yearGroup.clear();
   }
+
+  onDeleteItem(i: number) {
+    this.yearGroup.deleteItem(i);
+  }
 }

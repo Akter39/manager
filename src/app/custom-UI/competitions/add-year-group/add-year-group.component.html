@@ -5,7 +5,7 @@
     </div>
     <div class="body">
         <div class="control">
-            <button>очистить</button>
+            <button (click)="onClear()">очистить</button>
             <div class="sort">
                 <label for="sort">Сортировка</label>
                 <input type="checkbox" name="sort" id="sort" [checked]="yearGroup.isSort" (click)="isSortToggle()">
@@ -43,5 +43,8 @@
                 <button class="btn" [disabled]="AddYearForm.invalid">{{'Competition.New.add' | translate}}</button>
             </div>
         </form>
+        <fieldset>
+            <app-year-group [isEdit]="true" (deleteItem)="onDeleteItem($event)"></app-year-group>
+        </fieldset>
     </div>
 </div>

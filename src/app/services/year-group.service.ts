@@ -21,6 +21,7 @@ export class YearGroupService {
    }
 
    private initProperties() {
+    this.yearGroups = [];
     this.currentYear = new Date().getFullYear();
     let bufferMen: YearBusy[] = new Array();
     let bufferWomen: YearBusy[] = new Array();
@@ -45,12 +46,12 @@ export class YearGroupService {
     add(startYear: number, infinity: boolean, endYear?: number) {
       if (endYear) {
         if(endYear == this.superThis.currentYear) this.isInfinity = true;
-        this.superThis.addYear(startYear, false, Genders.mail, this.years, endYear);
+        this.superThis.addDeleteYear(startYear, false, Genders.mail, this.years, true, endYear);
       } else if(infinity) {
         this.isInfinity = true;
-        this.superThis.addYear(startYear, true, Genders.mail, this.years);
+        this.superThis.addDeleteYear(startYear, true, Genders.mail, this.years, true);
       } else {
-        this.superThis.addYear(startYear, false, Genders.mail, this.years);
+        this.superThis.addDeleteYear(startYear, false, Genders.mail, this.years, true);
       }
     }
 
@@ -75,12 +76,12 @@ export class YearGroupService {
     add(startYear: number, infinity: boolean, endYear?: number) {
       if (endYear) {
         if(endYear == this.superThis.currentYear) this.isInfinity = true;
-        this.superThis.addYear(startYear, false, Genders.femail, this.years, endYear);
+        this.superThis.addDeleteYear(startYear, false, Genders.femail, this.years, true, endYear);
       } else if(infinity) {
         this.isInfinity = true;
-        this.superThis.addYear(startYear, true, Genders.femail, this.years);
+        this.superThis.addDeleteYear(startYear, true, Genders.femail, this.years, true);
       } else {
-        this.superThis.addYear(startYear, false, Genders.femail, this.years);
+        this.superThis.addDeleteYear(startYear, false, Genders.femail, this.years, true);
       }
     }
 
@@ -99,7 +100,7 @@ export class YearGroupService {
     let startYear: Observable<YearBusy[]> = new Observable<YearBusy[]>();
     this.Men.years.subscribe(u => {
       this.Women.years.subscribe(x => {
-        let result: YearBusy[] = u;
+        let result: YearBusy[] = u.map(u => ({...u}));
         for(let i = 0; i < u.length; i++) {
           if(result[i].isBusy == false || x[i].isBusy == false) result[i].isBusy = false;
           
@@ -110,9 +111,16 @@ export class YearGroupService {
     return startYear;
   }
 
-  private addYear(startYear: number, infinity: boolean, gender: Genders, years: Observable<YearBusy[]>, endYear?: number) {
+  private addDeleteYear(startYear: number,
+      infinity: boolean,
+      gender: Genders,
+      years: Observable<YearBusy[]>,
+      isAdd: boolean,
+      endYear?: number) {
+    let busy: boolean = true;
+      if(isAdd) busy = false;
     if (endYear) {
-      this.yearGroups.push(new YearGroup(startYear, false, gender, endYear));
+      if(isAdd) this.yearGroups.push(new YearGroup(startYear, false, gender, endYear));
       years.subscribe(u => {
         let start: number = -1;
         let end: number = -1;
@@ -125,11 +133,11 @@ export class YearGroupService {
         }
         if(end == -1 || start == -1) throw new Error('startYear or endYear is incorrect');
         for(let i = start; i <= end; i++) {
-            u[i].isBusy = false;
+            u[i].isBusy = busy;
         }
       });
     } else if (infinity) {
-      this.yearGroups.push(new YearGroup(startYear, true, gender));
+      if(isAdd) this.yearGroups.push(new YearGroup(startYear, true, gender));
       years.subscribe(u => {      
         let end: number = -1;
         for (let i = 0; i < u.length; i++) {
@@ -140,21 +148,40 @@ export class YearGroupService {
         }
         if(end == -1) throw new Error('startYear or endYear is incorrect');
         for(let i = 0; i <= end; i++) {
-            u[i].isBusy = false;
+            u[i].isBusy = busy;
         }
       });
     } else {
-      this.yearGroups.push(new YearGroup(startYear, false, gender));
+      if(isAdd) this.yearGroups.push(new YearGroup(startYear, false, gender));
       years.subscribe(u => {
         for(let i = 0; i < u.length; i++) {
           if(u[i].year == startYear) {
-            u[i].isBusy = false;
+            u[i].isBusy = busy;
             break;
           }
         }
       })
     }
-    if(this.isSort) this.sort();
+    if(this.isSort && isAdd) this.sort();
+  }
+
+  deleteItem(i: number) {
+    let gender;
+    let group = this.yearGroups[i];
+    if(group.gender == Genders.mail) gender = this.Men;
+    else
+    gender = this.Women;
+
+    if (group.endYear) {
+      if(group.endYear == this.currentYear) gender.isInfinity = false;
+      this.addDeleteYear(group.startYear, false, group.gender, gender.years, false, group.endYear);
+    } else if(group.infinity) {
+      gender.isInfinity = false;
+      this.addDeleteYear(group.startYear, true, group.gender, gender.years, false);
+    } else {
+      this.addDeleteYear(group.startYear, false, group.gender, gender.years, false);
+    }
+    this.yearGroups.splice(i, 1);
   }
 
   clear() {
