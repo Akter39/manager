@@ -37,7 +37,7 @@ export class DistancesComponent implements OnInit, DoCheck {
   reloadForm(flag: string) {
     this.form = this.fb.group({
       Distances: this.fb.array(this.distances.map(x => this.fb.group({
-      Distance: x._distance,
+      Dist: x._distance,
       Style: x._style,
       Gender: x._gender
       })))

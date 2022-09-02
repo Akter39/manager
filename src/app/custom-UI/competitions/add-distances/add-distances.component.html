@@ -5,7 +5,7 @@
     </div>
     <div class="body">
         <div class="control">
-            <button>очистить</button>
+            <button (click)="onClear()">очистить</button>
             <div class="sort">
                 <label for="sort">Сортировка</label>
                 <input type="checkbox" name="sort" id="sort" [checked]="isSort" (click)="isSortToggle()">
@@ -14,7 +14,7 @@
         <form class="head" [formGroup]="AddDistancesForm" (ngSubmit)="onSumbit()">
             <div class="dist">
                 <label for="distance">{{'Competition.New.distance' | translate}}</label>
-                <select name="distance" id="distance" required formControlName="Distance">
+                <select name="distance" id="distance" required formControlName="Dist">
                     <option value="">{{'Competition.New.select' | translate | lowercase}}</option>
                     <option *ngFor="let item of distanceList"
                      [ngValue]="item">{{item | async}}</option>
@@ -41,10 +41,11 @@
             </div>
         </form>
         <fieldset>
-            <div class="item" *ngFor="let item of distances">
+            <div class="item" *ngFor="let item of distances; index as i">
                 <div class="dist">{{item.distance | async}}</div>
                 <div class="style">{{item.style | async}}</div>
                 <div class="gender">{{item.gender | async | lowercase}}</div>
+                <img class="delete-item" src="../../../../assets/icons/minus.png" (click)="onDeleteItem(i)">
             </div>
         </fieldset>
     </div>

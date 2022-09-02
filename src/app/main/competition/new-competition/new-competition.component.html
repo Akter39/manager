@@ -138,7 +138,9 @@
                     *ngIf="toggleDistances" 
                     (close)="onToggleAdd($event)" 
                     [distances]="distances"
-                    [isSort]="isSortDistance"></app-add-distances>
+                    [isSort]="isSortDistance"
+                    (deleteItem)="onDeleteDist($event)"
+                    (clear)="onClear()"></app-add-distances>
             </div>
             <div class="year">
                 <app-year-group
@@ -149,7 +151,7 @@
                 *ngIf="toggleYearGroup"
                 (close)="onToggleAddYear()"
                 (clear)="onClearYear()"
-                (deleteItem)="onDeleteItem($event)"></app-add-year-group>
+                (deleteItem)="onDeleteYear($event)"></app-add-year-group>
             </div>
         </fieldset>
         <button class="btn" [disabled]="newCompetitionForm.invalid"

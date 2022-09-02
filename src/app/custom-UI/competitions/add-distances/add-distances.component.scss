@@ -1,8 +1,8 @@
 @import 'variebles';
 
 .container {
-    width: 80em;
-    height: 30em;
+    //width: 80em;
+    //height: 30em;
     z-index: 100;
     background-color: $mainA-color;
     border: 0.1em solid $second-color;
@@ -71,21 +71,17 @@
             min-height: 18em;
             .item {
                 display: grid;
-                grid-template-columns: 4em 15em 7em;
+                grid-template-columns: 15% 60% 20% 1em;
+                align-items: center;
                 div {
                     padding: 0 1em;
                 }
                 &:nth-of-type(odd) {
                     backdrop-filter: brightness(80%);
                 }
-                .dist {
-                    grid-column: 1 / 1;
-                }
-                .style {
-                    grid-column: 2 / 2;
-                }
-                .gender {
-                    grid-column: 3 / 3;
+                .delete-item {
+                    cursor: pointer;
+                    height: 1em;
                 }
             }
         }

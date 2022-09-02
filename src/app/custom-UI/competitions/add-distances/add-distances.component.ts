@@ -15,8 +15,10 @@ export class AddDistancesComponent implements OnInit {
   @Input() isSort: boolean = true;
   @Input() distances: Distance[] = new Array();
   @Output() close: EventEmitter<any> = new EventEmitter<any>();
+  @Output() clear: EventEmitter<any> = new EventEmitter<any>();
+  @Output() deleteItem: EventEmitter<any> = new EventEmitter<any>();
   distanceList: Observable<string>[] = new Array();
-  styleList!: Observable<string>[];
+  styleList: Observable<string>[] = new Array();
   bufferStyleList: Observable<string>[] = new Array();
   genderList: Observable<string>[] = new Array();
   AddDistancesForm!: FormGroup;
@@ -50,7 +52,7 @@ export class AddDistancesComponent implements OnInit {
 
   initializeForm() {
     this.AddDistancesForm = this.formBuilder.group({
-      "Distance": ['', [Validators.required]],
+      "Dist": ['', [Validators.required]],
       "Style": ['all'],
       "Gender": ['all']
     });
@@ -62,11 +64,19 @@ export class AddDistancesComponent implements OnInit {
     this.close.emit(this.isSort);
   }
 
+  onDeleteItem(i: number) {
+    this.deleteItem.emit(i)
+  }
+
+  onClear() {
+    this.clear.emit();
+  }
+
   onSumbit() {
     if (this.AddDistancesForm.get('Style')?.value == 'all' && this.AddDistancesForm.get('Gender')?.value != 'all') {
       for (let item of this.styleList) {
         this.addDistance(
-          this.competition.getDistanceEnum(this.AddDistancesForm.get('Distance')?.value),
+          this.competition.getDistanceEnum(this.AddDistancesForm.get('Dist')?.value),
           this.competition.getStyleEnum(item),
           this.competition.getGenderEnum(this.AddDistancesForm.get('Gender')?.value)
         )
@@ -76,7 +86,7 @@ export class AddDistancesComponent implements OnInit {
     if (this.AddDistancesForm.get('Style')?.value != 'all' && this.AddDistancesForm.get('Gender')?.value == 'all') {
       for (let item of this.genderList) {
         this.addDistance(
-          this.competition.getDistanceEnum(this.AddDistancesForm.get('Distance')?.value),
+          this.competition.getDistanceEnum(this.AddDistancesForm.get('Dist')?.value),
           this.competition.getStyleEnum(this.AddDistancesForm.get('Style')?.value),
           this.competition.getGenderEnum(item)
         )
@@ -87,7 +97,7 @@ export class AddDistancesComponent implements OnInit {
       for (let style of this.styleList) {
         for (let gender of this.genderList) {
           this.addDistance(
-            this.competition.getDistanceEnum(this.AddDistancesForm.get('Distance')?.value),
+            this.competition.getDistanceEnum(this.AddDistancesForm.get('Dist')?.value),
             this.competition.getStyleEnum(style),
             this.competition.getGenderEnum(gender)
           )
@@ -97,21 +107,21 @@ export class AddDistancesComponent implements OnInit {
     }
 
     this.addDistance(
-      this.competition.getDistanceEnum(this.AddDistancesForm.get('Distance')?.value),
+      this.competition.getDistanceEnum(this.AddDistancesForm.get('Dist')?.value),
       this.competition.getStyleEnum(this.AddDistancesForm.get('Style')?.value),
       this.competition.getGenderEnum(this.AddDistancesForm.get('Gender')?.value),);
   }
 
   addDistance(distance: Distances, style: Styles, gender: Genders) {
-    let distances: Distance = new Distance(distance, style, gender, this.competition);
-    if (!this.itemExist(distances)) {
-      this.distances.push(distances);
+    let dist: Distance = new Distance(distance, style, gender, this.competition);
+    if (!this.itemExist(dist)) {
+      this.distances.push(dist);
       if (this.isSort) this.sort();
     }
   }
 
   onChangeItem() {
-    this.AddDistancesForm.get('Distance')?.valueChanges.subscribe(u => {
+    this.AddDistancesForm.get('Dist')?.valueChanges.subscribe(u => {
       if (u) {
         this.AddDistancesForm.get('Style')?.enable();
         this.AddDistancesForm.get('Gender')?.enable();

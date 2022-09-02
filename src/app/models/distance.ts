@@ -43,6 +43,6 @@ export enum Distances {
 }
 
 export enum Genders {
-    mail = 'mail',
-    femail = 'femail'
+    femail = 'femail',
+    mail = 'mail'
 }

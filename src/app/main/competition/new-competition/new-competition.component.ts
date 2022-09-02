@@ -178,7 +178,15 @@ export class NewCompetitionComponent implements OnInit {
     this.yearGroup.clear();
   }
 
-  onDeleteItem(i: number) {
+  onDeleteYear(i: number) {
     this.yearGroup.deleteItem(i);
+  }
+
+  onDeleteDist(i: number) {
+    console.log('i = ' + i);
+    this.distances.forEach(u => console.log(u));
+    this.distances.splice(i, 1);
+    console.log('after: ');
+    this.distances.forEach(u => console.log(u._gender));
   }
 }
