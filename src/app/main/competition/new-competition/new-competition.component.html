@@ -144,14 +144,14 @@
             </div>
             <div class="year">
                 <app-year-group
-                [newYearGroup]="true"
-                (add)="onToggleAddYear()" 
-                (clear)="onClearYear()"></app-year-group>
+                    [newYearGroup]="true"
+                    (add)="onToggleAddYear()" 
+                    (clear)="onClearYear()"></app-year-group>
                 <app-add-year-group 
-                *ngIf="toggleYearGroup"
-                (close)="onToggleAddYear()"
-                (clear)="onClearYear()"
-                (deleteItem)="onDeleteYear($event)"></app-add-year-group>
+                    *ngIf="toggleYearGroup"
+                    (close)="onToggleAddYear()"
+                    (clear)="onClearYear()"
+                    (deleteItem)="onDeleteYear($event)"></app-add-year-group>
             </div>
         </fieldset>
         <button class="btn" [disabled]="newCompetitionForm.invalid"

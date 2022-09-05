@@ -1,13 +1,14 @@
 import { YearGroupService } from '../../../services/year-group.service';
 import { Genders } from './../../../models/distance';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Optional, Output, DoCheck } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, FormGroupDirective } from '@angular/forms';
 
 @Component({
   selector: 'app-year-group',
   templateUrl: './year-group.component.html',
   styleUrls: ['./year-group.component.scss']
 })
-export class YearGroupComponent implements OnInit {
+export class YearGroupComponent implements OnInit, DoCheck {
   @Input() newYearGroup: boolean = false;
   _isEdit: boolean = false;
   @Input() set isEdit(value: boolean) {
@@ -20,12 +21,21 @@ export class YearGroupComponent implements OnInit {
   additionalMen: string[] = new Array();
   additionalWomen: string[] = new Array();
   Genders = Genders;
+  form!: FormGroup;
 
-  constructor(public yearGroup: YearGroupService) { }
+  constructor(
+    public yearGroup: YearGroupService,
+     @Optional() private fgd: FormGroupDirective,
+     private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.isAdditional = false;
+    this.reloadForm('init');
     this.additional();
+  }
+
+  ngDoCheck() {
+    this.reloadForm('reload');
   }
 
   onClear() {
@@ -40,6 +50,30 @@ export class YearGroupComponent implements OnInit {
 
   onAdd() {
     this.add.emit();
+  }
+
+  reloadForm(flag: string) {
+    this.form = this.fb.group({
+      YearGroups: this.fb.array(this.yearGroup.yearGroups.map(x => this.fb.group({
+      StartYear: x.startYear,
+      EndYear: x.endYear,
+      Infinity: x.infinity,
+      Gender: x.gender
+      })))
+    });
+   
+    if (this.fgd) {
+      switch(flag) {
+        case 'reload': {
+          this.fgd.form?.setControl('YearGroups', <FormArray>this.form.get('YearGroups'));
+          break;
+        }
+        case 'init': {
+          this.fgd.form?.addControl('YearGroups', <FormArray>this.form.get('YearGroups'));
+          break;
+        }
+      }
+    }
   }
 
   gender(index: number): boolean {
