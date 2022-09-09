@@ -9,7 +9,7 @@ export const ApiUrl = {
         newCompetitions: 'api/competition/create',
         editCompetitions: 'api/competition/edit',
         deleteCompetitions: 'api/competition/delete',
-        calendarCompetitions: 'api/competition/calendar',
+        upcomingCompetitions: 'api/competition/upcoming',
         currentCompetitions: 'api/competition/current',
         archiveCompetitions: 'api/competition/archive',
         searchCompetitions: 'api/competition/search',

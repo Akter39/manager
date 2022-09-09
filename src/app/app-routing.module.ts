@@ -18,6 +18,7 @@ const sign: Routes = [
 
 const main: Routes = [
   {path: 'profile', component: ProfileComponent},
+  {path: 'competition/upcoming', component: CompetitionComponent},
   {path: 'competition/current', component: CompetitionComponent},
   {path: 'competition/archive', component: CompetitionComponent},
   {path: 'competition', component: CompetitionComponent},

@@ -29,6 +29,17 @@ export class ReceivingService {
         .post<ConditionNewCompetition>(this.superThis.baseUrl + ApiUrl.Competition.newCompetitions, control.value);
     }
 
+    upcomingCompetition(): Observable<Competition[]> {
+      return this.superThis.http.get<Competition[]>(this.superThis.baseUrl + ApiUrl.Competition.upcomingCompetitions);
+    }
+
+    currentCompetition(): Observable<Competition[]> {
+      return this.superThis.http.get<Competition[]>(this.superThis.baseUrl + ApiUrl.Competition.currentCompetitions);
+    }
+
+    archiveCompetition(): Observable<Competition[]> {
+      return this.superThis.http.get<Competition[]>(this.superThis.baseUrl + ApiUrl.Competition.archiveCompetitions);
+    }
   }(this);
 
   public Language = new class {
@@ -39,9 +50,9 @@ export class ReceivingService {
     }
   }(this)
 
-  getUserInfo(id: number): Observable<UserInfo> {
+  /*getUserInfo(id: number): Observable<UserInfo> {
     return this.http.get<UserInfo>(this.baseUrl);
-  }
+  }*/
 
   
 }

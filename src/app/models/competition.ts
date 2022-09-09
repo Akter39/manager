@@ -1,29 +1,23 @@
+import { YearGroup } from './year-group';
 import { UserInfo } from './auth/user-info';
+import { Distance } from './distance';
 export class Competition {
     Id!: number;
     Name!: string;
     StartCompetition!: Date;
     EndCompetition!: Date;
     PoolLength!: 25 | 50;
-    UserInf!: UserInfo;
-
-    constructor(
-        id: number,
-        name: string,
-        startCompetition: Date,
-        endCompetition: Date,
-        poolLength: 25 | 50,
-        userInfo: UserInfo
-    ) {
-        this.Id = id;
-        this.Name = name;
-        this.StartCompetition = startCompetition;
-        this.EndCompetition = endCompetition;
-        this.PoolLength = poolLength;
-        this.UserInf = userInfo;
-    }
-
-    getDate(date: Date): string {
-        return `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`;
-    }
+    PoolLanes!: 4 | 8;
+    BidDate!: Date;
+    Contribution!: number;
+    Individual!: boolean;
+    InvitOnly!: boolean;
+    MaxMembers!: number;
+    MaxComands!: number;
+    MaxComandMembers!: number;
+    CurrentMembers!: number;
+    CurrentComands!: number;
+    Distances!: Distance[];
+    YearGroup!: YearGroup[];
+    UserId!: number;
 }

@@ -13,13 +13,13 @@ import { UserInfo } from 'src/app/models/auth/user-info';
 export class CompetitionComponent implements OnInit, DoCheck {
   empetyCompetitions!: boolean;
   competitions!: Observable<Competition[]>;
-  flag!: boolean;
+  flag: boolean[] = new Array();
   closeNew!: boolean;
 
-  comp: Competition[] = [
+  /*comp: Competition[] = [
     new Competition(89, 'Веселый дельфин', new Date(), new Date(), 50, new UserInfo()),
     new Competition(45, 'Первенство московской области', new Date(), new Date(), 50, new UserInfo())
-  ];
+  ];*/
 
   constructor(private receivService: ReceivingService, private router: Router) {
 
@@ -27,11 +27,27 @@ export class CompetitionComponent implements OnInit, DoCheck {
 
   ngOnInit(): void {
     this.closeNew = true;
-    if (this.router.url == '/main/competition/current') this.flag = true;
-    if (this.router.url == '/main/competition/archive') this.flag = false;
-    if(!this.empetyCompetitions) {
-      this.competitions = of(this.comp);
+    if (this.router.url == '/main/competition/upcoming') {
+      this.flag[0] = true;
+      this.receivService.Competition.upcomingCompetition().subscribe(u => {
+        this.competitions = of(u);
+      });
     }
+    if (this.router.url == '/main/competition/current') {
+      this.flag[1] = true;
+      this.receivService.Competition.currentCompetition().subscribe(u => {
+        this.competitions = of(u);
+      });
+    }
+    if (this.router.url == '/main/competition/archive') {
+      this.flag[2] = true;
+      this.receivService.Competition.archiveCompetition().subscribe(u => {
+        this.competitions = of(u);
+      });
+    }
+    /*if(!this.empetyCompetitions) {
+      this.competitions = of(this.comp);
+    }*/
   }
 
   onToggle() {

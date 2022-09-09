@@ -14,4 +14,8 @@ export class CompetitionItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getDate(date: Date): string {
+    date = new Date(date);
+    return date.toLocaleString().split(',')[0];
+}
 }

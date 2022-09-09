@@ -2,10 +2,18 @@
     <div class="flex-container">
         <div class="nav-menu">
             <div class="tabs">
-                <input type="radio" name="tabs-nav" id="tab-1" [checked]="flag">
-                <label for="tab-1" class="tab" routerLink="/main/competition/current"><span>{{'Competition.currentCompetitions' | translate}}</span></label>
-                <input type="radio" name="tabs-nav" id="tab-2" [checked]="!flag">
-                <label for="tab-2" class="tab" routerLink="/main/competition/archive"><span>{{'Competition.archiveCompetitions' | translate}}</span></label>
+                <input type="radio" name="tabs-nav" id="tab-0" [checked]="flag[0]">
+                <label for="tab-0" class="tab" routerLink="/main/competition/upcoming">
+                    <span>{{'Competition.upcomingCompetitions' | translate}}</span>
+                </label>
+                <input type="radio" name="tabs-nav" id="tab-1" [checked]="flag[1]">
+                <label for="tab-1" class="tab" routerLink="/main/competition/current">
+                    <span>{{'Competition.currentCompetitions' | translate}}</span>
+                </label>
+                <input type="radio" name="tabs-nav" id="tab-2" [checked]="flag[2]">
+                <label for="tab-2" class="tab" routerLink="/main/competition/archive">
+                    <span>{{'Competition.archiveCompetitions' | translate}}</span>
+                </label>
             </div>
             <button class="btn new" (click)="onToggle()">{{'Competition.newCompetition' | translate}}</button>
         </div>

@@ -2,8 +2,8 @@
     <summary>
             <span>
                 <span class="name">{{item.Name}}</span>
-                <span>Moscow</span>
-                <span class="date">{{item.getDate(item.StartCompetition)}} - {{item.getDate(item.EndCompetition)}}</span>
+                <span>{{item.UserId}}</span>
+                <span class="date">{{getDate(item.StartCompetition)}} - {{getDate(item.EndCompetition)}}</span>
             </span>
     </summary>
     <div class="info">
@@ -20,11 +20,7 @@
                 <app-year-group></app-year-group>
             </div>
         </div>
-        <div class="note">
-            asdasfas<br>
-            asd<br>
-            asd<br>
-            ffafasf</div>
+        <div class="note"></div>
         <div class="btn">
             <button>{{'Competition.apply' | translate}}</button>
         </div>
