@@ -50,9 +50,11 @@ export class ReceivingService {
     }
   }(this)
 
-  /*getUserInfo(id: number): Observable<UserInfo> {
-    return this.http.get<UserInfo>(this.baseUrl);
-  }*/
+  public Users = new class {
+    constructor(private superThis: ReceivingService) {}
 
-  
+    getUserInfo(id: number): Observable<UserInfo> {
+      return this.superThis.http.get<UserInfo>(this.superThis.baseUrl + ApiUrl.Users.get + `/${id}`);
+    }
+  }(this)  
 }

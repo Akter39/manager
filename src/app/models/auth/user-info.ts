@@ -1,7 +1,8 @@
 export class UserInfo {
-    Name!: string;
-    City!: string;
-    Organization!: string;
-    Phone?: string;
-    Email?: string; 
+    Id!: number;
+    UserNickname!: string;
+    UserCity!: string;
+    UserOrganization!: string;
+    UserPhone?: string;
+    UserEmail?: string; 
 }

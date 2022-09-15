@@ -16,5 +16,8 @@ export const ApiUrl = {
     },
     Language: {
         set: 'api/language'
+    },
+    Users: {
+        get: 'api/get/user'
     }
 }

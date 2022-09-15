@@ -2,11 +2,12 @@
     <summary>
             <span>
                 <span class="name">{{item.Name}}</span>
-                <span>{{item.UserId}}</span>
+                <span>{{(userInfo | async)?.UserCity}}</span>
                 <span class="date">{{getDate(item.StartCompetition)}} - {{getDate(item.EndCompetition)}}</span>
             </span>
     </summary>
     <div class="info">
+        <div class="organization">{{'Competition.organization' | translate}}: </div>
         <div class="length">{{'Competition.poolLength' | translate}}: {{item.PoolLength}}</div>
         <div class="track">{{'Competition.numberlanes' | translate}}: 8</div>
         <div class="contribution">{{'Competition.entryContribution' | translate}}: 500р</div>

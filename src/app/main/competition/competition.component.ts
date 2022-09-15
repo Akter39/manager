@@ -16,11 +16,6 @@ export class CompetitionComponent implements OnInit, DoCheck {
   flag: boolean[] = new Array();
   closeNew!: boolean;
 
-  /*comp: Competition[] = [
-    new Competition(89, 'Веселый дельфин', new Date(), new Date(), 50, new UserInfo()),
-    new Competition(45, 'Первенство московской области', new Date(), new Date(), 50, new UserInfo())
-  ];*/
-
   constructor(private receivService: ReceivingService, private router: Router) {
 
    }
@@ -45,9 +40,6 @@ export class CompetitionComponent implements OnInit, DoCheck {
         this.competitions = of(u);
       });
     }
-    /*if(!this.empetyCompetitions) {
-      this.competitions = of(this.comp);
-    }*/
   }
 
   onToggle() {

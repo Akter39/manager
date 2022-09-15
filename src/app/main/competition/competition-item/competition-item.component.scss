@@ -21,12 +21,9 @@ details {
         display: grid;
         background-color: $mainB-color;
         padding: 0.5em;
-        grid-template-areas: "l l t t cb cb . . . ."
-                             "p p c c   . . . . . ."
-                             "y y y y y y   . b b b"
-                             "n n n n n n n   b b b";
-        grid-template-columns: repeat(10, 1fr);
+        grid-template-columns: repeat(20, 1fr);
         grid-template-rows: 1fr 1fr auto auto;
+        column-gap: 0.5em;
         .year-dist {
             grid-area: y;
             display: flex;
