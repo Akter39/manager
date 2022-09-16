@@ -3,19 +3,25 @@
             <span>
                 <span class="name">{{item.Name}}</span>
                 <span>{{(userInfo | async)?.UserCity}}</span>
-                <span class="date">{{getDate(item.StartCompetition)}} - {{getDate(item.EndCompetition)}}</span>
+                <span class="date">{{getDate(item.StartCompetition)}}
+                    <span *ngIf="!!item.EndCompetition"> - {{getDate(item.EndCompetition)}}</span></span>
             </span>
     </summary>
     <div class="info">
-        <div class="organization">{{'Competition.organization' | translate}}: </div>
+        <div class="organization">{{'Competition.organization' | translate}}: {{(userInfo | async)?.UserOrganization}}</div>
+
         <div class="length">{{'Competition.poolLength' | translate}}: {{item.PoolLength}}</div>
-        <div class="track">{{'Competition.numberlanes' | translate}}: 8</div>
-        <div class="contribution">{{'Competition.entryContribution' | translate}}: 500р</div>
-        <div class="participents">{{'Competition.members' | translate}}: 48/300</div>
-        <div class="commands">{{'Competition.teams' | translate}}: 8/10</div>
+        <div class="track">{{'Competition.numberlanes' | translate}}: {{item.PoolLanes}}</div>
+        <div class="contribution">{{'Competition.entryContribution' | translate}}: {{item.Contribution}}</div>
+        <div class="maxMembers">{{'Competition.maxMembers' | translate}}: {{item.MaxMembers}}</div>
+        <div class="maxComands">{{'Competition.maxComands' | translate}}: {{item.MaxComands}}</div>
+        <div class="maxComandMembers">{{'Competition.maxComandMembers' | translate}}: {{item.MaxComandMembers}}</div>
+        <div class="members">{{'Competition.members' | translate}}: {{item.CurrentMembers}}</div>
+        <div class="commands">{{'Competition.comands' | translate}}: {{item.CurrentComands}}</div>
         <div class="year-dist">
             <div class="distances">
-                <app-distances></app-distances>
+                <app-distances
+                    [distances]="item.Distances"></app-distances>
             </div>
             <div class="year">
                 <app-year-group></app-year-group>
