@@ -21,9 +21,7 @@ export class YearGroupService {
    }
 
    private initProperties(yearGroups: YearGroup[]) {
-    this.yearGroups = yearGroups;
-    console.log(yearGroups);
-    console.log(this.yearGroups);
+    this.yearGroups = [];
     this.currentYear = new Date().getFullYear();
     let bufferMen: YearBusy[] = new Array();
     let bufferWomen: YearBusy[] = new Array();

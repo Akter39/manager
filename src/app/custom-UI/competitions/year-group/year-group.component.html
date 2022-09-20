@@ -9,7 +9,7 @@
     <div class="body">
         <div class="men">
             <div class="head"><div>{{'Competition.men' | translate}}</div></div>
-            <ng-container *ngFor="let item of yearGroup.yearGroups; index as i">
+            <ng-container *ngFor="let item of yearGroups; index as i">
                 <div *ngIf="gender(i)" class="item">
                     <div>
                         {{item.startYear}}
@@ -25,9 +25,9 @@
         </div>
         <div class="women">
             <div class="head"><div>{{'Competition.women' | translate}}</div></div>
-            <ng-container *ngFor="let item of yearGroup.yearGroups; index as i">
+            <ng-container *ngFor="let item of yearGroups; index as i">
                 <div *ngIf="!gender(i)" class="item">
-                    <div *ngIf="!gender(i)">
+                    <div>
                         {{item.startYear}}
                         <span *ngIf="item.endYear"> - {{item.endYear!}}</span>
                         <span *ngIf="item.infinity">+</span>

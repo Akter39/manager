@@ -1,3 +1,4 @@
+import { YearGroup } from 'src/app/models/year-group';
 import { Style } from 'src/app/models/style';
 import { CompetitionsService } from 'src/app/services/competitions.service';
 import { Distance, Distances } from 'src/app/models/distance';
@@ -8,7 +9,7 @@ import { map, Observable, catchError, throwError } from 'rxjs';
 import { User } from 'src/app/models/auth/user';
 import { UserInfo } from '../models/auth/user-info';
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, Directive } from '@angular/core';
 import { ConditionNewCompetition } from 'src/app/models/condition-new-competition';
 
 @Injectable({
@@ -54,9 +55,14 @@ export class ReceivingService {
     private convert(competition: any): Competition[] {
       for(let comp of competition) {
         let dist: Distance[] = new Array();
+        let year: YearGroup[] = new Array();
+        for (let item of comp.YearGroups) {
+          year.push(new YearGroup(item.StartYear, item.Infinity, item.Gender, item.EndYear));
+        }
         for (let item of comp.Distances) {
           dist.push(new Distance(item.Dist, item.Style, item.Gender, this.superThis.competitionsService));
         }
+        comp.YearGroups = year;
         comp.Distances = dist;
       }
       return competition;

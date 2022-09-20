@@ -1,7 +1,7 @@
+import { YearGroup } from 'src/app/models/year-group';
 import { YearGroupService } from '../../../services/year-group.service';
 import { YearBusy } from './../../../models/year-busy';
 import { filter, map, Observable, of, zip, tap, take } from 'rxjs';
-import { YearGroup } from './../../../models/year-group';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Distance, Genders } from 'src/app/models/distance';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';

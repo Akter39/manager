@@ -15,7 +15,7 @@ export class YearGroupComponent implements OnInit, DoCheck {
   @Input() set isEdit(value: boolean) {
     this._isEdit = value; 
   }
-  @Input() yearGroups!: YearGroup[];
+  @Input() yearGroups: YearGroup[] = this.yearGroup.yearGroups;
   @Output() clear: EventEmitter<any> = new EventEmitter<any>();
   @Output() add: EventEmitter<any> = new EventEmitter<any>();
   @Output() deleteItem: EventEmitter<any> = new EventEmitter<any>();
@@ -24,6 +24,7 @@ export class YearGroupComponent implements OnInit, DoCheck {
   additionalWomen: string[] = new Array();
   Genders = Genders;
   form!: FormGroup;
+  i: number = 0;
 
   constructor(
     public yearGroup: YearGroupService,
@@ -31,18 +32,19 @@ export class YearGroupComponent implements OnInit, DoCheck {
      private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    if(!!this.yearGroups) {
-      this.yearGroup.init(this.yearGroups);
-      console.log(this.yearGroup.yearGroups);
-      this.reloadForm('reload');
-    }
     this.isAdditional = false;
-    this.reloadForm('init');
+    if (this.newYearGroup) {
+      this.yearGroups = this.yearGroup.yearGroups
+      this.reloadForm('init');
+    }
     this.additional();
   }
 
   ngDoCheck() {
-    this.reloadForm('reload');
+    if (this.newYearGroup) {
+      this.yearGroups = this.yearGroup.yearGroups
+      this.reloadForm('reload');
+    }
   }
 
   onClear() {
@@ -61,7 +63,7 @@ export class YearGroupComponent implements OnInit, DoCheck {
 
   reloadForm(flag: string) {
     this.form = this.fb.group({
-      YearGroups: this.fb.array(this.yearGroup.yearGroups.map(x => this.fb.group({
+      YearGroups: this.fb.array(this.yearGroups.map(x => this.fb.group({
       StartYear: x.startYear,
       EndYear: x.endYear,
       Infinity: x.infinity,
@@ -84,15 +86,15 @@ export class YearGroupComponent implements OnInit, DoCheck {
   }
 
   gender(index: number): boolean {
-    if(this.yearGroup.yearGroups[index].gender == Genders.mail) return true;
+    if(this.yearGroups[index].gender == Genders.mail) return true;
     return false;
   }
 
   additional() {
     let menLength!: number;
     let womenLength!: number;
-    menLength = this.yearGroup.yearGroups.filter(u => u.gender == Genders.mail).length;
-    womenLength = this.yearGroup.yearGroups.filter(u => u.gender == Genders.femail).length;
+    menLength = this.yearGroups.filter(u => u.gender == Genders.mail).length;
+    womenLength = this.yearGroups.filter(u => u.gender == Genders.femail).length;
     let i: number = menLength - womenLength;
     if (i == 0) return;
     else this.isAdditional = true;

@@ -130,17 +130,17 @@
             <div class="distances">
                 <app-distances 
                     [newCompetition]="true" 
-                    (add)="onToggleAdd($event)" 
-                    (clear)="onClear()" 
+                    (add)="onToggleAddDistances($event)" 
+                    (clear)="onClearDistances()" 
                     [distances]="distances"
                     [isSort]="isSortDistance"></app-distances>
                 <app-add-distances 
                     *ngIf="toggleDistances" 
-                    (close)="onToggleAdd($event)" 
+                    (close)="onToggleAddDistances($event)" 
                     [distances]="distances"
                     [isSort]="isSortDistance"
                     (deleteItem)="onDeleteDist($event)"
-                    (clear)="onClear()"></app-add-distances>
+                    (clear)="onClearDistances()"></app-add-distances>
             </div>
             <div class="year">
                 <app-year-group

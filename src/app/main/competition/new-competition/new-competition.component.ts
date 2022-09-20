@@ -12,6 +12,7 @@ import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
 import { Role } from 'src/app/models/auth/role';
 import { DOCUMENT } from '@angular/common';
 import { YearGroupService } from 'src/app/services/year-group.service';
+import { YearGroup } from 'src/app/models/year-group';
 
 @Component({
   selector: 'app-new-competition',
@@ -36,6 +37,7 @@ export class NewCompetitionComponent implements OnInit {
   lengthList!: number[];
   laneList!: number[];
   distances: Distance[] = new Array();
+  yearGroups: YearGroup[] = new Array();
   isSortDistance!: boolean;
 
   public condition: ConditionNewCompetition = {
@@ -149,11 +151,11 @@ export class NewCompetitionComponent implements OnInit {
     });
   }
 
-  onClear() {
+  onClearDistances() {
     this.distances = [];
   }
 
-  onToggleAdd(isSort: boolean) {
+  onToggleAddDistances(isSort: boolean) {
     this.isSortDistance = isSort;
     this.toggleDistances = !this.toggleDistances;
   }
@@ -183,10 +185,6 @@ export class NewCompetitionComponent implements OnInit {
   }
 
   onDeleteDist(i: number) {
-    console.log('i = ' + i);
-    this.distances.forEach(u => console.log(u));
     this.distances.splice(i, 1);
-    console.log('after: ');
-    this.distances.forEach(u => console.log(u._gender));
   }
 }
