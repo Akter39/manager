@@ -45,11 +45,23 @@ export class ReceivingService {
     }
 
     currentCompetition(): Observable<Competition[]> {
-      return this.superThis.http.get<Competition[]>(this.superThis.baseUrl + ApiUrl.Competition.currentCompetitions);
+      return this.superThis.http.get<Competition[]>(this.superThis.baseUrl + ApiUrl.Competition.currentCompetitions)
+      .pipe(map(u => this.convert(u)), catchError((error, u) => {
+        if([406].includes(error.status)) {
+          console.log("Not current competitions found");
+        }
+        return throwError(() => new Error(error));
+      }));
     }
 
     archiveCompetition(): Observable<Competition[]> {
-      return this.superThis.http.get<Competition[]>(this.superThis.baseUrl + ApiUrl.Competition.archiveCompetitions);
+      return this.superThis.http.get<Competition[]>(this.superThis.baseUrl + ApiUrl.Competition.archiveCompetitions)
+      .pipe(map(u => this.convert(u)), catchError((error, u) => {
+        if([406].includes(error.status)) {
+          console.log("Not archive competitions found");
+        }
+        return throwError(() => new Error(error));
+      }));
     }
 
     private convert(competition: any): Competition[] {

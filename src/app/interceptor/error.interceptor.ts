@@ -16,19 +16,17 @@ export class ErrorInterceptor implements HttpInterceptor {
   constructor(private auth: AuthService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return next.handle(request).pipe(catchError(error => {
+    return next.handle(request).pipe(catchError((error, u) => {
       let isAuth;
       this.auth.isAuthenticated().subscribe(u => isAuth = u);
       if ([401, 403].includes(error.status) && isAuth) {
         this.auth.signOut();
-        console.log('Error authorization');
+        const err = (error && error.error && error.error.message) || error.statusText;
+        console.error(err);
         return throwError(() => new Error('Error authorization'));
       }
 
-      const err = (error && error.error && error.error.message) || error.statusText;
-      console.error(err);
-      //throw new Error('Error authorization');
-      return throwError(() => new Error(error));
+      return u;
     }))
   }
 }
