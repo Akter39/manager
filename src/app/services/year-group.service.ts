@@ -16,12 +16,14 @@ export class YearGroupService {
   constructor(private competition: CompetitionsService) {
    }
 
-   init() {
-    this.initProperties();
+   init(yearGroups: YearGroup[] = []) {
+    this.initProperties(yearGroups);
    }
 
-   private initProperties() {
-    this.yearGroups = [];
+   private initProperties(yearGroups: YearGroup[]) {
+    this.yearGroups = yearGroups;
+    console.log(yearGroups);
+    console.log(this.yearGroups);
     this.currentYear = new Date().getFullYear();
     let bufferMen: YearBusy[] = new Array();
     let bufferWomen: YearBusy[] = new Array();

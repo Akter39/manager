@@ -156,9 +156,9 @@
         </fieldset>
         <button class="btn" [disabled]="newCompetitionForm.invalid"
             *appUserRoles="[Role.MainAdmin, Role.Admin, Role.VipUser]"
-            (click)="onSumbit()">создать</button>
+            (click)="onSumbit()">{{'Competition.New.create' | translate}}</button>
         <button class="btn" [disabled]="newCompetitionForm.invalid" 
-            *appUserRoles="[Role.User]">оплатить</button>
+            *appUserRoles="[Role.User]">{{'Competition.New.pay' | translate}}</button>
     </form>
 </div>
   

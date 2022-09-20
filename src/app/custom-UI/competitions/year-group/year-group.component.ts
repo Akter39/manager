@@ -1,3 +1,4 @@
+import { YearGroup } from 'src/app/models/year-group';
 import { YearGroupService } from '../../../services/year-group.service';
 import { Genders } from './../../../models/distance';
 import { Component, EventEmitter, Input, OnInit, Optional, Output, DoCheck } from '@angular/core';
@@ -14,6 +15,7 @@ export class YearGroupComponent implements OnInit, DoCheck {
   @Input() set isEdit(value: boolean) {
     this._isEdit = value; 
   }
+  @Input() yearGroups!: YearGroup[];
   @Output() clear: EventEmitter<any> = new EventEmitter<any>();
   @Output() add: EventEmitter<any> = new EventEmitter<any>();
   @Output() deleteItem: EventEmitter<any> = new EventEmitter<any>();
@@ -29,6 +31,11 @@ export class YearGroupComponent implements OnInit, DoCheck {
      private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    if(!!this.yearGroups) {
+      this.yearGroup.init(this.yearGroups);
+      console.log(this.yearGroup.yearGroups);
+      this.reloadForm('reload');
+    }
     this.isAdditional = false;
     this.reloadForm('init');
     this.additional();

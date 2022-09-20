@@ -11,6 +11,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CompetitionItemComponent implements OnInit {
   @Input() item!: Competition;
+  @Input() isBid: boolean = false;
   userInfo!: Observable<UserInfo>;
 
   constructor(private receivingService: ReceivingService) { }

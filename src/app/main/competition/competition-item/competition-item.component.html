@@ -9,7 +9,14 @@
     </summary>
     <div class="info">
         <div class="organization">{{'Competition.organization' | translate}}: {{(userInfo | async)?.UserOrganization}}</div>
-
+        <div class="bid">{{'Competition.bit' | translate}}: {{getDate(item.BidDate)}}</div>
+        <div class="invividual">{{'Competition.individual' | translate}}: 
+            <span *ngIf="item.Individual">{{'Competition.invividualYes' | translate}}</span>
+            <span *ngIf="!item.Individual">{{'Competition.invividualNo' | translate}}</span></div>
+        <div class="invition">{{'Competition.invition' | translate}}: 
+            <span *ngIf="item.InvitOnly">{{'Competition.invitionYes' | translate}}</span>
+            <span *ngIf="!item.InvitOnly">{{'Competition.invitionNo' | translate}}</span>
+        </div>
         <div class="length">{{'Competition.poolLength' | translate}}: {{item.PoolLength}}</div>
         <div class="track">{{'Competition.numberlanes' | translate}}: {{item.PoolLanes}}</div>
         <div class="contribution">{{'Competition.entryContribution' | translate}}: {{item.Contribution}}</div>
@@ -24,11 +31,12 @@
                     [distances]="item.Distances"></app-distances>
             </div>
             <div class="year">
-                <app-year-group></app-year-group>
+                <app-year-group
+                    [yearGroups]="item.YearGroups"></app-year-group>
             </div>
         </div>
-        <div class="note"></div>
-        <div class="btn">
+        <div class="note" *ngIf="false"></div>
+        <div class="btn" *ngIf="isBid">
             <button>{{'Competition.apply' | translate}}</button>
         </div>
     </div>

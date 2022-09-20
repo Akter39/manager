@@ -20,7 +20,9 @@
         <div *ngIf="empetyCompetitions">{{'Competition.noCompetitions' | translate}}</div>
         <div class="competitions">
             <div *ngFor="let item of competitions | async; let i = index">
-                <app-competition-item [item] = item></app-competition-item>
+                <app-competition-item 
+                    [item] = item
+                    [isBid]="isBid"></app-competition-item>
             </div>
         </div>
     </div>

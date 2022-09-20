@@ -21,11 +21,14 @@ export class ErrorInterceptor implements HttpInterceptor {
       this.auth.isAuthenticated().subscribe(u => isAuth = u);
       if ([401, 403].includes(error.status) && isAuth) {
         this.auth.signOut();
+        console.log('Error authorization');
+        return throwError(() => new Error('Error authorization'));
       }
 
       const err = (error && error.error && error.error.message) || error.statusText;
       console.error(err);
-      throw new Error('Error authorization');
+      //throw new Error('Error authorization');
+      return throwError(() => new Error(error));
     }))
   }
 }

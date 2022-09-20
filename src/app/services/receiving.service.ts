@@ -1,7 +1,10 @@
+import { Style } from 'src/app/models/style';
+import { CompetitionsService } from 'src/app/services/competitions.service';
+import { Distance, Distances } from 'src/app/models/distance';
 import { FormGroup } from '@angular/forms';
 import { ApiUrl } from '../constants/api-url.constants';
 import { Competition } from '../models/competition';
-import { Observable } from 'rxjs';
+import { map, Observable, catchError, throwError } from 'rxjs';
 import { User } from 'src/app/models/auth/user';
 import { UserInfo } from '../models/auth/user-info';
 import { HttpClient } from '@angular/common/http';
@@ -15,6 +18,7 @@ export class ReceivingService {
 
   constructor(
     private http: HttpClient,
+    private competitionsService: CompetitionsService,
     @Inject('BASE_URL') private baseUrl: string,
   ) { }
 
@@ -30,7 +34,13 @@ export class ReceivingService {
     }
 
     upcomingCompetition(): Observable<Competition[]> {
-      return this.superThis.http.get<Competition[]>(this.superThis.baseUrl + ApiUrl.Competition.upcomingCompetitions);
+      return this.superThis.http.get<Competition[]>(this.superThis.baseUrl + ApiUrl.Competition.upcomingCompetitions)
+        .pipe(map(u => this.convert(u)), catchError((error, u) => {
+          if([406].includes(error.status)) {
+            console.log("Not upcoming competitions found");
+          }
+          return throwError(() => new Error(error));
+        }));
     }
 
     currentCompetition(): Observable<Competition[]> {
@@ -39,6 +49,17 @@ export class ReceivingService {
 
     archiveCompetition(): Observable<Competition[]> {
       return this.superThis.http.get<Competition[]>(this.superThis.baseUrl + ApiUrl.Competition.archiveCompetitions);
+    }
+
+    private convert(competition: any): Competition[] {
+      for(let comp of competition) {
+        let dist: Distance[] = new Array();
+        for (let item of comp.Distances) {
+          dist.push(new Distance(item.Dist, item.Style, item.Gender, this.superThis.competitionsService));
+        }
+        comp.Distances = dist;
+      }
+      return competition;
     }
   }(this);
 

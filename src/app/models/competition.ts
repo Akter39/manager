@@ -18,6 +18,6 @@ export class Competition {
     CurrentMembers!: number;
     CurrentComands!: number;
     Distances!: Distance[];
-    YearGroup!: YearGroup[];
+    YearGroups!: YearGroup[];
     UserId!: number;
 }

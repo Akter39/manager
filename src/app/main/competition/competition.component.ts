@@ -15,21 +15,25 @@ export class CompetitionComponent implements OnInit, DoCheck {
   competitions!: Observable<Competition[]>;
   flag: boolean[] = new Array();
   closeNew!: boolean;
+  isBid!: boolean;
 
   constructor(private receivService: ReceivingService, private router: Router) {
 
    }
 
   ngOnInit(): void {
+    this.isBid = false;
     this.closeNew = true;
     if (this.router.url == '/main/competition/upcoming') {
       this.flag[0] = true;
       this.receivService.Competition.upcomingCompetition().subscribe(u => {
         this.competitions = of(u);
+
       });
     }
     if (this.router.url == '/main/competition/current') {
       this.flag[1] = true;
+      this.isBid = true;
       this.receivService.Competition.currentCompetition().subscribe(u => {
         this.competitions = of(u);
       });

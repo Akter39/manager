@@ -25,28 +25,35 @@ details {
         grid-template-columns: repeat(100, 1fr);
         grid-template-rows: 1fr 1fr 1fr 1fr 1fr auto auto;
         row-gap: 0.5em;
-        .organization {grid-area: 1 / 1 / 1 / 29;}
-        .length {grid-area: 2 / 1 / 2 / 29;}
-        .track {grid-area: 2 / 30 / 2 / 59;}
-        .contribution {grid-area: 3 / 1 / 3 / 29;}
-        .maxMembers {grid-area: 4 / 1 / 4 / 29;}
-        .maxComands {grid-area: 4 / 30 / 4 / 59;}
-        .maxComandMembers {grid-area: 5 / 1 / 5 / 45;}
-        .members {grid-area: 6 / 1 / 6 / 35;}
-        .commands {grid-area: 6 / 36 / 6 / 65;}
+        .organization {grid-area: 1 / 1 / 1 / 100;}
+        .bid {grid-area: 2 / 1 / 2 / 100;}
+        .invividual {grid-area: 3 / 1 / 3 / 49;}
+        .invition {grid-area: 3 / 50 / 3 / 100;}
+        .length {grid-area: 4 / 1 / 4 / 49;}
+        .track {grid-area: 4 / 50 / 4 / 100;}
+        .contribution {grid-area: 5 / 1 / 5 / 100;}
+        .maxMembers {grid-area: 6 / 1 / 6 / 49;}
+        .maxComands {grid-area: 6 / 50 / 6 / 100;}
+        .maxComandMembers {grid-area: 7 / 1 / 7 / 100;}
+        .members {grid-area: 8 / 1 / 8 / 49;}
+        .commands {grid-area: 8 / 50 / 8 / 90;}
         .year-dist {
-            grid-area: 7 / 1 / 7 / 80;
+            grid-area: 9 / 1 / 9 / 100;
             display: flex;
             column-gap: 1em;
             .year {
-                width: max-content;                
+                width: 18em;                
             }
             .distances {
-                width: max-content;
+                width: 20em;
+            }
+            @media (max-width: 410px) {
+                flex-direction: column;
+                row-gap: 1em;
             }
         }
         .note {
-            grid-area: 8 / 1 / 8 / 70;
+            grid-area: 10 / 1 / 10 / 70;
             background-color: $mainA-color;
             margin: 0.2em;
             padding: 0.5em;
